@@ -1,0 +1,272 @@
+/*
+	____________  ___  ___________ _____ _   _     ___  _   __
+	|  ___| ___ \/ _ \|  __ \  _  \  ___| | | |   /   || | / /
+	| |_  | |_/ / /_\ \ |  \/ | | | |__ | | | |  / /| || |/ / 
+	|  _| |    /|  _  | | __| | | |  __|| | | | / /_| ||    \ 
+	| |   | |\ \| | | | |_\ \ |/ /| |___\ \_/ / \___  || |\  \
+	\_|   \_| \_\_| |_/\____/___/ \____/ \___/      |_/\_| \_/
+
+by Windigo - http://fragdev.com
+/*============================================================*/
+
+
+/* -=== Base Styles ===- */
+@font-face
+{
+	font-family: 'DroidSans';
+	src:	url('../fonts/DroidSans-webfont.woff') format('woff'),
+			url('../fonts/DroidSans-webfont.ttf') format('truetype');
+	font-style: normal;
+	font-variant:normal;
+	font-weight: normal;
+}
+
+@font-face
+{
+	font-family: 'DroidSans';
+	src:	url('../fonts/DroidSans-Bold-webfont.woff') format('woff'),
+			url('../fonts/DroidSans-Bold-webfont.ttf') format('truetype');
+	font-style: normal;
+	font-variant:normal;
+	font-weight: bold;
+}
+
+/* -=== Base Styles ===- */
+
+a
+{
+	color: #f0c674;
+}
+
+a[href^=http://]::after
+{
+	display: inline-block;
+	content: ' [^]';
+}
+
+a:active,
+a:hover,
+a:focus
+{
+	color: #e7c547; 
+}
+
+body
+{
+	background: #000;
+	background: rgba(0,0,0,.5);
+	background: transparent linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.8)) no-repeat scroll 0 0;
+	border-radius: .5em;
+	box-shadow:
+		0 0 2em -.25em #000,
+		inset 0 0 6em #000;
+	margin: 0 auto 3em auto;
+	max-width: 58em;
+	overflow-x: hidden;
+	padding: 0 1% 1px 1%;
+	position: relative;
+}
+
+h1
+{
+	color: #fff;
+}
+
+html
+{
+	background:
+		radial-gradient(#0b0b0b 15%, transparent 16%) 0 0,
+		radial-gradient(#0b0b0b 15%, transparent 16%) 8px 8px,
+		radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+		radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+	background-color:#1d1f21;
+	background-size:16px 16px;
+	color: #c5c8c6;
+	font-family: 'DroidSans', sans-serif;*/
+	overflow-x: hidden;
+	ovreflow-y: scroll;
+}
+
+input,textarea
+{
+	background: #c5c8c6;
+	border: 1px solid #000;
+	width: 100%;
+}
+
+textarea
+{
+	height: 4em;
+}
+
+/* -=== Layout Styles ===- */
+
+.page-ancillary
+{
+	border-bottom-left-radius: 50% 1em;
+	border-bottom-right-radius: 50% 1em;
+	float: right;
+	padding: 0 1%;
+	width: 28%;
+}
+
+.page-ancillary em,
+.page-ancillary q
+{
+	font-weight: bold;
+}
+
+.page-ancillary,
+.page-ancillary h1
+{
+	color: #ffeead;
+}
+
+.page-ancillary,
+.page-header,
+.page-footer::before
+{
+	background: #373b41; 
+	box-shadow: 0 .5em .51em #000;
+	position: relative;
+	z-index: 24;
+}
+
+.page-content
+{
+	float: left;
+	width: 69%;
+}
+
+.page-footer::before
+{
+	content: " ";
+	display: block;
+	height: 1em;
+}
+
+.page-footer
+{
+	clear: both;
+	font-style: italic;
+	padding: 1em 0;
+}
+
+.page-footer,.page-footer a
+{
+	color: #373b41;
+}
+
+.page-header
+{
+	background-size: 30px 30px; 
+	background-position: 10% 80%;
+}
+
+
+/* -=== Module Styles ===- */
+
+.errorlist
+{
+	color: #f00;
+	font-style: italic;
+}
+
+.fd-badge a span
+{
+	color: #e7c547;
+}
+
+.fd-badge a
+{
+	color: #d54e53;
+	font-size: 1.5em;
+	text-decoration: none;
+}
+
+.fd-badge:hover
+{
+	box-shadow: 0 0 .3em #e7c547;
+}
+
+.fd-badge
+{
+	background: #000;
+	border-radius: .5em;
+	box-shadow: 0 2px .25em #111;
+	display: inline-block;
+	margin: .5em 0;
+	padding: .5em;
+	position: absolute;
+	transition: all .5s;
+}
+
+.full-width,
+.page-footer::before
+{
+	margin: 0 -999em;
+	padding: 0 999em;
+	width: 100%;
+}
+
+.main-nav ul li a:active,
+.main-nav ul li a:focus,
+.main-nav ul li a:hover
+{
+	outline: none;
+	text-shadow: 0 0 .3em #e7c547;
+}
+
+.main-nav ul li a::before
+{
+	content: attr(data-icon);
+	display: block;
+	font-size: 3em;
+}
+
+.main-nav ul li a
+{
+	color: #ffeead;
+	text-decoration: none;
+	text-shadow: 0 2px .25em #000;
+	transition: all .2s;
+}
+
+.main-nav ul li
+{
+	display: inline-block;
+	height: 4em;
+	line-height: 1.1;
+	list-style: none;
+	margin: 0 0 0 1%;
+	text-align: center;
+	width: 9%;
+}
+
+.main-nav ul
+{
+	display: inline;
+	text-align: right;
+	width: 100%;
+}
+
+.main-nav
+{
+	padding: .5em 0;
+	text-align: right;
+	top: .5em;
+	max-width: 58em; 
+}
+
+
+.skip a:focus
+{
+	top: 0;
+}
+
+.skip a
+{
+	left: 0;
+	position: absolute;
+	top: -999em;
+}
