@@ -1,0 +1,108 @@
+<!doctype html>
+
+<html>
+
+<head>
+	<title>{% block title %}Fragmented Development{% endblock %}</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/css/fd4k.css">
+</head>
+
+<body>
+	<div class="page-header full-width">
+		<header>
+			<div class="skip">
+				<a href="#content">Skip to content</a>
+				<a href="#nav">Skip to navigation</a>
+			</div>
+			<div class="fd-badge">
+				<a href="/"><span>Frag</span>mented<br><span>Dev</span>elopment</a>
+			</div>
+			<nav class="main-nav" id="nav">
+				<ul>
+					<li><a href="/" data-icon="⚙">Services</a></li>
+					<li><a href="/about" data-icon="😃">About</a></li>
+					<li><a href="/resume" data-icon="✎">Resume</a></li>
+					<li><a href="/projects" data-icon="⚒">Projects</a></li>
+					<li><a href="/contact" data-icon="✆">Contact</abbr></a></li>
+				</ul>
+			</nav>
+		</header>
+	</div>
+
+	<section class="page-content" id="content">
+		{% block content %}
+			<h1>Welcome To Fragmented Development!</h1>
+			<p>
+				There are several different services and components comprising FragDev:
+			</p>
+			<dl>
+				<dt>Mumble<br>(mumble.fragdev.net)</dt>
+				<dd>
+					Mumble is a voice chat server. It's a great way to talk to several
+					people at once, have a one-on-one chat, or record that episode
+					of <a href="http://hackerpublicradio.org/">Hacker Public Radio</a>
+					that you owe to Ken Fallon.
+				</dd>
+				<dt>
+					<a href="http://micro.fragdev.com">Status.net</a>
+				</dt>
+				<dd>
+					Status.net is twitter, without all the exclusion and proprietary
+					bits! In addition, it's federated - so users on our Status.net
+					instance can send messages to users on other independent instances.
+				</dd>
+				<dt>
+					<a href="http://links.fragdev.com">SemanticScuttle</a>
+				</dt>
+				<dd>
+					A social bookmarking application, SemanticScuttle is very similar
+					to Del.icio.us &mdash; before the remake.
+				</dd>
+				<dt>
+					<a href="http://ttrss.fragdev.com">Tiny Tiny RSS</a>
+				</dt>
+				<dd>
+					A very functional, lightweight <abbr title=
+					"really simple syndication">RSS</abbr> reader with a few extra social
+					functions. If you like Google Reader, you should give TTRSS a try.
+				</dd>
+				<dt>
+					<a href="http://webmail.fragdev.com">Roundcube</a>
+				</dt>
+				<dd>
+					A smooth, simple webmail interface, Roundcube is a great web-based
+					IMAP email client. It can be used as an interface to any IMAP
+					server, but on FragDev it talks to Dovecot and Postfix.
+				</dd>
+			</dl>
+		{% endblock %}
+	</section>
+	<section class="page-ancillary">
+		{% block ancillary %}
+		<h1>What is FragDev?</h1>
+		<p>
+			<em><q>Fragmented Development</q></em>, abbreviated <em>FragDev</em>, summarizes to the
+			nature of web development. Many disparate technologies make today's web, and this variety
+			makes development both challenging and enjoyable.
+		</p>
+		<p>
+			It's also where <strong>Jacob Hume</strong>, a web developer and Free Software
+			enthusiast, puts stuff. On the internet, he usually uses the username <strong>Windigo</strong>.
+		</p>
+		{% endblock %}
+	</section>
+
+	<footer class="page-footer full-width">
+		<p>
+			The layout "FragDev 4000" was developed by Jacob Hume, and the HTML and CSS is released
+			under the <a href="https://www.gnu.org/licenses/agpl">GNU AFFERO GENERAL PUBLIC LICENSE
+			v3</a> or Later. Jacob Hume himself is C. 1983, and cannot be used or reproduced without
+			permission or an advanced understanding of human genomics and biochemistry.
+		 	Void where prohibited, may contain peanuts.
+		</p>
+	</footer>
+</body>
+
+</html>

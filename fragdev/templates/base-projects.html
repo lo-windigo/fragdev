@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Projects - Fragmented Development{% endblock %}
+
+{% block content %}
+			<h1>Projects</h1>
+			<p>
+				This is a small collection of some random projects I've done over the years. They're all
+				open source, so feel free to use them. I hope to add more as I dig them out of archives.
+			</p>
+			<h2><a href="https://gitorious.org/barcamp-badge-creator">BarCamp Badge Creator</a></h2>
+			<p>
+				I was lucky enough to attend the first and second <a href="http://oggcamp.org/">OggCamp</a>
+				un-conferences, and was able to meet quite a few people I had gotten to know online. There
+				was just one problem... how do you identify someone you've known only via forum avatars?
+			</p>
+			<p>
+				A quick coding sprint later, I had a small PHP script that would generate you a "Hello,
+				My Name Is" image that you could print out and stick on your shirt/laptop/etc.
+			</p>
+			<h2>
+				<a href="https://gitorious.org/florrie-comic-management-system">Florrie: Comic Management
+				System</a>
+			</h2>
+			<p>
+				This is a refactored, incomplete version of a PHP4 Comic management system I created for 
+				some friends that run the <a href="http://valcielle.fragdev.com">Val'Cielle</a> web comic.
+			</p>
+			<p>
+				I've put this project on hold mostly, due to the comic also being put on hold. I'm planning
+				on finishing this at some point, possibly in Django.
+			</p>
+			<h2><a href="https://gitorious.org/dynmap-chat">jQuery DynMap Chat Widget</a></h2>
+			<p>
+				I play a lot of <a href="http://minecraft.net">Minecraft</a>, and help run a server or two.
+				So that we could display the server chat on our website, I whipped up a little chunk of
+				jQuery that would pull the chat text from the DynMap plugin.
+			</p>
+			<h2><a href="https://gitorious.org/silly-mpd-script">Silly MPD Script</a></h2>
+			<p>
+				While on the quest for the perfect media player (still unfinished, I'm afraid) I created
+				a small bash script that would control MPD. I then bound these functions to the audio keys
+				in my OpenBox config, so that I could switch songs, pause playback, and more with a single
+				keystroke.
+			</p>
+{% endblock %}
+
+{% block ancillary %}
+			<h1>Social Coding</h1>
+			<p>
+				A good majority of the coding I do is in public. You can check me out (no version control
+				pun intended, honest) on <a href="https://gitorious.org/~windigo">Gitorious</a>, or follow me
+				on <a href="https://github.com/lo-windigo">GitHub</a> where I'll try to mirror my
+				repositories for those who prefer that service.
+			</p>
+			<p>
+				In addition to the projects I have listed here, I have several config files for programs I
+				use. I hope someone finds them useful!
+			</p>
+{% endblock %}
