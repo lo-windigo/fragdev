@@ -43,7 +43,7 @@ def contact(request):
 			recipients = [ settings.CONTACT_EMAIL ]
 
 			from django.core.mail import send_mail
-			send_mail(settings.CONTACT_SUBJECT, message, settings.CONTACT_SENDER, recipients)
+			send_mail(settings.CONTACT_SUBJECT, fullBody, settings.CONTACT_SENDER, recipients)
 
 			return HttpResponseRedirect('/contacted') # Redirect after POST
 
