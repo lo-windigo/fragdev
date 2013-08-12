@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Contact Me - Fragmented Development{% endblock %}
+{% block content %}
+			<h1>Contact Me</h1>
+			<p>
+				Questions? Comments? Compliments? Split Complements? You can send them
+				all to me with the form below.
+			</p>
+			<form method="post" action="/contact">
+				{% csrf_token %}
+				{{ form.non_field_errors }}
+				<p>
+					{{ form.name.errors }}
+					<label for="id_name">
+						{{ form.name.label }}:<br>
+						{{ form.name }}
+					</label>
+				</p>
+				<p>
+					{{ form.email.errors }}
+					<label for="id_email">
+						{{ form.email.label }}:<br>
+						{{ form.email }}
+					</label>
+				</p>
+				<p>
+					{{ form.message.errors }}
+					<label for="id_message">
+						{{ form.message.label }}:<br>
+						{{ form.message }}
+					</label>
+				</p>
+				<p>
+					<input type="submit" value="Send Message">
+				</p>
+			</form>
+{% endblock %}
+
+{% block ancillary %}
+				<h1>Alternates</h1>
+				<p>
+					You can also use these fine communication methods to get ahold of me:
+				</p>
+				<ul>
+					<li>Status.net: <a href="http://micro.fragdev.com/windigo/">@windigo@micro.fragdev.com</a></li>
+					<li>IRC: windigo on freenode.net</li>
+					<li>Yelling "Windigo" very loudly</li>
+					<li>Upload a <a href="http://hackerpublicradio.org">HPR</a> episode with your message</li>
+				</ul>
+				<p>
+					None of these methods are preferred, but if for some reason my email form is not to your
+					liking, they should do in a pinch. Except the yelling method, that's mostly in there
+					for laughs.
+				</p>
+{% endblock %}
