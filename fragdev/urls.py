@@ -7,7 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 		# Blog URLs
-    url(r'^blog/(?P<path>.*)', include('wiblog.urls', namespace='wiblog')),
+    #url(r'^blog/(?P<path>.*)', include('wiblog.urls', namespace='wiblog')),
 
 		# Handle all of the "static" pages
 		url(r'^$', 'fragdev.views.home', name='home'),
@@ -19,10 +19,4 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-
-		# Static files: Should be handled by the web server!
-		#url(r'^css/(?P<path>.*)$', 'django.views.static.serve',
-    #    {'document_root': '/data/documents/web/fragdev4000/css'}),
-		#url(r'^fonts/(?P<path>.*)$', 'django.views.static.serve',
-    #    {'document_root': '/data/documents/web/fragdev4000/fonts'}),
 )
