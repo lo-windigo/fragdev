@@ -13,7 +13,13 @@ middleware here, or combine a Django application with an application of another
 framework.
 
 """
-import os
+import os, sys
+
+# Use some relative path tomfoolery to include this project in the system path
+appPath = os.path.dirname(os.path.abspath(__file__))
+projectPath = os.path.abspath(os.path.join(appPath, '..'))
+sys.path.append(appPath)
+sys.path.append(projectPath)
 
 # We defer to a DJANGO_SETTINGS_MODULE already in the environment. This breaks
 # if running multiple sites in the same mod_wsgi process. To fix this, use
