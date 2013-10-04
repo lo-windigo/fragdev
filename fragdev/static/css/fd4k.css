@@ -10,39 +10,49 @@ by Windigo - http://fragdev.com
 /*============================================================*/
 
 
-/* -=== Base Styles ===- */
+/* -=== Font Definitions ===- */
 @font-face
 {
-	font-family: 'DroidSans';
-	src:	url('../fonts/DroidSans-webfont.woff') format('woff'),
-			url('../fonts/DroidSans-webfont.ttf') format('truetype');
-	font-style: normal;
-	font-variant:normal;
+	font-family: DroidSans;
+	src:	url('/fonts/DroidSans-webfont.woff') format('woff'),
+			url('/fonts/DroidSans-webfont.ttf') format('truetype');
 	font-weight: normal;
 }
 
 @font-face
 {
-	font-family: 'DroidSans';
-	src:	url('../fonts/DroidSans-Bold-webfont.woff') format('woff'),
-			url('../fonts/DroidSans-Bold-webfont.ttf') format('truetype');
-	font-style: normal;
-	font-variant:normal;
+	font-family: DroidSans;
+	src:	url('/fonts/DroidSans-Bold-webfont.woff') format('woff'),
+			url('/fonts/DroidSans-Bold-webfont.ttf') format('truetype');
 	font-weight: bold;
 }
 
-/* -=== Base Styles ===- */
+@font-face
+{
+	font-family: Foundation;
+	src:	url('/fonts/foundicons.woff') format('woff'),
+			url('/fonts/foundicons.ttf') format('truetype');
+	font-weight: normal;
+}
+
+
+/* -=== Base ===- */
 
 a
 {
 	color: #f0c674;
 }
 
-a[href^=http://]::after
+/*
+a[href^="http://"]::after
 {
+	content: ' ↗'
 	display: inline-block;
-	content: ' [^]';
+	font-size: .75em;
+	position: relative;
+	top: -.3em;
 }
+*/
 
 a:active,
 a:hover,
@@ -62,7 +72,6 @@ body
 		inset 0 0 6em #000;
 	margin: 0 auto 3em auto;
 	max-width: 58em;
-	overflow-x: hidden;
 	padding: 0 1% 1px 1%;
 	position: relative;
 }
@@ -93,9 +102,10 @@ html
 	background-color:#1d1f21;
 	background-size:16px 16px;
 	color: #c5c8c6;
-	font-family: 'DroidSans', sans-serif;*/
+	font-family: 'DroidSans', sans-serif;
+	line-height: 1.1;
 	overflow-x: hidden;
-	ovreflow-y: scroll;
+	/*overflow-y: scroll;*/
 }
 
 input,textarea
@@ -110,7 +120,7 @@ textarea
 	height: 4em;
 }
 
-/* -=== Layout Styles ===- */
+/* -=== Layout ===- */
 
 .page-ancillary
 {
@@ -172,20 +182,37 @@ textarea
 {
 	background-size: 30px 30px; 
 	background-position: 10% 80%;
+	padding: .5em 0;
+}
+
+.page-header:after
+{
+	clear: both;
+	content: "";
+	display: block;
 }
 
 
-/* -=== Module Styles ===- */
+/* -=== Module ===- */
 
+/* Form errors */
 .errorlist
 {
 	color: #f00;
 	font-style: italic;
 }
 
-.fd-badge a span
+/* FragDev Badge */
+.fd-badge
 {
-	color: #e7c547;
+	background: #000;
+	border-radius: .5em;
+	box-shadow: 0 2px .25em #111;
+	float: left;
+	line-height: 1;
+	margin: 0;
+	padding: .5em;
+	transition: all .5s;
 }
 
 .fd-badge a
@@ -195,47 +222,24 @@ textarea
 	text-decoration: none;
 }
 
-.fd-badge:hover
+.fd-badge a span
 {
-	box-shadow: 0 0 .3em #e7c547;
+	color: #e7c547;
 }
 
-.fd-badge
-{
-	background: #000;
-	border-radius: .5em;
-	box-shadow: 0 2px .25em #111;
-	display: inline-block;
-	margin: .5em 0;
-	padding: .5em;
-	position: absolute;
-	transition: all .5s;
-}
-
+/* Full width bar (also appears before page footer) */
 .full-width,
-.page-footer::before
+.page-footer:before
 {
-	margin: 0 -999em;
-	padding: 0 999em;
+	margin-left: -999em;
+	margin-right: -999em;
+	padding-left: 999em;
+	padding-right: 999em;
 	width: 100%;
 }
 
-.main-nav ul li a:active,
-.main-nav ul li a:focus,
-.main-nav ul li a:hover
-{
-	outline: none;
-	text-shadow: 0 0 .3em #e7c547;
-}
-
-.main-nav ul li a::before
-{
-	content: attr(data-icon);
-	display: block;
-	font-size: 3em;
-}
-
-.main-nav ul li a
+/* Navigation item - icon */
+.nav-icon
 {
 	color: #ffeead;
 	text-decoration: none;
@@ -243,13 +247,29 @@ textarea
 	transition: all .2s;
 }
 
-.main-nav ul li
+.nav-icon:before
+{
+	content: attr(data-icon);
+	display: block;
+	font-family: 'Foundation';
+	font-size: 2em;
+	padding-top: .25em;
+}
+
+/* Main navigation */
+.main-nav
+{
+	text-align: right;
+	line-height: 1;
+	max-width: 58em; 
+}
+
+.main-nav li
 {
 	display: inline-block;
-	height: 4em;
-	line-height: 1.1;
+	line-height: 1.25;
 	list-style: none;
-	margin: 0 0 0 1%;
+	margin: -.5em 0 0 1%;
 	text-align: center;
 	width: 9%;
 }
@@ -257,22 +277,10 @@ textarea
 .main-nav ul
 {
 	display: inline;
+	margin: 0;
+	padding: 0;
 	text-align: right;
 	width: 100%;
-}
-
-.main-nav
-{
-	padding: .5em 0;
-	text-align: right;
-	top: .5em;
-	max-width: 58em; 
-}
-
-
-.skip a:focus
-{
-	top: 0;
 }
 
 .skip a
@@ -280,4 +288,33 @@ textarea
 	left: 0;
 	position: absolute;
 	top: -999em;
+}
+
+
+/* -=== State ===- */
+
+.fd-badge:hover
+{
+	box-shadow: 0 0 .3em #e7c547;
+}
+
+.nav-icon:active,
+.nav-icon:focus,
+.nav-icon:hover
+{
+	color: #fff;
+	outline: none;
+	text-shadow: 0 0 .3em #e7c547;
+}
+
+.skip a:focus
+{
+	top: 0;
+}
+
+
+/* -=== Responsive ===- */
+
+@media screen and (max-width: 40em)
+{
 }
