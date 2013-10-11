@@ -1,0 +1,3 @@
+# Fragdev.com - Information wants to be free, maaan.
+User-agent: *
+Allow: *
