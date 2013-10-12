@@ -193,6 +193,12 @@ textarea
 
 /* -=== Module ===- */
 
+/* Centered */
+.c
+{
+	text-align: center;
+}
+
 /* Form errors */
 .errorlist
 {
