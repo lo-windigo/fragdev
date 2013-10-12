@@ -132,6 +132,14 @@ textarea
 	color: #ffeead;
 }
 
+.page-ancillary figure,
+.page-ancillary figcaption
+{
+	margin-left: 0;
+	margin-right: 0;
+	text-align: center;
+}
+
 .page-ancillary,
 .page-header,
 .page-footer::before
