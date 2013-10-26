@@ -100,12 +100,28 @@ input,textarea
 {
 	background: #c5c8c6;
 	border: 1px solid #000;
-	width: 100%;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: .5em;
+}
+
+input[type=submit]
+{
+	margin: 1em;
+	transition: margin .25s, padding .25s;
+}
+
+input[type=text]
+{
+	min-width: 24em;
+	width: 50%;
 }
 
 textarea
 {
 	height: 4em;
+	width: 100%;
 }
 
 
@@ -132,6 +148,11 @@ textarea
 	color: #ffeead;
 }
 
+.page-ancillary ul
+{
+	padding-left: 1.5em;
+}
+
 .page-ancillary figure,
 .page-ancillary figcaption
 {
@@ -142,7 +163,7 @@ textarea
 
 .page-ancillary,
 .page-header,
-.page-footer::before
+.page-footer:before
 {
 	background: #373b41; 
 	box-shadow: 0 .5em .51em #000;
@@ -156,7 +177,7 @@ textarea
 	width: 69%;
 }
 
-.page-footer::before
+.page-footer:before
 {
 	content: " ";
 	display: block;
@@ -183,7 +204,7 @@ textarea
 	padding: .5em 0;
 }
 
-.page-header::after
+.page-header:after
 {
 	clear: both;
 	content: "";
@@ -233,7 +254,7 @@ textarea
 
 /* Full width bar (also appears before page footer) */
 .full-width,
-.page-footer::before
+.page-footer:before
 {
 	margin-left: -999em;
 	margin-right: -999em;
@@ -278,7 +299,7 @@ textarea
 	transition: all .2s;
 }
 
-.nav-icon::before
+.nav-icon:before
 {
 	content: attr(data-icon);
 	display: block;
@@ -297,6 +318,26 @@ textarea
 
 
 /* -=== State ===- */
+
+
+input:active,
+input:focus,
+input:hover,
+textarea:active,
+textarea:focus,
+textarea:hover
+{
+	background: #fff;
+}
+
+input[type=submit]:active,
+input[type=submit]:focus,
+input[type=submit]:hover
+{
+	margin: 0;
+	padding: 1.5em;
+	font-weight: bold;
+}
 
 .fd-badge:hover
 {
@@ -346,7 +387,7 @@ textarea
 		padding-top: .25em;
 	}
 
-	.page-footer::before
+	.page-footer:before
 	{
 		display: none;
 	}
@@ -372,7 +413,7 @@ textarea
 		font-size: .8em;
 	}
 
-	.nav-icon::before
+	.nav-icon:before
 	{
 		font-size: 2.4em;
 		padding-top: 0;
