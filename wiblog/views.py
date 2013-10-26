@@ -5,6 +5,7 @@ from wiblog.models import Post, Tag
 
 # Blog Index
 def index(request):
+
 	template = loader.get_template('base-index.html')
 
 	# Get a few posts to start with
@@ -13,8 +14,10 @@ def index(request):
 	context = Context({'posts': posts})
 	return HttpResponse(template.render(context))
 
+
 # Archive page
 def archive(request):
+
 	template = loader.get_template('base-archive.html')
 
 	# Get all posts
@@ -23,8 +26,19 @@ def archive(request):
 	context = Context({'posts': posts})
 	return HttpResponse(template.render(context))
 
+
+# Feeds
+def feeds(request):
+
+	template = loader.get_template('base-feeds.html')
+	context = Context('feeds': feeds)
+
+	return HttpResponse(template.render(context))
+
+
 # A single blog post
 def post(request):
+
 	template = loader.get_template('base-post.html')
 
 	# Get a single post, based on the slug passed in
@@ -33,8 +47,10 @@ def post(request):
 	context = Context('post': post)
 	return HttpResponse(template.render(context))
 
+
 # Tags Tags TAGS
 def tags(request):
+
 	template = loader.get_template('base-tags.html')
 	
 	# Get any tags that have been defined

@@ -1,9 +1,5 @@
-from django.conf import settings
-from django.core.context_processors import csrf
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import Context, RequestContext, loader
-from fragdev.contact import ContactForm
-import time
 
 
 def home(request):
@@ -13,7 +9,12 @@ def home(request):
 	return HttpResponse(template.render(context))
 
 
+# About page
 def about(request):
+
+	# We'll need the time library for our silly age calculation
+	import time
+
 	template = loader.get_template('base-about.html')
 
 	# Calculate my age to the nearest... well, whatever
@@ -25,7 +26,13 @@ def about(request):
 	return HttpResponse(template.render(context))
 
 
+# Contact page
 def contact(request):
+
+	from django.core.context_processors import csrf
+	from fragdev.contact import ContactForm
+	from django.conf import settings
+
 	template = loader.get_template('base-contact.html')
 
 	# 

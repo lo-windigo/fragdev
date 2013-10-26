@@ -6,8 +6,9 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+
 		# Blog URLs
-    #url(r'^blog/(?P<path>.*)', include('wiblog.urls', namespace='wiblog')),
+    url(r'^blog/(?P<path>.*)', include('wiblog.urls', namespace='wiblog')),
 
 		# Handle all of the "static" pages
 		url(r'^$', 'fragdev.views.home', name='home'),
