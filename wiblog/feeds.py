@@ -1,6 +1,7 @@
 from django.contrib.syndication.views import Feed
 from django.core.urlresolvers import reverse
-from fragdev.models import Post, Tag
+from django.utils.feedgenerator import Atom1Feed
+from wiblog.models import Post, Tag
 
 
 # RSS Feed Class
@@ -13,7 +14,8 @@ class PostFeedRSS(Feed):
 	# Get the posts present in this feed
 	def items(self):
 		# Filter out un-published posts. Should specify tag here as well?
-		return Post.objects.filter(status=PUB)order_by(date)
+		posts = Post.objects.filter(status='PUB').order_by('date')
+		return posts
 
 
 	def item_title(self, item):

@@ -1,5 +1,6 @@
 # Create your views here.
 from django.http import HttpResponse
+from django.template import Context, RequestContext, loader
 from wiblog.models import Post, Tag
 
 
@@ -9,7 +10,8 @@ def index(request):
 	template = loader.get_template('base-index.html')
 
 	# Get a few posts to start with
-	posts = Post.objects.filter(status=PUB).order_by('date')[:5]
+	# TODO: Figure out how to reference the choices, instead of hard-coding!
+	posts = Post.objects.filter(status='PUB').order_by('date')[:5]
 
 	context = Context({'posts': posts})
 	return HttpResponse(template.render(context))
@@ -21,7 +23,7 @@ def archive(request):
 	template = loader.get_template('base-archive.html')
 
 	# Get all posts
-	posts = Post.objects.filter(status=PUB).order_by('date')
+	posts = Post.objects.filter(status='PUB').order_by('date')
 
 	context = Context({'posts': posts})
 	return HttpResponse(template.render(context))
@@ -31,20 +33,19 @@ def archive(request):
 def feeds(request):
 
 	template = loader.get_template('base-feeds.html')
-	context = Context('feeds': feeds)
 
+	context = Context({'feeds': feeds})
 	return HttpResponse(template.render(context))
 
 
 # A single blog post
-def post(request):
+def post(request, slug):
 
 	template = loader.get_template('base-post.html')
 
-	# Get a single post, based on the slug passed in
-	post = 'balls'
+	post = Post.objects.get(slug=slug)
 
-	context = Context('post': post)
+	context = Context({'post': post})
 	return HttpResponse(template.render(context))
 
 
@@ -56,5 +57,5 @@ def tags(request):
 	# Get any tags that have been defined
 	tags = Tag.objects.all()
 
-	context = Context('tags': tags)
+	context = Context({'tags': tags})
 	return HttpResponse(template.render(context))

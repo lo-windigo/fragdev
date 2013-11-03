@@ -1,55 +1,33 @@
 {% extends "base.html" %}
-{% block title %}Contact Me - Fragmented Development{% endblock %}
+{% block title %}Blog - Fragmented Development{% endblock %}
 {% block content %}
-			<h1>Contact Me</h1>
+			<h1>Fragmented Development</h1>
 			<p>
-				Questions? Comments? Compliments? Split Complements? You can send them
-				all to me with the form below.
+				This is the blog of Jacob Hume, AKA Windigo. Its content should not be
+				trusted, nor should it's author. Read at your own risk.
 			</p>
-			<form method="post" action="/contact">
-				{% csrf_token %}
-				{{ form.non_field_errors }}
+			{% for post in posts %}
+
+			<article>
+				<h1>{{ post.title }}</h1>
 				<p>
-					{{ form.name.errors }}
-					<label for="id_name">
-						{{ form.name.label }}:<br>
-						{{ form.name }}
-					</label>
+					{{ post.body }}
 				</p>
+				{% if tags %}
 				<p>
-					{{ form.email.errors }}
-					<label for="id_email">
-						{{ form.email.label }}:<br>
-						{{ form.email }}
-					</label>
+				Tags: {% for tag in post.tags %} <a href="/blog/tags/{{ tag }}">{{ tag }}</a>
+				{% endfor %}
 				</p>
-				<p>
-					{{ form.message.errors }}
-					<label for="id_message">
-						{{ form.message.label }}:<br>
-						{{ form.message }}
-					</label>
-				</p>
-				<p>
-					<input type="submit" value="Send Message">
-				</p>
-			</form>
+				{% endif %}
+			</article>
+
+			{% endfor %}
 {% endblock %}
 
 {% block ancillary %}
-				<h1>Alternates</h1>
-				<p>
-					You can also use these fine communication methods to get ahold of me:
-				</p>
+				<h1>Navigation</h1>
 				<ul>
-					<li>Status.net: <a href="http://micro.fragdev.com/windigo/">@windigo@micro.fragdev.com</a></li>
-					<li>IRC: windigo on freenode.net</li>
-					<li>Yelling "Windigo" very loudly</li>
-					<li>Upload a <a href="http://hackerpublicradio.org">HPR</a> episode with your message</li>
+					<li><a href="/blog/archive">Blog Archive</a></li>
+					<li><a href="/blog/tags">Tags</a></li>
 				</ul>
-				<p>
-					None of these methods are preferred, but if for some reason my email form is not to your
-					liking, they should do in a pinch. Except the yelling method, that's mostly in there
-					for laughs.
-				</p>
 {% endblock %}

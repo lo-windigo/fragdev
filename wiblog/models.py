@@ -5,6 +5,9 @@ from django.core.urlresolvers import reverse
 class Tag(models.Model):
 	desc = models.CharField('Tag', max_length=50)
 
+	def __unicode__(self):
+		return self.desc
+
 	def get_absolute_url(self):
 		return reverse('tags', tag=self.desc)
 
@@ -21,6 +24,9 @@ class Post(models.Model):
 	tags = models.ManyToManyField(Tag, blank=True)
 	status = models.CharField(max_length=150,choices=PUBLISH_STATUS)
 	date = models.DateTimeField(auto_now=True)
+
+	def __unicode__(self):
+		return self.title
 
 	def get_absolute_url(self):
 		return reverse('post', slug=self.slug)
