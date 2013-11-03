@@ -22,11 +22,12 @@
 			</div>
 			<nav class="main-nav" id="nav">
 				<ul>
-					<li><a class="nav-icon" href="/" data-icon="">Services</a></li>
-					<li><a class="nav-icon" href="/about" data-icon="">About</a></li>
-					<li><a class="nav-icon" href="/resume" data-icon="">Resume</a></li>
-					<li><a class="nav-icon" href="/projects" data-icon="">Projects</a></li>
-					<li><a class="nav-icon" href="/contact" data-icon="">Contact</a></li>
+					<li><a class="nav-icon" href="{% url 'home' %}" data-icon="">Services</a></li>
+					<li><a class="nav-icon" href="/blog/" data-icon="">Blog</a></li>
+					<li><a class="nav-icon" href="{% url 'about' %}" data-icon="">About</a></li>
+					<li><a class="nav-icon" href="{% url 'resume' %}" data-icon="">Resume</a></li>
+					<li><a class="nav-icon" href="{% url 'projects' %}" data-icon="">Projects</a></li>
+					<li><a class="nav-icon" href="{% url 'contact' %}" data-icon="">Contact</a></li>
 				</ul>
 			</nav>
 		</header>

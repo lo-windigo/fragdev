@@ -5,18 +5,18 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = patterns('fragdev.views',
 
 		# Blog URLs
-    url(r'^blog/(?P<path>.*)', include('wiblog.urls', namespace='wiblog')),
+    url(r'^blog/', include('wiblog.urls', namespace='wiblog')),
 
 		# Handle all of the "static" pages
-		url(r'^$', 'fragdev.views.home', name='home'),
-		url(r'^about$', 'fragdev.views.about', name='about'),
-		url(r'^contact$', 'fragdev.views.contact', name='contact'),
-		url(r'^contacted$', 'fragdev.views.contacted', name='contacted'),
-		url(r'^projects$', 'fragdev.views.projects', name='projects'),
-		url(r'^resume$', 'fragdev.views.resume', name='resume'),
+		url(r'^$', 'home', name='home'),
+		url(r'^about$', 'about', name='about'),
+		url(r'^contact$', 'contact', name='contact'),
+		url(r'^contacted$', 'contacted', name='contacted'),
+		url(r'^projects$', 'projects', name='projects'),
+		url(r'^resume$', 'resume', name='resume'),
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
