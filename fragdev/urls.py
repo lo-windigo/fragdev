@@ -8,7 +8,7 @@ admin.autodiscover()
 urlpatterns = patterns('fragdev.views',
 
 		# Blog URLs
-    url(r'^blog/', include('wiblog.urls', namespace='wiblog')),
+    url(r'^blog/', include('wiblog.urls', app_name='wiblog', namespace='wiblog')),
 
 		# Handle all of the "static" pages
 		url(r'^$', 'home', name='home'),
