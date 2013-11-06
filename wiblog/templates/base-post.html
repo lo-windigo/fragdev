@@ -1,14 +1,24 @@
 {% extends "base.html" %}
+
+{% load mdformat %}
+
+
 {% block title %} {{ post.title }} - Fragmented Development{% endblock %}
+
+
 {% block content %}
 			<h1>{{ post.title }}</h1>
-			<p>
-				{{ post.body }}
-			</p>
+			{{ post.body|markdownToHTML }}
 			{% if tags %}
 			<p>
-			Tags: {% for tag in post.tags %} <a href="/blog/tags/{{ tag }}">{{ tag }}</a>
+			Tags:
+			{% for tag in post.tags.items %}
+				<a href="/blog/tags/{{ tag }}">{{ tag }}</a>
 			{% endfor %}
 			</p>
 			{% endif %}
+{% endblock %}
+
+
+{% block ancillary %}
 {% endblock %}

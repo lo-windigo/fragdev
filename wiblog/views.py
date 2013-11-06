@@ -10,7 +10,7 @@ def index(request):
 	template = loader.get_template('base-index.html')
 
 	# Get a few posts to start with
-	# TODO: Figure out how to reference the choices, instead of hard-coding!
+	# TODO: Figure out how to reference choices, instead of hard-coding!
 	posts = Post.objects.filter(status='PUB').order_by('date')[:5]
 
 	context = Context({'posts': posts})
@@ -24,8 +24,20 @@ def archive(request):
 
 	# Get all posts
 	posts = Post.objects.filter(status='PUB').order_by('date')
+	orderedPosts = {}
 
-	context = Context({'posts': posts})
+	# Go through all the posts and sort them by year
+	for post in posts:
+		
+		year = post.date.year
+		
+		# If this is the first post of the year, start a new list
+		if year not in orderedPosts:
+			orderedPosts[year] = []
+
+		orderedPosts[year].append(post)
+	
+	context = Context({'posts': orderedPosts, 'current_app': 'wiblog'})
 	return HttpResponse(template.render(context))
 
 
