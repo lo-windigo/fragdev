@@ -1,6 +1,8 @@
 # Create your views here.
 from django.http import HttpResponse
 from django.template import Context, RequestContext, loader
+from django.utils.safestring import mark_safe
+import markdown
 from wiblog.models import Post, Tag
 
 
@@ -12,6 +14,16 @@ def index(request):
 	# Get a few posts to start with
 	# TODO: Figure out how to reference choices, instead of hard-coding!
 	posts = Post.objects.filter(status='PUB').order_by('date')[:5]
+
+	# Go through all the posts, trim and format the post body
+	for post in posts:
+
+		firstNewline = post.body.find("\n")
+
+		if firstNewline > 0:
+			post.body = str(post.body)[:firstNewline]
+
+		post.body = mdToHTML(post.body)
 
 	context = Context({'posts': posts})
 	return HttpResponse(template.render(context))
@@ -57,6 +69,9 @@ def post(request, slug):
 
 	post = Post.objects.get(slug=slug)
 
+	post.body = mdToHTML(post.body)
+	post.tags = post.tags.items
+
 	context = Context({'post': post})
 	return HttpResponse(template.render(context))
 
@@ -71,3 +86,9 @@ def tags(request):
 
 	context = Context({'tags': tags})
 	return HttpResponse(template.render(context))
+
+
+## Helper Functions ##
+
+def mdToHTML(value):
+	return mark_safe(markdown.markdown(value, output_format="html5"))
