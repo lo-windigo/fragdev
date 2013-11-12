@@ -1,24 +1,22 @@
-{% extends "base.html" %}
-
-{% load mdformat %}
+{% extends "base-wiblog.html" %}
 
 
-{% block title %} {{ post.title }} - Fragmented Development{% endblock %}
+{% block title %}{{ post.title }}{% endblock %}
 
 
 {% block content %}
 			<h1>{{ post.title }}</h1>
-			{{ post.body|markdownToHTML }}
-			{% if tags %}
+			{{ post.body }}
+			{% if post.tags %}
 			<p>
-			Tags:
-			{% for tag in post.tags.items %}
-				<a href="/blog/tags/{{ tag }}">{{ tag }}</a>
-			{% endfor %}
+				Tags:
+				{% for tag in post.tags.all %}
+					<a href="{% url "wiblog:tag" tag %}">{{ tag }}</a>
+				{% endfor %}
 			</p>
 			{% endif %}
 {% endblock %}
 
 
-{% block ancillary %}
+{% block wiblog-ancillary %}
 {% endblock %}
