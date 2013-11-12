@@ -9,7 +9,7 @@ class Tag(models.Model):
 		return self.desc
 
 	def get_absolute_url(self):
-		return reverse('tags', tag=self.desc)
+		return reverse("wiblog:tags", args=[self.desc])
 
 
 # Post - a blog post
@@ -29,7 +29,7 @@ class Post(models.Model):
 		return self.title
 
 	def get_absolute_url(self):
-		return reverse('post', slug=self.slug)
+		return reverse("wiblog:post", args=[self.slug])
 
 
 # Comments - Maybe later.

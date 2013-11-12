@@ -1,15 +1,14 @@
 # Create your views here.
 from django.http import HttpResponse
 from django.template import Context, RequestContext, loader
-from django.utils.safestring import mark_safe
-import markdown
+from wiblog.formatting import mdToHTML, summarize
 from wiblog.models import Post, Tag
 
 
 # Blog Index
 def index(request):
 
-	template = loader.get_template('base-index.html')
+	template = loader.get_template('base-wiblog.html')
 
 	# Get a few posts to start with
 	# TODO: Figure out how to reference choices, instead of hard-coding!
@@ -18,12 +17,7 @@ def index(request):
 	# Go through all the posts, trim and format the post body
 	for post in posts:
 
-		firstNewline = post.body.find("\n")
-
-		if firstNewline > 0:
-			post.body = str(post.body)[:firstNewline]
-
-		post.body = mdToHTML(post.body)
+		post.body = mdToHTML(summarize(post.body))
 
 	context = Context({'posts': posts})
 	return HttpResponse(template.render(context))
@@ -49,16 +43,7 @@ def archive(request):
 
 		orderedPosts[year].append(post)
 	
-	context = Context({'posts': orderedPosts, 'current_app': 'wiblog'})
-	return HttpResponse(template.render(context))
-
-
-# Feeds
-def feeds(request):
-
-	template = loader.get_template('base-feeds.html')
-
-	context = Context({'feeds': feeds})
+	context = Context({'posts': orderedPosts})
 	return HttpResponse(template.render(context))
 
 
@@ -70,7 +55,6 @@ def post(request, slug):
 	post = Post.objects.get(slug=slug)
 
 	post.body = mdToHTML(post.body)
-	post.tags = post.tags.items
 
 	context = Context({'post': post})
 	return HttpResponse(template.render(context))
@@ -82,13 +66,24 @@ def tags(request):
 	template = loader.get_template('base-tags.html')
 	
 	# Get any tags that have been defined
-	tags = Tag.objects.all()
+	tags = Tag.objects.order_by('desc')
 
 	context = Context({'tags': tags})
 	return HttpResponse(template.render(context))
 
 
-## Helper Functions ##
+# Tagged Posts
+def tagged_posts(request, tag):
 
-def mdToHTML(value):
-	return mark_safe(markdown.markdown(value, output_format="html5"))
+	template = loader.get_template('base-tagged.html')
+
+	tagObj = Tag.objects.get(desc=tag)
+
+	# Get the tag we're looking for
+	posts = Post.objects.get(tags=tagObj)
+
+	# Get all posts
+	#posts = tag.post_set.all().order_by('-date')
+
+	context = Context({'posts': posts})
+	return HttpResponse(template.render(context))

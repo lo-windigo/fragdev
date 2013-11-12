@@ -1,13 +1,15 @@
 from django.contrib.syndication.views import Feed
 from django.core.urlresolvers import reverse
-from django.utils.feedgenerator import Atom1Feed
+from django.utils.feedgenerator import Atom1Feed, Rss201rev2Feed
+from wiblog.formatting import mdToHTML, summarize
 from wiblog.models import Post, Tag
 
 
 # RSS Feed Class
 class PostFeedRSS(Feed):
+	feed_type = Rss201rev2Feed
 	title = "Some Snazzy Writings"
-	link = "/feeds/rss/"
+	link = "/feeds/rss"
 	description = "Some writings, which are snazzy, and are better described in this description."
 
 	
@@ -15,6 +17,11 @@ class PostFeedRSS(Feed):
 	def items(self):
 		# Filter out un-published posts. Should specify tag here as well?
 		posts = Post.objects.filter(status='PUB').order_by('date')
+
+		# Format posts for the feed
+		for post in posts:
+			post.body = mdToHTML(post.body)
+
 		return posts
 
 
