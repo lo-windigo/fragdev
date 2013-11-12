@@ -142,7 +142,7 @@ textarea
 
 .page-ancillary,
 .page-header,
-.page-footer::before
+.page-footer:before
 {
 	background: #373b41; 
 	box-shadow: 0 .5em .51em #000;
@@ -156,7 +156,7 @@ textarea
 	width: 69%;
 }
 
-.page-footer::before
+.page-footer:before
 {
 	content: " ";
 	display: block;
@@ -183,7 +183,7 @@ textarea
 	padding: .5em 0;
 }
 
-.page-header::after
+.page-header:after
 {
 	clear: both;
 	content: "";
@@ -233,7 +233,7 @@ textarea
 
 /* Full width bar (also appears before page footer) */
 .full-width,
-.page-footer::before
+.page-footer:before
 {
 	margin-left: -999em;
 	margin-right: -999em;
@@ -278,7 +278,7 @@ textarea
 	transition: all .2s;
 }
 
-.nav-icon::before
+.nav-icon:before
 {
 	content: attr(data-icon);
 	display: block;
@@ -293,6 +293,32 @@ textarea
 	left: 0;
 	position: absolute;
 	top: -999em;
+}
+
+/* Tags */
+.tag
+{
+	background: #ffeead;
+	border-radius: .25em;
+	color: #1d1f21;
+	display: inline-block;
+	margin: 0 .1em;
+	padding: .1em .25em;
+	text-decoration: none;
+}
+
+.tag-cloud
+{
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+.tag-cloud li
+{
+	display: inline-block;
+	list-style: none;
+	margin: .5em .25em;
 }
 
 
@@ -315,6 +341,21 @@ textarea
 .skip a:focus
 {
 	top: 0;
+}
+
+.tag:active,
+.tag:focus,
+.tag:hover
+{
+	background: #fff;
+	color: #000;
+}
+
+a.tag:active,
+a.tag:focus,
+a.tag:hover
+{
+	text-decoration: underline;
 }
 
 
@@ -346,7 +387,7 @@ textarea
 		padding-top: .25em;
 	}
 
-	.page-footer::before
+	.page-footer:before
 	{
 		display: none;
 	}
@@ -372,7 +413,7 @@ textarea
 		font-size: .8em;
 	}
 
-	.nav-icon::before
+	.nav-icon:before
 	{
 		font-size: 2.4em;
 		padding-top: 0;
