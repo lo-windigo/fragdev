@@ -1,26 +1,36 @@
-{% extends "base.html" %}
-{% block title %}Archive - Fragmented Development{% endblock %}
+{% extends "base-wiblog.html" %}
+
+
+{% block title %}Archive{% endblock %}
+
+
 {% block content %}
-			<h1>Ye Olde Archive</h1>
-			<p>
-				If you're interested in some dusty, aged content, then you're in the
-				right place! Here's a chronological listing of all of the blog posts
-				to date.
-			</p>
-			<p>
-				
-			</p>
-			{% for year, yearPosts in posts.items %}
-			<h1>{{ year }}</h1>
-			<ul>
-				{% for post in yearPosts %}
-				<li><a href="{% url 'wiblog:post' post.slug %}">{{ post.title }}</a></li>
-				{% endfor %}
-			</ul>
+		<h1>Ye Olde Archive</h1>
+		{% if posts|length %}
+		<p>
+			If you're interested in some dusty, aged content, then you're in the
+			right place! Here's a chronological listing of all of the blog posts
+			to date.
+		</p>
+		{% for year, yearPosts in posts.items %}
+		<h1>{{ year }}</h1>
+		<ul>
+			{% for post in yearPosts %}
+			<li><a href="{% url "wiblog:post" post.slug %}">{{ post.title }}</a></li>
 			{% endfor %}
+		</ul>
+		{% endfor %}
+		{% else %}
+		<p>
+			It appears that there is no content to peruse at the moment! Not to
+			worry, I'm sure that if you return later this page will be full of
+			dusty posts that you can pick up and enjoy.
+		</p>
+		{% endif %}
 {% endblock %}
 
-{% block ancillary %}
+
+{% block wiblog-ancillary %}
 				<h1>History</h1>
 				<p>
 					This blog has gone through a couple different permutations. Originally
