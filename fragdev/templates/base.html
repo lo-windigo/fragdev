@@ -3,7 +3,7 @@
 <html>
 
 <head>
-	<title>{% block title %}Fragmented Development{% endblock %}</title>
+	<title>{% block title %}Fragmented Development{% endblock %} - FragDev</title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="/css/fd4k.css">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -18,17 +18,34 @@
 				<a href="#nav">Skip to navigation</a>
 			</div>
 			<div class="fd-badge">
-				<a href="/"><span>Frag</span>mented<br><span>Dev</span>elopment</a>
+				<a href="{% url "home" %}"><span>Frag</span>mented<br>
+				<span>Dev</span>elopment</a>
 			</div>
 			<nav class="main-nav" id="nav">
 				<ul>
-					<li><a class="nav-icon" href="{% url 'home' %}" data-icon="">Services</a></li>
-					{# TODO: Figure out how to reference the wiblog views #}
-					<li><a class="nav-icon" href="/blog/" data-icon="">Blog</a></li>
-					<li><a class="nav-icon" href="{% url 'about' %}" data-icon="">About</a></li>
-					<li><a class="nav-icon" href="{% url 'resume' %}" data-icon="">Resume</a></li>
-					<li><a class="nav-icon" href="{% url 'projects' %}" data-icon="">Projects</a></li>
-					<li><a class="nav-icon" href="{% url 'contact' %}" data-icon="">Contact</a></li>
+					<li>
+						<a class="nav-icon" href="{% url "home" %}"
+						data-icon="">Services</a></li>
+					<li>
+						<a class="nav-icon" href="{% url "wiblog:index" %}"
+						data-icon="">Blog</a>
+					</li>
+					<li>
+						<a class="nav-icon" href="{% url "about" %}" 
+						data-icon="">About</a>
+					</li>
+					<li>
+						<a class="nav-icon" href="{% url "resume" %}"
+						data-icon="">Resume</a>
+					</li>
+					<li>
+						<a class="nav-icon" href="{% url "projects" %}"
+						data-icon="">Projects</a>
+					</li>
+					<li>
+						<a class="nav-icon" href="{% url "contact" %}"
+						data-icon="">Contact</a>
+					</li>
 				</ul>
 			</nav>
 		</header>
