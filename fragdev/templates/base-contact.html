@@ -31,6 +31,13 @@
 					</label>
 				</p>
 				<p>
+					{{ form.verify.errors }}
+					<label for="id_verify">
+						{{ form.verify.label }}:<br>
+						{{ form.verify }}
+					</label>
+				</p>
+				<p class="c">
 					<input type="submit" value="Send Message">
 				</p>
 			</form>
