@@ -1,0 +1,41 @@
+{% extends "base-wiblog.html" %}
+
+
+{% block title %}Posts Tagged With '{{ tag }}'{% endblock %}
+
+
+{% block content %}
+		<h1>Posts Tagged With <span class="tag">{{ tag }}</span></h1>
+		{% if posts %}
+		<p>
+			All of the following posts share a tag, and are related to that subject.
+			If you would like to try another subject, you can pick from the
+			available <a href="{% url "wiblog:tags" %}">tags</a>.
+		</p>
+		{% for post in posts %}
+
+		<article>
+			<h1>{{ post.title }}</h1>
+			{{ post.body }}
+			<p>
+				Read the full post: <a href=
+				"{% url "wiblog:post" post.slug %}">{{ post.title }}</a>
+			</p>
+		</article>
+
+		{% endfor %}
+		{% else %}
+		<p>
+			There are currently no posts with this tag. Sorry!
+		</p>
+		<p>
+			Luckily, you're not out of options. You can check out the <a href=
+			"{% url "wiblog:archive" %}">archive</a> for other posts that may be of interest, or try
+			another <a href="{% url "wiblog:tags" %}">tag</a>.
+		</p>
+		{% endif %}
+{% endblock %}
+
+
+{% block wiblog-ancillary %}
+{% endblock %}
