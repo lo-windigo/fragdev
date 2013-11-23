@@ -1,5 +1,9 @@
+from django.conf import settings
+from django.core.context_processors import csrf
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import Context, RequestContext, loader
+from fragdev.contact import ContactForm
+import time
 
 
 def home(request):
@@ -11,9 +15,6 @@ def home(request):
 
 # About page
 def about(request):
-
-	# We'll need the time library for our silly age calculation
-	import time
 
 	template = loader.get_template('base-about.html')
 
@@ -29,17 +30,17 @@ def about(request):
 # Contact page
 def contact(request):
 
-	from django.core.context_processors import csrf
-	from fragdev.contact import ContactForm
-	from django.conf import settings
-
 	template = loader.get_template('base-contact.html')
 
-	# 
-	if request.method == 'POST': # If the form has been submitted...
-		form = ContactForm(request.POST) # A form bound to the POST data
+	# If the form has been submitted...
+	if request.method == 'POST':
 
-		if form.is_valid(): # All validation rules pass
+		# A form bound to the POST data
+		form = ContactForm(request.POST)
+
+		# All validation rules pass
+		if form.is_valid():
+
 			# Process the data in form.cleaned_data
 			name = form.cleaned_data['name']
 			email = form.cleaned_data['email']
@@ -52,10 +53,12 @@ def contact(request):
 			from django.core.mail import send_mail
 			send_mail(settings.CONTACT_SUBJECT, fullBody, settings.CONTACT_SENDER, recipients)
 
-			return HttpResponseRedirect('/contacted') # Redirect after POST
+			# Redirect after POST
+			return HttpResponseRedirect(reverse('contacted'))
 
 	else:
-			form = ContactForm() # An unbound form
+		# Get an unbound form
+		form = ContactForm() 
 
 	context = RequestContext(request, {'form': form})
 
