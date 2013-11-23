@@ -19,7 +19,7 @@
 			<ul class="tag-cloud">
 				{% for tag in tags %}
 					<li>
-						<a href="{% url "wiblog:tag" tag %}" class="tag">{{ tag }}</a>
+						<a href="{% url "wiblog:tagged" tag %}" class="tag">{{ tag }}</a>
 					</li>
 				{% endfor %}
 			</ul>

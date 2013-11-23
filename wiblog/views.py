@@ -1,18 +1,22 @@
-# Create your views here.
+from django.core.context_processors import csrf
+from django.core.exceptions import ObjectDoesNotExist
+from django.core.mail import send_mail
 from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.template import Context, RequestContext, loader
 from wiblog.formatting import mdToHTML, summarize
-from wiblog.models import Post, Tag
+from wiblog.models import Comment, Post, Tag
+from wiblog.comments import CommentForm
 
 
-# Blog Index
+## Blog Index
 def index(request):
 
 	template = loader.get_template('base-wiblog.html')
 
 	# Get a few posts to start with
 	# TODO: Figure out how to reference choices, instead of hard-coding!
-	posts = Post.objects.filter(status='PUB').order_by('date')[:5]
+	posts = Post.objects.filter(status=Post.PUB).order_by('date')[:5]
 
 	# Go through all the posts, trim and format the post body
 	for post in posts:
@@ -23,13 +27,13 @@ def index(request):
 	return HttpResponse(template.render(context))
 
 
-# Archive page
+## Archive page
 def archive(request):
 
 	template = loader.get_template('base-archive.html')
 
 	# Get all posts
-	posts = Post.objects.filter(status='PUB').order_by('date')
+	posts = Post.objects.filter(status=Post.PUB).order_by('date')
 	orderedPosts = {}
 
 	# Go through all the posts and sort them by year
@@ -41,26 +45,57 @@ def archive(request):
 		if year not in orderedPosts:
 			orderedPosts[year] = []
 
+		# Append this post to the year list
 		orderedPosts[year].append(post)
 	
 	context = Context({'posts': orderedPosts})
 	return HttpResponse(template.render(context))
 
 
-# A single blog post
+## A single blog post
 def post(request, slug):
 
 	template = loader.get_template('base-post.html')
 
-	post = Post.objects.get(slug=slug)
+	# Try to get the requested post
+	try:
+		post = Post.objects.get(slug=slug)
+	except ObjectDoesNotExist:
+		return redirect('wiblog:archive')
 
+	# If the form has been submitted...
+	if request.method == 'POST':
+
+		# A form bound to the POST data
+		comment = Comment(post=post)
+		form = CommentForm(request.POST, instance=comment)
+
+		# Form was validated, and contained good data
+		if form.is_valid():
+
+			# Create a new Comment object for ust to work with
+			form.save()
+
+	# If the form hasn't been submitted, get a blank form
+	else:
+		form = CommentForm() 
+
+	# Get any comments that go with a post
+	# TODO: Add Pagination if you become wildly popular
+	comments = Comment.objects.filter(post=post,moderated=Comment.HAM)
+
+	# Format the post body for display
 	post.body = mdToHTML(post.body)
 
-	context = Context({'post': post})
+	# Format the comments for display
+	for comment in comments:
+		comment.comment = mdToHTML(comment.comment)
+
+	context = RequestContext(request, {'form': form, 'post': post, 'comments': comments})
 	return HttpResponse(template.render(context))
 
 
-# Tags Tags TAGS
+## Tags Tags TAGS
 def tags(request):
 
 	template = loader.get_template('base-tags.html')
@@ -72,18 +107,21 @@ def tags(request):
 	return HttpResponse(template.render(context))
 
 
-# Tagged Posts
+## Tagged Posts
 def tagged_posts(request, tag):
 
 	template = loader.get_template('base-tagged.html')
 
-	tagObj = Tag.objects.get(desc=tag)
+	try:
+		tagObj = Tag.objects.get(desc=tag)
+	except ObjectDoesNotExist:
+		return redirect('wiblog:tags')
 
 	# Get the tag we're looking for
-	posts = Post.objects.get(tags=tagObj)
+	try:
+		posts = Post.objects.get(tags=tagObj)
+	except ObjectDoesNotExist:
+		posts = []
 
-	# Get all posts
-	#posts = tag.post_set.all().order_by('-date')
-
-	context = Context({'posts': posts})
+	context = Context({'posts': posts, 'tag': tagObj})
 	return HttpResponse(template.render(context))

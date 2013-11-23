@@ -13,7 +13,9 @@
 			{% for post in posts %}
 
 			<article>
-				<h1>{{ post.title }}</h1>
+				<h1>
+					<a href="{% url "wiblog:post" slug=post.slug %}">{{ post.title }}</a>
+				</h1>
 				{{ post.body }}
 				<p>
 					Read the full post: <a href=
@@ -22,13 +24,18 @@
 			</article>
 
 			{% endfor %}
+			<hr>
+			<p>
+				For a full list of posts, feel free to check out the <a
+				href="{% url "wiblog:archive" %}">Archive</a>!
+			</p>
 {% endblock %}
 
 
 {% block ancillary %}
 				<h1>Navigation</h1>
 				<ul>
-					<li><a href="{% url "wiblog:archive" %}">Blog Archive</a></li>
+					<li><a href="{% url "wiblog:archive" %}">Archive</a></li>
 					<li><a href="{% url "wiblog:tags" %}">Tags</a></li>
 				</ul>
 				{% block wiblog-ancillary %}

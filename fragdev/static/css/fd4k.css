@@ -81,6 +81,14 @@ h1
 	color: #fff;
 }
 
+hr
+{
+	color: #666;
+	background: #666;
+	border: 0;
+	height: .25em;
+}
+
 html
 {
 	background:
@@ -192,6 +200,19 @@ textarea
 
 
 /* -=== Module ===- */
+
+/* Blog comment */
+.blog-comment
+{
+	background: rgba(64,64,64,.2);
+	padding: 1px 1em;
+	margin: 0;
+}
+
+.blog-comment:nth-child(2n)
+{
+	background: rgba(64,64,64,.4);
+}
 
 /* Centered */
 .c

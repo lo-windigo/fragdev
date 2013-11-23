@@ -1,4 +1,5 @@
 {% extends "base-wiblog.html" %}
+{% load firstof from future %}
 
 
 {% block title %}{{ post.title }}{% endblock %}
@@ -7,14 +8,57 @@
 {% block content %}
 			<h1>{{ post.title }}</h1>
 			{{ post.body }}
-			{% if post.tags %}
+			{% if post.tags.all %}
 			<p>
 				Tags:
 				{% for tag in post.tags.all %}
-					<a href="{% url "wiblog:tag" tag %}">{{ tag }}</a>
+					<a href="{% url "wiblog:tagged" tag %}">{{ tag }}</a>
 				{% endfor %}
 			</p>
 			{% endif %}
+			<hr>
+			<h2>Comments</h2>
+			{% for comment in comments %}
+			<blockquote class="blog-comment">
+				{{ comment.comment }}
+				<p>
+					<cite>
+						{% firstof comment.name 'Anonymous' %}
+						{% if comment.url %}
+						 &ndash; {{ comment.url|urlize }}
+						{% endif %}
+					</cite>
+				</p>
+			</blockquote>
+			{% endfor %}
+			<form method="post">
+				{% csrf_token %}
+				{{ form.non_field_errors }}
+				<p>
+					{{ form.name.errors }}
+					<label for="id_name">
+						{{ form.name.label }}:<br>
+						{{ form.name }}
+					</label>
+				</p>
+				<p>
+					{{ form.url.errors }}
+					<label for="id_url">
+						{{ form.url.label }}:<br>
+						{{ form.url }}
+					</label>
+				</p>
+				<p>
+					{{ form.comment.errors }}
+					<label for="id_comment">
+						{{ form.comment.label }}:<br>
+						{{ form.comment }}
+					</label>
+				</p>
+				<p>
+					<input type="submit" value="Make Comment">
+				</p>
+			</form>
 {% endblock %}
 
 
