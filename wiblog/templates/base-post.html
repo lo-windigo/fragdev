@@ -31,6 +31,7 @@
 				</p>
 			</blockquote>
 			{% endfor %}
+			<h2 id="add-comment">Add Your Comment</h2>
 			<form method="post">
 				{% csrf_token %}
 				{{ form.non_field_errors }}
@@ -56,6 +57,13 @@
 					</label>
 				</p>
 				<p>
+					{{ form.verify.errors }}
+					<label for="id_verify">
+						{{ form.verify.label }}:<br>
+						{{ form.verify }}
+					</label>
+				</p>
+				<p class="c">
 					<input type="submit" value="Make Comment">
 				</p>
 			</form>
