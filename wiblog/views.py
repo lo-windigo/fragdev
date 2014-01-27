@@ -76,6 +76,8 @@ def post(request, slug):
 			# Create a new Comment object for ust to work with
 			form.save()
 
+
+
 	# If the form hasn't been submitted, get a blank form
 	else:
 		form = CommentForm() 

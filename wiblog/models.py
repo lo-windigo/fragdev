@@ -50,3 +50,14 @@ class Comment(models.Model):
 	moderated = models.CharField(choices=MOD_STATUS, default=UNK, max_length=14)
 	post = models.ForeignKey(Post)
 	url = models.URLField()
+
+
+	# Provide a decent representation for the admin section
+	def __unicode__(self):
+
+		prev = self.comment
+
+		if len(prev) > 75:
+			prev = prev[0:75]+"..."
+
+		return "'"+self.name+"' Says: '"+prev+"'"

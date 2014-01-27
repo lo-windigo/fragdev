@@ -6,6 +6,15 @@
 
 
 {% block content %}
+			{% if form.is_valid %}
+			<div class="info">
+				<h2>Comment Saved</h2>
+				<p>
+					Hey, thanks for leaving me a comment. I have to moderate them to
+					prevent getting spammed to oblivion, but it should appear shortly.
+				</p>
+			</div>
+			{% endif %}
 			<h1>{{ post.title }}</h1>
 			{{ post.body }}
 			{% if post.tags.all %}
@@ -31,6 +40,7 @@
 				</p>
 			</blockquote>
 			{% endfor %}
+			{% if not form.is_valid %}
 			<h2 id="add-comment">Add Your Comment</h2>
 			<form method="post">
 				{% csrf_token %}
@@ -67,6 +77,7 @@
 					<input type="submit" value="Make Comment">
 				</p>
 			</form>
+			{% endif %}
 {% endblock %}
 
 

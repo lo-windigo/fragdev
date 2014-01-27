@@ -10,8 +10,8 @@
 				This is the blog of Jacob Hume, AKA Windigo. Its content should not be
 				trusted, nor should it's author. Read at your own risk.
 			</p>
-			{% for post in posts %}
 
+			{% for post in posts %}
 			<article>
 				<h1>
 					<a href="{% url "wiblog:post" slug=post.slug %}">{{ post.title }}</a>
@@ -22,8 +22,8 @@
 					"{% url "wiblog:post" slug=post.slug %}">{{ post.title }}</a>
 				</p>
 			</article>
-
 			{% endfor %}
+
 			<hr>
 			<p>
 				For a full list of posts, feel free to check out the <a
@@ -34,9 +34,15 @@
 
 {% block ancillary %}
 				<h1>Navigation</h1>
-				<ul>
-					<li><a href="{% url "wiblog:archive" %}">Archive</a></li>
-					<li><a href="{% url "wiblog:tags" %}">Tags</a></li>
+				<ul class="blog-nav">
+					<li>
+					<a href="{% url "wiblog:archive" %}" class="blog-nav-icon"
+						data-icon="">Archive</a>
+					</li>
+					<li>
+					<a href="{% url "wiblog:tags" %}" class="blog-nav-icon"
+						data-icon="">Tag Cloud</a>
+					</li>
 				</ul>
 				{% block wiblog-ancillary %}
 				{% endblock %}

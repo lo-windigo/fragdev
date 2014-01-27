@@ -235,6 +235,39 @@ textarea
 	background: rgba(64,64,64,.4);
 }
 
+/* Blog navigation */
+/** extra hack added for specificity. Will fix later. */
+.blog-nav
+{
+	margin: 0;
+	padding: 0;
+}
+
+.blog-nav li
+{
+	height: 1em;
+	list-style: none;
+	margin: 0 0 1em 0;
+	padding: .75em 0;
+	vertical-align: center;
+}
+
+.blog-nav-icon
+{
+	text-shadow: 0 2px .25em #000;
+}
+
+.blog-nav-icon:before
+{
+	content: attr(data-icon);
+	font: 2em 'Foundation';
+	float: left;
+	line-height: 2em;
+	margin: -.75em 0 0 0;
+	padding: 0 .25em 0 0;
+	vertical-align: middle;
+}
+
 /* Centered */
 .c
 {
@@ -282,6 +315,20 @@ textarea
 	padding-left: 999em;
 	padding-right: 999em;
 	width: 100%;
+}
+
+/* Information Box */
+.info
+{
+	animation-duration: 5s;
+	-webkit-animation-duration: 5s;
+	animation-name: infoPulse;
+	-webkit-animation-name: infoPulse;
+	background: #ffeead;
+	border: 2px solid #eab700;
+	color: #373b41;
+	margin-top: .5em;
+	padding: 0 1em;
 }
 
 /* Main navigation */
@@ -386,6 +433,13 @@ input[type=submit]:hover
 	font-weight: bold;
 }
 
+.blog-nav-icon:active,
+.blog-nav-icon:focus,
+.blog-nav-icon:hover
+{
+	text-shadow: 0 0 .3em #e7c547;
+}
+
 .fd-badge:hover
 {
 	box-shadow: 0 0 .3em #e7c547;
@@ -420,16 +474,56 @@ a.tag:hover
 	text-decoration: underline;
 }
 
+/* Info box animation */
+@-webkit-keyframes infoBlink
+{
+	0% {
+		background: #ffeead;
+		box-shadow: 0;
+	}
+
+	30% {
+		background: #fff;
+		box-shadow: 0 0 1em #ffeead;
+	}
+
+	100% {
+		background: #ffeead;
+		box-shadow: 0;
+	}
+}
+
+@keyframes infoBlink
+{
+	0% {
+		background: #ffeead;
+		box-shadow: 0;
+	}
+
+	30% {
+		background: #fff;
+		box-shadow: 0 0 1em #ffeead;
+	}
+
+	100% {
+		background: #ffeead;
+		box-shadow: 0;
+	}
+}
+
 
 /* -=== Responsive ===- */
 
+/* Medium screens: tablets, low res/high zoom desktops */
 @media screen and (max-width: 48em)
 {
+	/* -= Base =- */
 	body
 	{
 		margin-bottom: 0;
 	}
 
+	/* -= Layout =- */
 	.page-ancillary,
 	.page-content
 	{
@@ -452,6 +546,20 @@ a.tag:hover
 	.page-footer:before
 	{
 		display: none;
+	}
+
+	/* -= Modules =- */
+	.blog-nav li
+	{
+		float: left;
+		padding-right: 1em;
+	}
+
+	.blog-nav:after
+	{
+		clear: both;
+		content: "";
+		display: block;
 	}
 
 	.fd-badge
@@ -482,8 +590,10 @@ a.tag:hover
 	}
 }
 
+/* Small Screens: Phones, handheld */
 @media screen and (max-width: 34em)
 {
+	/* -= Modules =- */
 	.fd-badge
 	{
 		margin-bottom: .5em;
