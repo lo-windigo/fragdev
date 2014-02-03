@@ -112,16 +112,14 @@ def tagged_posts(request, tag):
 
 	template = loader.get_template('base-tagged.html')
 
+	# Get the tag we're looking for
 	try:
 		tagObj = Tag.objects.get(desc=tag)
 	except ObjectDoesNotExist:
 		return redirect('wiblog:tags')
 
-	# Get the tag we're looking for
-	try:
-		posts = Post.objects.get(tags=tagObj)
-	except ObjectDoesNotExist:
-		posts = []
+	# Return any posts that are tagged with this
+	posts = Post.objects.filter(tags=tagObj)
 
 	context = Context({'posts': posts, 'tag': tagObj})
 	return HttpResponse(template.render(context))
