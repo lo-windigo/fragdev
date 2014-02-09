@@ -47,6 +47,7 @@ class Comment(models.Model):
 	)
 	comment = models.TextField()
 	name = models.CharField(max_length=150)
+	date = models.DateTimeField(auto_now=True)
 	moderated = models.CharField(choices=MOD_STATUS, default=UNK, max_length=14)
 	post = models.ForeignKey(Post)
 	url = models.URLField()

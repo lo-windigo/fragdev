@@ -16,7 +16,7 @@ def index(request):
 
 	# Get a few posts to start with
 	# TODO: Figure out how to reference choices, instead of hard-coding!
-	posts = Post.objects.filter(status=Post.PUB).order_by('date')[:5]
+	posts = Post.objects.filter(status=Post.PUB).order_by('-date')[:5]
 
 	# Go through all the posts, trim and format the post body
 	for post in posts:
@@ -33,7 +33,7 @@ def archive(request):
 	template = loader.get_template('base-archive.html')
 
 	# Get all posts
-	posts = Post.objects.filter(status=Post.PUB).order_by('date')
+	posts = Post.objects.filter(status=Post.PUB).order_by('-date')
 	orderedPosts = {}
 
 	# Go through all the posts and sort them by year
@@ -82,7 +82,7 @@ def post(request, slug):
 
 	# Get any comments that go with a post
 	# TODO: Add Pagination if you become wildly popular
-	comments = Comment.objects.filter(post=post,moderated=Comment.HAM)
+	comments = Comment.objects.filter(post=post,moderated=Comment.HAM).order_by('-date')
 
 	# Format the post body for display
 	post.body = mdToHTML(post.body)
@@ -120,6 +120,11 @@ def tagged_posts(request, tag):
 
 	# Return any posts that are tagged with this
 	posts = Post.objects.filter(tags=tagObj)
+
+	# Go through all the posts, trim and format the post body
+	for post in posts:
+
+		post.body = mdToHTML(summarize(post.body))
 
 	context = Context({'posts': posts, 'tag': tagObj})
 	return HttpResponse(template.render(context))
