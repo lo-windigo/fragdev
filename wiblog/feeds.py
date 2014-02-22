@@ -8,9 +8,12 @@ from wiblog.models import Post, Tag
 # RSS Feed Class
 class PostFeedRSS(Feed):
 	feed_type = Rss201rev2Feed
-	title = "Some Snazzy Writings"
+	title = "Jacob Hume - Fragmented Development"
 	link = "/feeds/rss"
-	description = "Some writings, which are snazzy, and are better described in this description."
+	description = '''
+Jacob Hume's thoughts about web development, technology, Free software and
+other miscellaneous topics.
+'''
 
 	
 	# Get the posts present in this feed
