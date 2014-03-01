@@ -29,9 +29,9 @@ by Windigo - http://fragdev.com
 
 @font-face
 {
-	font-family: Foundation;
-	src:	url('/fonts/foundicons.woff') format('woff'),
-			url('/fonts/foundicons.ttf') format('truetype');
+	font-family: Icons;
+	src:	url('/fonts/fd4k.woff') format('woff'),
+			url('/fonts/fd4k.ttf') format('truetype');
 	font-weight: normal;
 }
 
@@ -371,7 +371,7 @@ textarea
 {
 	content: attr(data-icon);
 	display: block;
-	font-family: 'Foundation';
+	font-family: 'Icons';
 	font-size: 2em;
 	padding-top: .25em;
 }
