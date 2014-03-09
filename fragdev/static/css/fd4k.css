@@ -13,7 +13,7 @@ by Windigo - http://fragdev.com
 /* -=== Font Definitions ===- */
 @font-face
 {
-	font-family: DroidSans;
+	font-family: Main;
 	src:	url('/fonts/DroidSans-webfont.woff') format('woff'),
 			url('/fonts/DroidSans-webfont.ttf') format('truetype');
 	font-weight: normal;
@@ -21,7 +21,7 @@ by Windigo - http://fragdev.com
 
 @font-face
 {
-	font-family: DroidSans;
+	font-family: Main;
 	src:	url('/fonts/DroidSans-Bold-webfont.woff') format('woff'),
 			url('/fonts/DroidSans-Bold-webfont.ttf') format('truetype');
 	font-weight: bold;
@@ -99,7 +99,7 @@ html
 	background-color:#1d1f21;
 	background-size:16px 16px;
 	color: #c5c8c6;
-	font-family: 'DroidSans', sans-serif;
+	font-family: 'Main', sans-serif;
 	line-height: 1.1;
 	overflow-x: hidden;
 }
@@ -254,13 +254,13 @@ textarea
 
 .blog-nav-icon
 {
-	text-shadow: 0 2px .25em #000;
+	text-shadow: #000 0 2px .25em;
 }
 
 .blog-nav-icon:before
 {
 	content: attr(data-icon);
-	font: 2em 'Foundation';
+	font: 2em 'Icon';
 	float: left;
 	line-height: 2em;
 	margin: -.75em 0 0 0;
@@ -363,17 +363,26 @@ textarea
 {
 	color: #ffeead;
 	text-decoration: none;
-	text-shadow: 0 2px .25em #000;
-	transition: all .2s;
+	text-shadow: #000 0 2px .25em;
+	transition: all 1s;
 }
 
 .nav-icon:before
 {
+	background: #ffeead;
+	border-radius: 50%;
+	box-shadow: 0 2px .25em #000;
+	color: #202226;
 	content: attr(data-icon);
 	display: block;
 	font-family: 'Icons';
 	font-size: 2em;
-	padding-top: .25em;
+	height: 1.5em;
+	line-height: 1.5em;
+	margin: .25em auto;
+	text-shadow: none;
+	/*transition: all 1s;*/
+	width: 1.5em;
 }
 
 /* Skip Links */
@@ -428,16 +437,16 @@ input[type=submit]:active,
 input[type=submit]:focus,
 input[type=submit]:hover
 {
-	margin: 0;
-	padding: 1.5em;
 	font-weight: bold;
+	padding: 1.5em;
+	margin: 0;
 }
 
 .blog-nav-icon:active,
 .blog-nav-icon:focus,
 .blog-nav-icon:hover
 {
-	text-shadow: 0 0 .3em #e7c547;
+	text-shadow: #e7c547 0 0 .3em;
 }
 
 .fd-badge:hover
@@ -451,7 +460,17 @@ input[type=submit]:hover
 {
 	color: #fff;
 	outline: none;
-	text-shadow: 0 0 .3em #e7c547;
+	text-shadow: #e7c547 0 0 .3em;
+}
+
+.nav-icon:active:before,
+.nav-icon:focus:before,
+.nav-icon:hover:before
+{
+	color: #b59a38;
+	box-shadow: #e7c547 0 0 .3em;
+	text-shadow: #fff 0 0 .1em;
+	transition: all 1s;
 }
 
 .skip a:focus
