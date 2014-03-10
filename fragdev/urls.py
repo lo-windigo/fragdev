@@ -16,7 +16,6 @@ urlpatterns = patterns('fragdev.views',
 		url(r'^contact$', 'contact', name='contact'),
 		url(r'^contacted$', 'contacted', name='contacted'),
 		url(r'^projects$', 'projects', name='projects'),
-		url(r'^resume$', 'resume', name='resume'),
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),

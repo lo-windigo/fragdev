@@ -58,7 +58,8 @@ body
 {
 	background: #000;
 	background: rgba(0,0,0,.5);
-	background: transparent linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.8)) no-repeat scroll 0 0;
+	background: transparent linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,.4) 40em)
+		no-repeat scroll 0 0;
 	border-radius: .5em;
 	box-shadow:
 		0 0 2em -.25em #000,
@@ -386,6 +387,30 @@ textarea
 	text-shadow: none;
 	transition: all .5s;
 	width: 1.5em;
+}
+
+/* Profile; About Page */
+.profile
+{
+	text-align: center;
+}
+
+.profile-caption
+{
+	font-style: italic;
+}
+
+.profile-img
+{
+	border: 5px solid #f0c674;
+	border-radius: 5px;
+}
+
+.profile-pic-frame
+{
+	display: inline-block;
+	margin: 0 1em;
+	width: 186px;
 }
 
 /* Skip Links */

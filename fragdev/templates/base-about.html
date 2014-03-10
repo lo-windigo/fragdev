@@ -1,45 +1,94 @@
-{% extends "base.html" %}
+{% extends "base-single.html" %}
 
-{% block title %}About Jacob Hume, FragDev - Fragmented Development{% endblock %}
+{% block title %}About Jacob Hume{% endblock %}
 
-{% block content %}
-			<h1>About Jake</h1>
+{% block page %}
+			<h1 class="c">About Jacob Hume</h1>
+			<section class="profile">
+				<figure class="profile-pic-frame">
+					<img alt="An illustration of Windigo, sitting with a plate of cookies, gesticulating"
+						src="/img/windigo.jpg" class="profile-img">
+					<figcaption class="profile-caption">
+						illustration by Anne Hoffer
+					</figcaption>
+				</figure>
+				<figure class="profile-pic-frame">
+					<img alt="A photograph of Jake, sitting in a park with a cup of tea"
+						src="/img/jake.png" class="profile-img">
+					<figcaption class="profile-caption">
+						photo also by Anne Hoffer
+					</figcaption>
+				</figure>
+			</section>
 			<p>
 				Hi - I'm a {{ age }}-year-old guy (refresh the page-that number should be updated every
 				second) living in a woodsy cabin just outside of Point Arena, California.
 			</p>
 			<p>
-				I'm currently a part-time consultant, and looking for a more permanent position.
+				I'm currently a <strong>part-time consultant</strong>*, and looking for a
+				more permanent position. Before I moved to 
 			</p>
 			<p>
-				I dig coffee, <a href="http://www.gnu.org/philosophy/free-sw.html">Free software</a>,
-				and <a href="http://minecraft.net">Minecraft</a>.
+				I dig <a href="http://littlegreenbeanroastery.com/">coffee</a>, <a href=
+				"http://www.gnu.org/philosophy/free-sw.html">Free software</a>, and <a
+				href="http://minecraft.net">Minecraft</a>.
 			</p>
-			<h2>History of Fragmented Development</h2>
+			<h2>Skills</h2>
+			<ul>
+				<li>PHP development, with coding experience in both PHP 5.x and 4.x</li>
+				<li>Relational database design &amp; implementation, including use of MySQL
+				and MS SQL servers &amp; SQL variants</li>
+				<li>HTML 4, xHTML 1.0 and CSS 2.1, with an understanding of the
+				upcoming HTML 5 standard and many CSS 3 modules</li>
+				<li>JavaScript and JavaScript Frameworks like jQuery</li>
+				<li>Apache / IIS Web Server installation &amp; administration on Windows
+				and Linux servers</li>
+			</ul>
+			<h1>Hire me!</h1>
 			<p>
-				<strong>Fragmented Development</strong> was originally started as a Web Design company,
-				going by the name of Wednesday Bubbles. While mildly successful in it's
-				own small way, WB had several problems; first, the general public cannot
-				spell Wednesday. Also, it's very hard to gain respect with a name that
-				includes the word "Bubbles" in it. So, I did an informal poll on my blog, and Fragmented
-				Media won out. This didn't last long, simply because the "Media" attatchment was much too
-				restrictive, and didn't really reflect what we could do. So, in late 2003 the name was
-				changed one final time to Fragmented Development, and the domain was registered in early
-				2004.
+				I'm currently living in the State of California; <a href=
+				"http://www.cityofpointarena.com/">Point Arena</a> in particular.
+				Please feel free to <a href="/contact">contact me</a> if you are looking for someone with
+				my qualifications!
 			</p>
+			<h2>References</h2>
 			<p>
-				After a couple reorganizations and different groupings, <strong>Fragmented
-				Development</strong> has become my personal website, where I host a small basketfull of
-				Free software applications.
+				References have not been included on the web verison of my resume to protect the privacy of
+				my friends and colleagues.
 			</p>
+			<h2>Experience</h2>
+			<ul>
+				<li>
+					<strong>Freelance/Consulting:</strong> 2002 to Present
+					<ul>
+						<li>Creation of sites based on information provided, usually including hosting and DNS
+						management. Examples: <a href="http://valcielle.fragdev.com">Val'cielle</a> (web comic
+						management system), <a href="http://lenasads.com">Lenas' Adult Day Service</a></li>
+						<li>Consulting with organizations to keep existing websites current and add new features
+						as necessary. Examples: <a href="http://paulsmiths.edu">Paul Smith's College</a>,
+						<a href="http://warrencountyny.gov">Warren County, NY</a>, <a href=
+						"http://warrenny200.org">Warren County Bicentennial</a>, <a href=
+						"http://www.firstwilderness.com">First Wilderness Heritage Corridor</a></li>
+						<li>Installation and maintenance of FragDev servers and services</li>
+					</ul>
+				</li>
+				<li>
+					<strong>Web/Intranet Developer:</strong> Warren County, NY, 2004 to 2013
+					<ul>
+						<li>Responsibilities: Develop and maintain any and all internal and external County web
+						sites, set up and secure web servers, handle help desk calls as needed</li>
+						<li>Examples: <a href="http://warrencountyny.gov">Warren County, NY</a>, <a href=
+						"http://warrenny200.org">Warren County Bicentennial</a>, <a href=
+						"http://www.firstwilderness.com">First Wilderness Heritage Corridor</a></li>
+					</ul>
+				</li>
+			</ul>
+			<h2>Formal Education</h2>
+			<ul>
+				<li>AAS Information Systems - Networking, <a href="http://sunyacc.edu">SUNY Adirondack</a></li>
+			</ul>
 {% endblock %}
 {% block ancillary %}
-			<figure>
-				<img src="/img/windigo.jpg" alt="An illustration of Windigo, sitting with a plate of cookies, gesticulating">
-				<figcaption>
-					illustration by Anne Hoffer
-				</figcaption>
-			</figure>
 			<h1>Public Key</h1>
 			<p>
 				In case you have an interest in privacy and cryptography, you can download my <a href=
