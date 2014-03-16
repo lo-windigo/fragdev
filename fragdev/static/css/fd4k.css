@@ -227,6 +227,24 @@ textarea
 
 /* -=== Module ===- */
 
+/* About page navigation */
+.about-nav
+{
+	text-align: center;
+	line-height: 1;
+	margin: 1em 0;
+	padding: 0;
+}
+
+.about-nav li
+{
+	display: inline-block;
+	line-height: 1.25;
+	list-style: none;
+	margin: 0 1em;
+	text-align: center;
+}
+
 /* Blog comment */
 .blog-comment
 {
