@@ -7,6 +7,7 @@
 	\_|   \_| \_\_| |_/\____/___/ \____/ \___/      |_/\_| \_/
 
 by Windigo - http://fragdev.com
+
 /*============================================================*/
 
 
@@ -249,7 +250,6 @@ textarea
 	list-style: none;
 	margin: 0 0 1em 0;
 	padding: .75em 0;
-	vertical-align: center;
 }
 
 .blog-nav-icon
@@ -364,24 +364,24 @@ textarea
 	color: #ffeead;
 	text-decoration: none;
 	text-shadow: #000 0 2px .25em;
-	transition: all 1s;
+	transition: all .5s;
 }
 
 .nav-icon:before
 {
 	background: #ffeead;
 	border-radius: 50%;
-	box-shadow: 0 2px .25em #000;
+	box-shadow: 0 .1em .25em #000;
 	color: #202226;
 	content: attr(data-icon);
-	display: block;
+	display: inline-block;
 	font-family: 'Icons';
 	font-size: 2em;
 	height: 1.5em;
 	line-height: 1.5em;
-	margin: .25em auto;
+	margin: .25em auto 0 auto;
 	text-shadow: none;
-	/*transition: all 1s;*/
+	transition: all .5s;
 	width: 1.5em;
 }
 
@@ -467,10 +467,9 @@ input[type=submit]:hover
 .nav-icon:focus:before,
 .nav-icon:hover:before
 {
+	background: #fff;
 	color: #b59a38;
 	box-shadow: #e7c547 0 0 .3em;
-	text-shadow: #fff 0 0 .1em;
-	transition: all 1s;
 }
 
 .skip a:focus
@@ -493,7 +492,7 @@ a.tag:hover
 	text-decoration: underline;
 }
 
-/* Info box animation */
+/* Info box animation 
 @-webkit-keyframes infoBlink
 {
 	0% {
@@ -529,6 +528,7 @@ a.tag:hover
 		box-shadow: 0;
 	}
 }
+*/
 
 
 /* -=== Responsive ===- */
