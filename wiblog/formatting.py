@@ -12,6 +12,6 @@ def summarize(fullBody):
 	firstNewline = fullBody.find("\n")
 
 	if firstNewline > 0:
-		return str(fullBody)[:firstNewline]
+		return unicode(fullBody)[:firstNewline]
 
 	return fullBody
