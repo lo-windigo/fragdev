@@ -6,6 +6,16 @@
 	<title>{% block title %}Fragmented Development{% endblock %} - FragDev</title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="/css/fd4k.css">
+	<!--[if LTE IE 8]>
+		<link rel="stylesheet" type="text/css" href="/css/fd8.css">
+		<script>
+			var html5 = ['article','figure','figcaption','footer','header','nav','section'];
+
+			for(i=0;i<html5.length;i++) {
+				document.createElement(html5[i]);
+			}
+		</script>
+	<![endif]-->
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 {% block head %}{% endblock %}

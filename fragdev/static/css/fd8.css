@@ -1,0 +1,36 @@
+/* Fragdev 8 - Retro styles, for a retro browser. :( */
+
+figure img
+{
+	display: block;
+	margin: 0 auto;
+}
+
+figcaption
+{
+	display: block;
+}
+
+.main-nav
+{
+	float: right;
+	width: 75%;
+}
+
+.main-nav ul li
+{
+	display: inline;
+	list-style: none;
+	padding: 0 0 0 .5em;
+}
+
+.blog-nav-icon:before,
+.nav-icon:before
+{
+	display: none;
+}
+
+.page-footer:before
+{
+	clear: both;
+}
