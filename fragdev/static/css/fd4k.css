@@ -259,7 +259,6 @@ textarea
 }
 
 /* Blog navigation */
-/** extra hack added for specificity. Will fix later. */
 .blog-nav
 {
 	margin: 0;
