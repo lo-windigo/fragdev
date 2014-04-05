@@ -4,9 +4,9 @@
 {% block title %}Blog{% endblock %}
 
 {% block head %}
-	<link href="/feeds/atom/" rel="alternate" type="application/atom+xml"
+	<link href="{% url "wiblog:atom" %}" rel="alternate" type="application/atom+xml"
 		title="Fragmented Development Blog (Atom)">
-	<link href="/feeds/rss/" rel="alternate" type="application/rss+xml"
+	<link href="{% url "wiblog:rss" %}" rel="alternate" type="application/rss+xml"
 		title="Fragmented Development Blog (RSS)">
 {% endblock %}
 

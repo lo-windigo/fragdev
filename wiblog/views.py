@@ -15,7 +15,6 @@ def index(request):
 	template = loader.get_template('base-wiblog.html')
 
 	# Get a few posts to start with
-	# TODO: Figure out how to reference choices, instead of hard-coding!
 	posts = Post.objects.filter(status=Post.PUB).order_by('-date')[:5]
 
 	# Go through all the posts, trim and format the post body
