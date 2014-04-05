@@ -1,5 +1,4 @@
 from django.contrib.syndication.views import Feed
-from django.core.urlresolvers import reverse
 from django.utils.feedgenerator import Atom1Feed, Rss201rev2Feed
 from wiblog.formatting import mdToHTML, summarize
 from wiblog.models import Post, Tag
@@ -9,7 +8,7 @@ from wiblog.models import Post, Tag
 class PostFeedRSS(Feed):
 	feed_type = Rss201rev2Feed
 	title = "Jacob Hume - Fragmented Development"
-	link = "/feeds/rss"
+	link = "blog/feeds/rss"
 	description = '''
 Jacob Hume's thoughts about web development, technology, Free software and
 other miscellaneous topics.
@@ -41,4 +40,5 @@ other miscellaneous topics.
 # Atom Feed Class
 class PostFeedAtom(PostFeedRSS):
 	feed_type = Atom1Feed
+	link = "blog/feeds/atom"
 	subtitle = PostFeedRSS.description
