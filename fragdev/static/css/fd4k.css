@@ -379,6 +379,22 @@ textarea
 	width: 100%;
 }
 
+/* Multi-column content */
+.multi-column
+{
+	-moz-column-count: 2;
+	-moz-column-gap: 1em;
+	-webkit-column-count: 2;
+	-webkit-column-gap: 1em;
+	column-count: 2;
+	column-gap: 1em;
+}
+
+.multi-column>p
+{
+	margin-top: 0;
+}
+
 /* Navigation item - icon */
 .nav-icon
 {
