@@ -4,17 +4,17 @@
 
 {% block page %}
 			<section class="profile">
-				<h1>Jacob Hume</h1>
-				<p>
-					
-				</p>
+				<h1>About Jacob Hume</h1>
 				<ul class="about-nav">
-					<li><a href="#about">About Me</a></li>
-					<li><a href="#skills">Skills</a></li>
-					<li><a href="#employment">Employment</a></li>
-					<li><a href="#portfolio">Portfolio</a></li>
-					<li><a href="#education">Education</a></li>
+					<li><a href="/about/about">About Me</a></li>
+					<li><a href="/about/skills">Skills</a></li>
+					<li><a href="/about/employment">Employment</a></li>
+					<li><a href="/about/portfolio">Portfolio</a></li>
+					<li><a href="/about/education">Education</a></li>
 				</ul>
+			</section>
+	{% block about-content %}
+			<section class="c">
 				<figure class="profile-pic-frame">
 					<img alt="An illustration of Windigo, sitting with a plate of cookies, gesticulating"
 						src="/img/windigo.jpg" class="profile-img">
@@ -30,119 +30,5 @@
 					</figcaption>
 				</figure>
 			</section>
-			<section id="about">
-				<h1>About me</h1>
-				<p>
-					Hi - I'm a {{ age }}-year-old guy (refresh the page-that number should be updated every
-					second) living in a woodsy cabin just outside of Point Arena, California.
-				</p>
-				<p>
-					I dig <a href="http://littlegreenbeanroastery.com/">coffee</a>, <a href=
-					"http://www.gnu.org/philosophy/free-sw.html">Free software</a>, and <a
-					href="http://minecraft.net">Minecraft</a>. My key ID is <a
-					href="/misc/windigo-public.asc"><code>0xDAECFD4CBCC76ED6</code></a>.
-				</p>
-			</section>
-			<section id="skills">
-				<h2>Skills</h2>
-				<p>
-					I've been a web developer after a forum friend advised me that the
-					best program for making a website was "notepad". Once I started
-					learning, I was hooked.
-				</p>
-				<article class="skills-list">
-					<h3>I speak the following "Languages"</h3>
-					<ul>
-						<li>HTML</li>
-						<li>CSS</li>
-						<li>PHP</li>
-						<li>SQL</li>
-						<li>Javascript
-							<ul>
-								<li>jQuery</li>
-								<li>nodeJS (a bit)</li>
-							</ul>
-						</li>
-						<li>Python</li>
-						<li>Ruby (A bit)</li>
-					</ul>
-				</article>
-				<article class="skills-list">
-					<h3>I have experience with these servers/software</h3>
-					<ul>
-						<li>Linux servers, specifically Debian/Ubuntu</li>
-						<li>Apache</li>
-						<li>Relational SQL Servers
-							<ul>
-								<li>MySQL</li>
-								<li>Postgre</li>
-								<li>Microsoft SQL Server</li>
-							</ul>
-						</li>
-						<li>Git version control</li>
-					</ul>
-				</article>
-				<article class="hire-me">
-					<h1>Hire me!</h1>
-					<p>
-						I'm currently living in the State of California; <a href=
-						"http://www.cityofpointarena.com/">Point Arena</a> in particular.
-						Please feel free to <a href="/contact">contact me</a> if you are looking
-						for someone with my qualifications!
-					</p>
-				</article>
-			</section>
-			<section id="employment">
-				<h2>Employment</h2>
-				<p>
-					After leaving my position with <a href="http://warrencountyny.gov">Warren
-					County</a> to make a move to California, I'm currently a <strong>part-time
-					consultant</strong>, and looking for a more permanent, possibly full-time
-					position.
-				</p>
-				<ul>
-					<li>
-						<strong>Freelance/Consulting:</strong> 2002 to Present
-						<ul>
-							<li>
-								Creation of sites based on information provided, usually including hosting and DNS
-								management. Examples: <a href="http://valcielle.fragdev.com">Val'cielle</a> (web comic
-								management system), <a href="http://lenasads.com">Lenas' Adult Day Service</a>
-							</li>
-							<li>
-								Consulting with organizations to keep existing websites current and
-								add new features as necessary. <a href="http://warrencountyny.gov">Warren
-								County, NY</a>, <a href="http://warrenny200.org">Warren County
-								Bicentennial</a>
-							</li>
-							<li>
-								Installation and maintenance of applications hosted on FragDev
-								servers
-							</li>
-						</ul>
-					</li>
-					<li>
-						<strong>Web/Intranet Developer:</strong> Warren County, NY, 2004 to 2013
-						<ul>
-							<li>Responsibilities: Develop and maintain any and all internal and external County web
-							sites, set up and secure web servers, handle help desk calls as needed</li>
-							<li>Examples: <a href="http://warrencountyny.gov">Warren County, NY</a>, <a href=
-							"http://warrenny200.org">Warren County Bicentennial</a>, <a href=
-							"http://www.firstwilderness.com">First Wilderness Heritage Corridor</a></li>
-TEXT TO IMPLEMENT: My primary career was managing the web infrastructure for a medium-sized local government on limited resources. This experience ingrained the principles of efficiency and scalability, and gave me a great respect for well structured code and markup. We were forced to make due with aging hardware while meeting increasing demands from both the public and internal departments, which created some extremely interesting challenges!
-
-Through my freelancing and personal/open source projects, I've had additional experience with many different platforms, languages, and development methodologies. I'm very well-versed in source control (primarily git) and working remotely with team members. On every project, both at Warren County and other projects, I've become accustomed to working with many different people with different interest and goals. I've been able to balance the needs of many different parties and keep everyone satisfied while projects are completed in an order that makes the most sense for everyone involved.
-						</ul>
-					</li>
-				</ul>
-			</section>
-			<section id="education">
-				<h2>Education</h2>
-				<p>
-					I earned my degree in networking at <a href="http://sunyacc.edu">SUNY
-					Adirondack</a> in 2006. The networking program gave me a deep
-					understanding of how the web and HTTP works at the network level, and
-					introduced me to programming and PHP.
-				</p>
-			</section>
+	{% endblock %}
 {% endblock %}

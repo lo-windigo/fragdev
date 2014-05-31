@@ -125,7 +125,9 @@ input[type=submit]
 	transition: margin .25s, padding .25s;
 }
 
-input[type=email],input[type=text],input[type=url]
+input[type=email],
+input[type=text],
+input[type=url]
 {
 	min-width: 24em;
 	width: 50%;
@@ -466,6 +468,14 @@ textarea
 	text-decoration: none;
 }
 
+/* List of skills */
+.skills-list
+{
+	float: left;
+	margin-left: 1%;
+	width: 48%;
+}
+
 .tag-cloud
 {
 	margin: 0;
@@ -482,7 +492,6 @@ textarea
 
 
 /* -=== State ===- */
-
 
 input:active,
 input:focus,

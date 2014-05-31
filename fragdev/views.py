@@ -28,6 +28,51 @@ def about(request):
 	return HttpResponse(template.render(context))
 
 
+# About Me page
+def aboutMe(request):
+
+	template = loader.get_template('base-about-me.html')
+	context = Context()
+
+	return HttpResponse(template.render(context))
+
+
+# About - Education page
+def aboutEdu(request):
+
+	template = loader.get_template('base-about-education.html')
+	context = Context()
+
+	return HttpResponse(template.render(context))
+
+
+# About - Employment History page
+def aboutEmp(request):
+
+	template = loader.get_template('base-about-emp.html')
+	context = Context()
+
+	return HttpResponse(template.render(context))
+
+
+# About - Portfolio page
+def aboutPortfolio(request):
+
+	template = loader.get_template('base-about-portfolio.html')
+	context = Context()
+
+	return HttpResponse(template.render(context))
+
+
+# About - Skills page
+def aboutSkills(request):
+
+	template = loader.get_template('base-about-skills.html')
+	context = Context()
+
+	return HttpResponse(template.render(context))
+
+
 # Contact page
 def contact(request):
 
