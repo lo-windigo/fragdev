@@ -1,6 +1,6 @@
 from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Atom1Feed, Rss201rev2Feed
-from wiblog.formatting import mdToHTML, summarize
+from wiblog.formatting import mdToHTML
 from wiblog.models import Post, Tag
 
 
@@ -18,7 +18,7 @@ other miscellaneous topics.
 	# Get the posts present in this feed
 	def items(self):
 		# Filter out un-published posts. Should specify tag here as well?
-		posts = Post.objects.filter(status='PUB').order_by('date')
+		posts = Post.objects.filter(status='PUB').order_by('-date')
 
 		# Format posts for the feed
 		for post in posts:
