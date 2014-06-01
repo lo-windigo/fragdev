@@ -12,8 +12,7 @@ by Windigo - http://fragdev.com
 
 
 /* -=== Font Definitions ===- */
-@font-face
-{
+@font-face {
 	font-family: Main;
 	src:	local("Droid Sans"),
 				url("/fonts/DroidSans-webfont.woff") format("woff"),
@@ -21,16 +20,14 @@ by Windigo - http://fragdev.com
 	font-weight: normal;
 }
 
-@font-face
-{
+@font-face {
 	font-family: Main;
 	src:	url("/fonts/DroidSans-Bold-webfont.woff") format("woff"),
 				url("/fonts/DroidSans-Bold-webfont.ttf") format("truetype");
 	font-weight: bold;
 }
 
-@font-face
-{
+@font-face {
 	font-family: Icons;
 	src:	url("/fonts/fd4k.eot");
 	src:	url("/fonts/fd4k.eot?#iefix") format("embedded-opentype"),
@@ -42,66 +39,42 @@ by Windigo - http://fragdev.com
 
 /* -=== Base ===- */
 
-a
-{
+a {
 	color: #f0c674;
 }
 
-a:active,
-a:hover,
-a:focus
-{
-	color: #e7c547; 
-}
-
-body
-{
+body {
 	background: #000;
-	background: rgba(0,0,0,.5);
-	background: transparent linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.8)) no-repeat scroll 0 0;
-	border-radius: .5em;
-	box-shadow:
-		0 0 2em -.25em #000,
-		inset 0 0 6em #000;
+	box-shadow: inset 0 0 6em #000;
 	margin: 0 auto 3em auto;
 	max-width: 58em;
 	padding: 0 1% 1px 1%;
 	position: relative;
 }
 
-dt
-{
+dt {
 	font-size: 1.2em;
 }
 
-dd
-{
+dd {
 	margin: .5em 0 1em 0;
 	padding: 0;
 }
 
-h1
-{
+h1 {
 	color: #fff;
 }
 
-hr
-{
+hr {
 	color: #666;
 	background: #666;
 	border: 0;
 	height: .25em;
 }
 
-html
-{
-	background:
-		radial-gradient(#0b0b0b 15%, transparent 16%) 0 0,
-		radial-gradient(#0b0b0b 15%, transparent 16%) 8px 8px,
-		radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
-		radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
-	background-color:#1d1f21;
-	background-size:16px 16px;
+html {
+	background: #1d1f21 url(/static/img/bg.jpg) no-repeat scroll 0 0;
+	background-size: 100% auto;
 	color: #c5c8c6;
 	font-family: 'Main', sans-serif;
 	font-synthesis: style;
@@ -109,8 +82,8 @@ html
 	overflow-x: hidden;
 }
 
-input,textarea
-{
+input,
+textarea {
 	background: #c5c8c6;
 	border: 1px solid #000;
 	-moz-box-sizing: border-box;
@@ -119,20 +92,17 @@ input,textarea
 	padding: .5em;
 }
 
-input[type=submit]
-{
+input[type=submit] {
 	margin: 1em;
 	transition: margin .25s, padding .25s;
 }
 
-input[type=email],input[type=text],input[type=url]
-{
+input[type=email],input[type=text],input[type=url] {
 	min-width: 24em;
 	width: 50%;
 }
 
-textarea
-{
+textarea {
 	height: 6em;
 	width: 100%;
 }
@@ -140,35 +110,30 @@ textarea
 
 /* -=== Layout ===- */
 
-.page-ancillary
-{
-	border-bottom-left-radius: 50% 1em;
-	border-bottom-right-radius: 50% 1em;
+.page-ancillary {
+	border-bottom-left-radius: 50% 1.5em;
+	border-bottom-right-radius: 50% 1.5em;
 	float: right;
 	padding: 0 1%;
 	width: 28%;
 }
 
 .page-ancillary em,
-.page-ancillary q
-{
+.page-ancillary q {
 	font-weight: bold;
 }
 
 .page-ancillary,
-.page-ancillary h1
-{
+.page-ancillary h1 {
 	color: #ffeead;
 }
 
-.page-ancillary ul
-{
+.page-ancillary ul {
 	padding-left: 1.5em;
 }
 
 .page-ancillary figure,
-.page-ancillary figcaption
-{
+.page-ancillary figcaption {
 	margin-left: 0;
 	margin-right: 0;
 	text-align: center;
@@ -176,49 +141,42 @@ textarea
 
 .page-ancillary,
 .page-header,
-.page-footer:before
-{
+.page-footer:before {
 	background: #373b41; 
-	box-shadow: 0 .5em .51em #000;
+	box-shadow: 0 .5em 0 rgba(0,0,0,.3); 
 	position: relative;
 	z-index: 24;
 }
 
-.page-content
-{
+.page-content {
 	float: left;
 	width: 69%;
 }
 
-.page-footer:before
-{
+.page-footer:before {
 	content: " ";
 	display: block;
 	height: 1em;
 }
 
-.page-footer
-{
+.page-footer {
 	clear: both;
 	font-style: italic;
 	padding: 1em 0;
 }
 
 .page-footer,
-.page-footer a
-{
+.page-footer a {
 	color: #373b41;
 }
 
-.page-header
-{
+.page-header {
 	background-size: 30px 30px; 
 	background-position: 10% 80%;
 	padding: .5em 0;
 }
 
-.page-header:after
-{
+.page-header:after {
 	clear: both;
 	content: "";
 	display: block;
@@ -228,42 +186,35 @@ textarea
 /* -=== Module ===- */
 
 /* Blog comment */
-.blog-comment
-{
+.blog-comment {
 	background: rgba(64,64,64,.2);
 	padding: 1px 1em;
 	margin: 0;
 }
 
-.blog-comment:nth-child(2n)
-{
+.blog-comment:nth-child(2n) {
 	background: rgba(64,64,64,.4);
 }
 
 /* Blog navigation */
 /** extra hack added for specificity. Will fix later. */
-.blog-nav
-{
+.blog-nav {
 	margin: 0;
 	padding: 0;
 }
 
-.blog-nav li
-{
+.blog-nav li {
 	height: 1em;
 	list-style: none;
 	margin: 0 0 1em 0;
 	padding: .75em 0;
 }
 
-.blog-nav-icon
-{
-	text-decoration: none;
+.blog-nav-icon {
 	text-shadow: #000 0 2px .25em;
 }
 
-.blog-nav-icon:before
-{
+.blog-nav-icon:before {
 	content: attr(data-icon);
 	display: inline-block;
 	font: 2em 'Icons';
@@ -275,21 +226,18 @@ textarea
 }
 
 /* Centered */
-.c
-{
+.c {
 	text-align: center;
 }
 
 /* Form errors */
-.errorlist
-{
+.errorlist {
 	color: #f00;
 	font-style: italic;
 }
 
 /* FragDev Badge */
-.fd-badge
-{
+.fd-badge {
 	background: #000;
 	border-radius: .5em;
 	box-shadow: 0 2px .25em #111;
@@ -300,22 +248,19 @@ textarea
 	transition: all .5s;
 }
 
-.fd-badge a
-{
+.fd-badge a {
 	color: #d54e53;
 	font-size: 1.5em;
 	text-decoration: none;
 }
 
-.fd-badge a span
-{
+.fd-badge a span {
 	color: #e7c547;
 }
 
 /* Full width bar (also appears before page footer) */
 .full-width,
-.page-footer:before
-{
+.page-footer:before {
 	margin-left: -999em;
 	margin-right: -999em;
 	padding-left: 999em;
@@ -324,8 +269,7 @@ textarea
 }
 
 /* Information Box */
-.info
-{
+.info {
 	animation-duration: 5s;
 	-webkit-animation-duration: 5s;
 	animation-name: infoPulse;
@@ -338,15 +282,13 @@ textarea
 }
 
 /* Main navigation */
-.main-nav
-{
+.main-nav {
 	text-align: right;
 	line-height: 1;
 	max-width: 58em; 
 }
 
-.main-nav li
-{
+.main-nav li {
 	display: inline-block;
 	line-height: 1.25;
 	list-style: none;
@@ -355,8 +297,7 @@ textarea
 	width: 9%;
 }
 
-.main-nav ul
-{
+.main-nav ul {
 	display: inline;
 	margin: 0;
 	padding: 0;
@@ -365,16 +306,14 @@ textarea
 }
 
 /* Navigation item - icon */
-.nav-icon
-{
+.nav-icon {
 	color: #ffeead;
 	text-decoration: none;
 	text-shadow: #000 0 2px .25em;
 	transition: all .5s;
 }
 
-.nav-icon:before
-{
+.nav-icon:before {
 	background: #ffeead;
 	border-radius: 50%;
 	box-shadow: 0 .1em .25em #000;
@@ -392,29 +331,25 @@ textarea
 }
 
 /* Blog Post - Date */
-.post-date
-{
+.post-date {
 	font-style: italic;
 	font-size: .8em;
 }
 
 .post-date,
-.post-title
-{
+.post-title {
 	display: inline-block;
 }
 
 /* Skip Links */
-.skip a
-{
+.skip a {
 	left: 0;
 	position: absolute;
 	top: -999em;
 }
 
 /* Tags */
-.tag
-{
+.tag {
 	background: #ffeead;
 	border-radius: .25em;
 	color: #1d1f21;
@@ -424,15 +359,13 @@ textarea
 	text-decoration: none;
 }
 
-.tag-cloud
-{
+.tag-cloud {
 	margin: 0;
 	padding: 0;
 	text-align: center;
 }
 
-.tag-cloud li
-{
+.tag-cloud li {
 	display: inline-block;
 	list-style: none;
 	margin: .5em .25em;
@@ -442,20 +375,24 @@ textarea
 /* -=== State ===- */
 
 
+a:active,
+a:hover,
+a:focus {
+	color: #e7c547; 
+}
+
 input:active,
 input:focus,
 input:hover,
 textarea:active,
 textarea:focus,
-textarea:hover
-{
+textarea:hover {
 	background: #fff;
 }
 
 input[type=submit]:active,
 input[type=submit]:focus,
-input[type=submit]:hover
-{
+input[type=submit]:hover {
 	font-weight: bold;
 	padding: 1.5em;
 	margin: 0;
@@ -463,20 +400,21 @@ input[type=submit]:hover
 
 .blog-nav-icon:active,
 .blog-nav-icon:focus,
-.blog-nav-icon:hover
-{
+.blog-nav-icon:hover {
 	text-shadow: #e7c547 0 0 .3em;
 }
 
-.fd-badge:hover
-{
+.fd-badge:hover {
 	box-shadow: 0 0 .3em #e7c547;
+}
+
+.fd-badge:hover a {
+	color: #e7c547;
 }
 
 .nav-icon:active,
 .nav-icon:focus,
-.nav-icon:hover
-{
+.nav-icon:hover {
 	color: #fff;
 	outline: none;
 	text-shadow: #e7c547 0 0 .3em;
@@ -484,93 +422,48 @@ input[type=submit]:hover
 
 .nav-icon:active:before,
 .nav-icon:focus:before,
-.nav-icon:hover:before
-{
+.nav-icon:hover:before {
 	background: #fff;
 	color: #b59a38;
 	box-shadow: #e7c547 0 0 .3em;
 }
 
-.skip a:focus
-{
+.skip a:focus {
 	top: 0;
 }
 
 .tag:active,
 .tag:focus,
-.tag:hover
-{
+.tag:hover {
 	background: #fff;
 	color: #000;
 }
 
 a.tag:active,
 a.tag:focus,
-a.tag:hover
-{
+a.tag:hover {
 	text-decoration: underline;
 }
 
-/* Info box animation 
-@-webkit-keyframes infoBlink
-{
-	0% {
-		background: #ffeead;
-		box-shadow: 0;
-	}
-
-	30% {
-		background: #fff;
-		box-shadow: 0 0 1em #ffeead;
-	}
-
-	100% {
-		background: #ffeead;
-		box-shadow: 0;
-	}
-}
-
-@keyframes infoBlink
-{
-	0% {
-		background: #ffeead;
-		box-shadow: 0;
-	}
-
-	30% {
-		background: #fff;
-		box-shadow: 0 0 1em #ffeead;
-	}
-
-	100% {
-		background: #ffeead;
-		box-shadow: 0;
-	}
-}
-*/
 
 
 /* -=== Responsive ===- */
 
 /* Medium screens: tablets, low res/high zoom desktops */
-@media screen and (max-width: 48em)
-{
+@media screen and (max-width: 48em) {
 	/* -= Base =- */
-	body
-	{
+	body {
 		margin-bottom: 0;
 	}
 
 	/* -= Layout =- */
 	.page-ancillary,
-	.page-content
-	{
+	.page-content {
 		float: none;
 		width: auto;
 	}
 
-	.page-ancillary
-	{
+	.page-ancillary {
 		border-top-left-radius: 50% 1em;
 		border-top-right-radius: 50% 1em;
 		border-bottom-left-radius: 0;
@@ -581,34 +474,29 @@ a.tag:hover
 		padding-top: .25em;
 	}
 
-	.page-footer:before
-	{
+	.page-footer:before {
 		display: none;
 	}
 
 	/* -= Modules =- */
-	.blog-nav li
-	{
+	.blog-nav li {
 		float: left;
 		padding-right: 1em;
 	}
 
-	.blog-nav:after
-	{
+	.blog-nav:after {
 		clear: both;
 		content: "";
 		display: block;
 	}
 
-	.fd-badge
-	{
+	.fd-badge {
 		border-radius: .25em;
 		padding: .25em;
 		margin-top: .25em;
 	}
 
-	.main-nav li
-	{
+	.main-nav li {
 		display: inline-block;
 		line-height: 1.25;
 		list-style: none;
@@ -617,13 +505,11 @@ a.tag:hover
 		width: 3em;
 	}
 
-	.nav-icon
-	{
+	.nav-icon {
 		font-size: .8em;
 	}
 
-	.nav-icon:before
-	{
+	.nav-icon:before {
 		font-size: 2.4em;
 		margin-top: 0;
 		padding-top: 0;
@@ -631,41 +517,34 @@ a.tag:hover
 }
 
 /* Small Screens: Phones, handheld */
-@media screen and (max-width: 36em)
-{
+@media screen and (max-width: 34em) {
+
 	/* -= Modules =- */
-	.fd-badge
-	{
+	.fd-badge {
 		margin-bottom: .5em;
 		display: inline-block;
 	}
 
 	.fd-badge,
-	.main-nav
-	{
+	.main-nav {
 		float: none;
 		margin: 0 auto;
 	}
 
-	.main-nav
-	{
-		margin: 0 -1em;
-		padding-top: .5em;
+	.main-nav {
+		margin-top: .5em;
 	}
 
-	.main-nav li
-	{
+	.main-nav li {
 		margin-right: .5em;
 	}
 
-	.main-nav ul
-	{
+	.main-nav ul {
 		margin-left: .5em;
 	}
 
 	.main-nav,
-	.page-header
-	{
+	.page-header {
 		text-align: center;
 	}
 }
