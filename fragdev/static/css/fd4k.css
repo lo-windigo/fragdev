@@ -388,6 +388,19 @@ textarea
 	width: 1.5em;
 }
 
+/* Blog Post - Date */
+.post-date
+{
+	font-style: italic;
+	font-size: .8em;
+}
+
+.post-date,
+.post-title
+{
+	display: inline-block;
+}
+
 /* Skip Links */
 .skip a
 {

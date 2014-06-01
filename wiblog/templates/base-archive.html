@@ -16,7 +16,7 @@
 		<h1>{{ year }}</h1>
 		<ul>
 			{% for post in yearPosts %}
-			<li><a href="{% url "wiblog:post" post.slug %}">{{ post.title }}</a></li>
+			<li>{{ post.date|date:"Y-m-d" }}: <a href="{% url "wiblog:post" post.slug %}">{{ post.title }}</a></li>
 			{% endfor %}
 		</ul>
 		{% endfor %}

@@ -19,14 +19,15 @@
 
 			{% for post in posts %}
 			<article>
-				<h1>
-					<a href="{% url "wiblog:post" slug=post.slug %}">{{ post.title }}</a>
-				</h1>
+				<header class="post-header">
+					<h1 class="post-title">
+						<a href="{% url "wiblog:post" slug=post.slug %}">{{ post.title }}</a>
+					</h1>
+					<p class="post-date">
+						Posted on {{ post.date|date:"Y-m-d" }}
+					</p>
+				</header>
 				{{ post.body }}
-				<p>
-					Read the full post: <a href=
-					"{% url "wiblog:post" slug=post.slug %}">{{ post.title }}</a>
-				</p>
 			</article>
 			{% endfor %}
 
