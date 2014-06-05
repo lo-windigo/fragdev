@@ -104,6 +104,7 @@ html
 	background-size:16px 16px;
 	color: #c5c8c6;
 	font-family: 'Main', sans-serif;
+	font-synthesis: style;
 	line-height: 1.1;
 	overflow-x: hidden;
 }
@@ -257,13 +258,15 @@ textarea
 
 .blog-nav-icon
 {
+	text-decoration: none;
 	text-shadow: #000 0 2px .25em;
 }
 
 .blog-nav-icon:before
 {
 	content: attr(data-icon);
-	font: 2em 'Icon';
+	display: inline-block;
+	font: 2em 'Icons';
 	float: left;
 	line-height: 2em;
 	margin: -.75em 0 0 0;
@@ -601,6 +604,7 @@ a.tag:hover
 	{
 		border-radius: .25em;
 		padding: .25em;
+		margin-top: .25em;
 	}
 
 	.main-nav li
@@ -621,12 +625,13 @@ a.tag:hover
 	.nav-icon:before
 	{
 		font-size: 2.4em;
+		margin-top: 0;
 		padding-top: 0;
 	}
 }
 
 /* Small Screens: Phones, handheld */
-@media screen and (max-width: 34em)
+@media screen and (max-width: 36em)
 {
 	/* -= Modules =- */
 	.fd-badge
@@ -644,7 +649,8 @@ a.tag:hover
 
 	.main-nav
 	{
-		margin-top: .5em;
+		margin: 0 -1em;
+		padding-top: .5em;
 	}
 
 	.main-nav li
