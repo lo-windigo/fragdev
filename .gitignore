@@ -9,3 +9,6 @@ db.sqlite
 
 # Don't commit settings file; there is seeeecret stuff in there.
 settings.py
+
+# Let's keep the miscellaneous files out of source control as well
+fragdev/static/misc/*
