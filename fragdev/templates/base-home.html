@@ -3,7 +3,7 @@
 <html>
 
 <head>
-	<title>{% block title %}Fragmented Development{% endblock %} - FragDev</title>
+	<title>Fragmented Development</title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="/css/fd4k.css">
 	<link rel="stylesheet" type="text/css" href="/css/fd4k-home.css">
@@ -35,22 +35,22 @@
 			<nav class="main-nav" id="nav">
 				<ul>
 					<li>
-						<a class="nav-icon" href="{% url "home" %}"
+						<a class="nav-icon" href="{% url 'services' %}"
 						data-icon="☁">Services</a></li>
 					<li>
-						<a class="nav-icon" href="{% url "wiblog:index" %}"
+						<a class="nav-icon" href="{% url 'wiblog:index' %}"
 						data-icon="📢">&nbsp;Blog&nbsp;</a>
 					</li>
 					<li>
-						<a class="nav-icon" href="{% url "about" %}" 
+						<a class="nav-icon" href="{% url 'about' %}" 
 						data-icon="👨">About</a>
 					</li>
 					<li>
-						<a class="nav-icon" href="{% url "projects" %}"
+						<a class="nav-icon" href="{% url 'projects' %}"
 						data-icon="💡">Projects</a>
 					</li>
 					<li>
-						<a class="nav-icon" href="{% url "contact" %}"
+						<a class="nav-icon" href="{% url 'contact' %}"
 						data-icon="✉">Contact</a>
 					</li>
 				</ul>
@@ -71,8 +71,8 @@
 		<p>
 			We develop fast, beautiful websites that work for all of your different
 			users. If you or your business needs a new website, help with an
-			existing website, or another of our <a href="/services">services</a>,
-			please <a href="/contact">contact us</a>!
+			existing website, or another of our <a href="{% url 'services' %}">services</a>,
+			please <a href="{% url 'contact' %}">contact us</a>!
 		</p>
 		<p class="home-signature">
 			- Jacob Hume, Web Developer
@@ -85,7 +85,7 @@
 		{{ post.body }}
 		<p>
 			Read the full post: <a href=
-			"{% url "wiblog:post" post.slug %}">{{ post.title }}</a>
+			"{% url 'wiblog:post' post.slug %}">{{ post.title }}</a>
 		</p>
 	</section>
 	{% endif %}
@@ -93,7 +93,7 @@
 	<section class="home-project">
 		<h1>Latest Project: <a href="http://gitorious.org/getreel/">Getreel</a></h1>
 		<p class="home-thumbnail">
-			<img src="misc/getreel-thumb.png" width=125 height=125
+			<img src="/misc/getreel-thumb.png" width=125 height=125
 				alt="An example of the Getreel UI">
 		</p>
 		<p>
