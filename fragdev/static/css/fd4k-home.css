@@ -1,0 +1,143 @@
+/* Homepage-only styles */
+
+
+/* -=== Layout ===- */
+
+.page-home {
+	background: none;
+	box-shadow: none;
+	padding: 0;
+}
+
+
+/* -=== Modules ===- */
+
+.home-footer {
+	border-radius: 0 0 .5em .5em;
+	background: rgba(0,0,0,.7);
+	margin: 0;
+	padding: 1px 1em;
+}
+
+.home-intro,
+.home-post,
+.home-project {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0;
+}
+
+.home-intro {
+	clear: left;
+	color: #fff;
+	float: left;
+	font-size: 1.25em;
+	max-width: 38%;
+	text-shadow: #000 1px 1px .1em;
+	width: 22em;
+}
+
+.home-post,
+.home-project {
+	background: rgba(0,0,0,.7);
+	clear: right;
+	float: right;
+	max-width: 61%;
+	padding: 0 1em;
+	width: 35em;
+}
+
+.home-signature {
+	font-style: italic;
+}
+
+.home-software {
+	background: rgba(0,0,0,.7);
+	clear: both;
+	padding: 1em;
+}
+
+.home-software-list {
+	-moz-column-count: 4;
+	-webkit-column-count: 4;
+	column-count: 4;
+}
+
+.home-tagline {
+	font-size: 1.6em;
+	text-shadow: #000 .25em .25em .1em;
+}
+
+.home-thumbnail {
+	float: left;
+	margin: 0 .5em .25em 0;
+}
+
+.home-thumbnail img {
+	border: 2px solid #fff;
+}
+
+
+/* -=== Responsive ===- */
+
+/* Medium screens: tablets, low res/high zoom desktops */
+@media screen and (max-width: 60em) {
+
+	html {
+		padding: 0 1em;
+	}
+
+	.home-intro,
+	.home-post,
+	.home-project {
+		max-width: 49%;
+		width: 49%;
+	}
+
+	.home-software-list {
+		-moz-column-count: 3;
+		-webkit-column-count: 3;
+		column-count: 3;
+	}
+
+	.home-tagline {
+		margin: 1em auto;
+		max-width: 100%;
+		text-align: center;
+		width: 11em;
+	}
+}
+
+/* Small Screens: Phones, handheld */
+@media screen and (max-width: 42.75em) {
+
+	.home-intro,
+	.home-post,
+	.home-project {
+		float: none;
+		max-width: 100%;
+		width: 100%;
+	}
+
+	.home-intro {
+		font-size: 1em;
+	}
+
+	.home-tagline {
+		font-size: 1.4em;
+	}
+
+	.home-post,
+	.home-project {
+		padding: 1px 1em;
+	}
+
+	.home-software-list {
+		-moz-column-count: 2;
+		-webkit-column-count: 2;
+		column-count: 2;
+		margin: 1em 0 0 0;
+		padding: 0 0 0 1em;
+	}
+}

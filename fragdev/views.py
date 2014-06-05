@@ -1,16 +1,26 @@
 from django.conf import settings
-from django.core.context_processors import csrf
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import Context, RequestContext, loader
+from django.core.context_processors import csrf
 from django.core.urlresolvers import reverse
 from fragdev.contact import ContactForm
 import time
 
 
 def home(request):
-	template = loader.get_template('base.html')
-	context = Context()
+	template = loader.get_template('base-home.html')
+	post = False
 
+	# Try to get the latest blog post
+	if 'wiblog' in settings.INSTALLED_APPS:
+		from wiblog.models import Post
+		from wiblog.formatting import mdToHTML, summarize
+
+		if Post.objects.count() > 0:
+			post = Post.objects.order_by('-date')[0]
+			post.body = mdToHTML(summarize(post.body))
+
+	context = Context({'post': post})
 	return HttpResponse(template.render(context))
 
 

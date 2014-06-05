@@ -6,6 +6,7 @@
 	<title>{% block title %}Fragmented Development{% endblock %} - FragDev</title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="/css/fd4k.css">
+	<link rel="stylesheet" type="text/css" href="/css/fd4k-home.css">
 	<!--[if LTE IE 8]>
 		<link rel="stylesheet" type="text/css" href="/css/fd8.css">
 		<script>
@@ -18,10 +19,9 @@
 	<![endif]-->
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-{% block head %}{% endblock %}
 </head>
 
-<body>
+<body class="page-home">
 	<div class="page-header full-width">
 		<header>
 			<div class="skip">
@@ -46,10 +46,6 @@
 						data-icon="👨">About</a>
 					</li>
 					<li>
-						<a class="nav-icon" href="{% url "resume" %}"
-						data-icon="📃">Resume</a>
-					</li>
-					<li>
 						<a class="nav-icon" href="{% url "projects" %}"
 						data-icon="💡">Projects</a>
 					</li>
@@ -62,99 +58,141 @@
 		</header>
 	</div>
 
-	<section class="page-content" id="content">
-		{% block content %}
-			<h1>Welcome To Fragmented Development!</h1>
-			<p>
-				There are several different services and components comprising FragDev:
-			</p>
-			<dl>
-				<dt>Mumble<br>(mumble.fragdev.net)</dt>
-				<dd>
-					Mumble is a voice chat server. It's a great way to talk to several
-					people at once, have a one-on-one chat, or record that episode
-					of <a href="http://hackerpublicradio.org/">Hacker Public Radio</a>
-					that you owe to Ken Fallon.
-				</dd>
-				<dt>
-					<a href="http://micro.fragdev.com">Status.net</a>
-				</dt>
-				<dd>
-					Status.net is twitter, without all the exclusion and proprietary
-					bits! In addition, it's federated - so users on our Status.net
-					instance can send messages to users on other independent instances.
-				</dd>
-				<dt>
-					<a href="http://links.fragdev.com">SemanticScuttle</a>
-				</dt>
-				<dd>
-					A social bookmarking application, SemanticScuttle is very similar
-					to Del.icio.us &mdash; before the remake.
-				</dd>
-				<dt>
-					<a href="http://ttrss.fragdev.com">Tiny Tiny RSS</a>
-				</dt>
-				<dd>
-					A very functional, lightweight <abbr title=
-					"really simple syndication">RSS</abbr> reader with a few extra social
-					functions. If you like Google Reader, you should give TTRSS a try.
-				</dd>
-				<dt>
-					<a href="http://webmail.fragdev.com">Roundcube</a>
-				</dt>
-				<dd>
-					A smooth, simple webmail interface, Roundcube is a great web-based
-					IMAP email client. It can be used as an interface to any IMAP
-					server, but on FragDev it talks to Dovecot and Postfix.
-				</dd>
-			</dl>
-		{% endblock %}
+	<section class="home-intro">
+		<h1 class="home-tagline">Making websites for our fragmented web</h1>
+		<p>
+			The web is changing all the time. Whether visitors are using a laptop,
+			a phone, or listening to a screen reader, your website needs to work
+			for them.
+		</p>
+		<p>
+			<strong>We can help!</strong>
+		</p>
+		<p>
+			We develop fast, beautiful websites that work for all of your different
+			users. If you or your business needs a new website, help with an
+			existing website, or another of our <a href="/services">services</a>,
+			please <a href="/contact">contact us</a>!
+		</p>
+		<p class="home-signature">
+			- Jacob Hume, Web Developer
+		</p>
 	</section>
-	<section class="page-ancillary">
-		{% block ancillary %}
-		<h1>What is FragDev?</h1>
+
+	{% if post %}
+	<section class="home-post">
+		<h1>Latest Post: {{ post.title }}</h1>
+		{{ post.body }}
 		<p>
-			<em><q>Fragmented Development</q></em>, abbreviated <em>FragDev</em>, summarizes the
-			nature of web development. Many disparate technologies make today's web, and this variety
-			makes development both challenging and enjoyable.
+			Read the full post: <a href=
+			"{% url "wiblog:post" post.slug %}">{{ post.title }}</a>
+		</p>
+	</section>
+	{% endif %}
+
+	<section class="home-project">
+		<h1>Latest Project: <a href="http://gitorious.org/getreel/">Getreel</a></h1>
+		<p class="home-thumbnail">
+			<img src="misc/getreel-thumb.png" width=125 height=125
+				alt="An example of the Getreel UI">
 		</p>
 		<p>
-			It's also where <strong>Jacob Hume</strong>, a web developer and Free Software
-			enthusiast, puts apps and files. On the internet, he is usually found under the username
-			<strong>Windigo</strong>.
-		</p>
-		<h2>Support Fragdev</h2>
-		<p>
-			Do you use a FragDev service, and desire to give back? Donate to a software project! We
-			wouldn't be around without them.
+			A service that helps users watch online videos without blowing through
+			their bandwidth cap. Getreel allows you to schedule video downloads to
+			occur overnight, when many satellite providers allow extra downloads.
 		</p>
 		<p>
-			<em>Still not enough?</em> If you really feel the need to chip in for the cost of running the server,
-			feel free to Flattr us. All proceeds will go towards server costs and improvements.
+			Getreel is a web service written by <a href="http://jezra.net">Jezra</a>
+			in Ruby, and I contributed the web front end that uses vanilla
+			Javascript to provide a flexible interface to the API. The interface is
+			responsive and uses only CSS and SVG to achieve its appearance.
 		</p>
-		<p class="c">
-			<script id='fbd67li'>(function(i){var
-				f,s=document.getElementById(i);f=document.createElement('iframe');f.src='//api.flattr.com/button/view/?uid=windigo&button=compact&url=http%3A%2F%2Ffragdev.com';f.title='Flattr';f.height=20;f.width=110;f.style.borderWidth=0;s.parentNode.insertBefore(f,s);})('fbd67li');</script>
-			<noscript>
-				<a href="https://flattr.com/submit/auto?user_id=windigo&url=http%3A%2F%2Ffragdev.com"><img
-					src="/img/flattr-badge-large.png" alt="Flattr this"
-					title="Flattr this"></a>
-			</noscript>
+		<p>
+			If you are interested, you can check out <a
+				href="http://gitorious.org/getreel/">Getreel</a> yourself!
 		</p>
-		{% endblock %}
+	</section>
+
+	<section class="home-software">
+		<h1>Software</h1>
+		<p>
+			Here at Fragmented Development, we run the following <abbr title=
+			"free, libre, open source software">FLOSS</abbr> software:
+		</p>
+		<dl>
+			<dt>Mumble<br>(mumble.fragdev.net)</dt>
+			<dd>
+				Mumble is a voice chat server. It's a great way to talk to several
+				people at once, have a one-on-one chat, or record that episode
+				of <a href="http://hackerpublicradio.org/">Hacker Public Radio</a>
+				that you owe to Ken Fallon.
+			</dd>
+			<dt>
+				<a href="http://micro.fragdev.com">Status.net</a>
+			</dt>
+			<dd>
+				Status.net is twitter, without all the exclusion and proprietary
+				bits! In addition, it's federated - so users on our Status.net
+				instance can send messages to users on other independent instances.
+			</dd>
+			<dt>
+				<a href="http://links.fragdev.com">SemanticScuttle</a>
+			</dt>
+			<dd>
+				A social bookmarking application, SemanticScuttle is very similar
+				to Del.icio.us &mdash; before the remake.
+			</dd>
+			<dt>
+				<a href="http://ttrss.fragdev.com">Tiny Tiny RSS</a>
+			</dt>
+			<dd>
+				A very functional, lightweight <abbr title=
+				"really simple syndication">RSS</abbr> reader with a few extra social
+				functions. If you like Google Reader, you should give TTRSS a try.
+			</dd>
+			<dt>
+				<a href="http://webmail.fragdev.com">Roundcube</a>
+			</dt>
+			<dd>
+				A smooth, simple webmail interface, Roundcube is a great web-based
+				IMAP email client. It can be used as an interface to any IMAP
+				server, but on FragDev it talks to Dovecot and Postfix.
+			</dd>
+		</dl>
+		<h2>Platform</h2>
+		<p>
+			Our servers run a host of underlying software that allows us to host sites
+			and applications:
+		</p>
+		<ul class="home-software-list">
+			<li>Debian GNU/Linux</li>
+			<li>Apache</li>
+			<li>PHP</li>
+			<li>Python</li>
+			<li>Django</li>
+			<li>Nginx</li>
+			<li>OpenSSH</li>
+			<li>MySQL</li>
+			<li>Postfix</li>
+			<li>Dovecot</li>
+			<li>SpamAssassin</li>
+			<li>SQLite</li>
+		</ul>
 	</section>
 
 	<footer class="page-footer full-width">
-		<p>
-			The layout "FragDev 4000" was developed by Jacob Hume, and the HTML and CSS is released
-			under the <a href="https://www.gnu.org/licenses/agpl">GNU AFFERO GENERAL PUBLIC LICENSE
-			v3</a> or Later. The font "<a href="https://www.google.com/fonts/specimen/Droid+Sans">Droid
-			Sans</a>" &copy; Google, and the <a href=
-			"http://zurb.com/playground/foundation-icons">Foundations icon font</a> is &copy; Zurb.
-			Jacob Hume is &copy; himself, circa 1983, and cannot be used or reproduced without
-			permission or an advanced understanding of human genomics and biochemistry.
-		 	Void where prohibited, may contain peanuts.
-		</p>
+		<div class="home-footer">
+			<p>
+				The layout "FragDev 4000" was developed by Jacob Hume, and the HTML and CSS is released
+				under the <a href="https://www.gnu.org/licenses/agpl">GNU AFFERO GENERAL PUBLIC LICENSE
+				v3</a> or Later. The font "<a href="https://www.google.com/fonts/specimen/Droid+Sans">Droid
+				Sans</a>" &copy; Google, and the <a href=
+				"http://zurb.com/playground/foundation-icons">Foundations icon font</a> is &copy; Zurb.
+				Jacob Hume is &copy; himself, circa 1983, and cannot be used or reproduced without
+				permission or an advanced understanding of human genomics and biochemistry.
+				Void where prohibited, may contain peanuts.
+			</p>
+		</div>
 	</footer>
 </body>
 
