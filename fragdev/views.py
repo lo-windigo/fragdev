@@ -95,3 +95,10 @@ def resume(request):
 	context = Context()
 
 	return HttpResponse(template.render(context))
+
+
+def services(request):
+	template = loader.get_template('base-services.html')
+	context = Context()
+
+	return HttpResponse(template.render(context))

@@ -3,7 +3,7 @@
 <html>
 
 <head>
-	<title>{% block title %}Fragmented Development{% endblock %} - FragDev</title>
+	<title>{% block title %}{% endblock %} - Fragmented Development</title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="/css/fd4k.css">
 	<!--[if LTE IE 8]>
@@ -29,28 +29,28 @@
 				<a href="#nav">Skip to navigation</a>
 			</div>
 			<div class="fd-badge">
-				<a href="{% url "home" %}"><span>Frag</span>mented<br>
+				<a href="{% url 'home' %}"><span>Frag</span>mented<br>
 				<span>Dev</span>elopment</a>
 			</div>
 			<nav class="main-nav" id="nav">
 				<ul>
 					<li>
-						<a class="nav-icon" href="{% url "home" %}"
+						<a class="nav-icon" href="{% url 'services' %}"
 						data-icon="☁">Services</a></li>
 					<li>
-						<a class="nav-icon" href="{% url "wiblog:index" %}"
+						<a class="nav-icon" href="{% url 'wiblog:index' %}"
 						data-icon="📢">&nbsp;Blog&nbsp;</a>
 					</li>
 					<li>
-						<a class="nav-icon" href="{% url "about" %}" 
+						<a class="nav-icon" href="{% url 'about' %}" 
 						data-icon="👨">About</a>
 					</li>
 					<li>
-						<a class="nav-icon" href="{% url "projects" %}"
+						<a class="nav-icon" href="{% url 'projects' %}"
 						data-icon="💡">Projects</a>
 					</li>
 					<li>
-						<a class="nav-icon" href="{% url "contact" %}"
+						<a class="nav-icon" href="{% url 'contact' %}"
 						data-icon="✉">Contact</a>
 					</li>
 				</ul>
