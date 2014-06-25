@@ -74,31 +74,3 @@ def contact(request):
 	context = RequestContext(request, {'form': form})
 
 	return HttpResponse(template.render(context))
-
-
-def contacted(request):
-	template = loader.get_template('base-contacted.html')
-	context = Context()
-
-	return HttpResponse(template.render(context))
-
-
-def projects(request):
-	template = loader.get_template('base-projects.html')
-	context = Context()
-
-	return HttpResponse(template.render(context))
-
-
-def resume(request):
-	template = loader.get_template('base-resume.html')
-	context = Context()
-
-	return HttpResponse(template.render(context))
-
-
-def services(request):
-	template = loader.get_template('base-services.html')
-	context = Context()
-
-	return HttpResponse(template.render(context))
