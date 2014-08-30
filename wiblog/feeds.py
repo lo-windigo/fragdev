@@ -8,7 +8,7 @@ from wiblog.models import Post, Tag
 class PostFeedRSS(Feed):
 	feed_type = Rss201rev2Feed
 	title = "Jacob Hume - Fragmented Development"
-	link = "blog/feeds/rss"
+	link = "/blog/feeds/rss"
 	description = '''
 Jacob Hume's thoughts about web development, technology, Free software and
 other miscellaneous topics.
@@ -40,5 +40,5 @@ other miscellaneous topics.
 # Atom Feed Class
 class PostFeedAtom(PostFeedRSS):
 	feed_type = Atom1Feed
-	link = "blog/feeds/atom"
+	link = "/blog/feeds/atom"
 	subtitle = PostFeedRSS.description

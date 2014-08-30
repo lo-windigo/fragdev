@@ -17,7 +17,7 @@ def home(request):
 		from wiblog.formatting import mdToHTML, summarize
 
 		if Post.objects.count() > 0:
-			post = Post.objects.order_by('-date')[0]
+			post = Post.objects.filter(status=Post.PUB).order_by('-date')[0]
 			post.body = mdToHTML(summarize(post.body))
 
 	context = Context({'post': post})

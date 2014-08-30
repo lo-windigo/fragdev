@@ -20,7 +20,7 @@ def index(request):
 	# Go through all the posts, trim and format the post body
 	for post in posts:
 
-		post.body = mdToHTML(summarize(post.body))
+		post.body = mdToHTML(post.body)
 
 	context = Context({'posts': posts})
 	return HttpResponse(template.render(context))
@@ -118,7 +118,7 @@ def tagged_posts(request, tag):
 		return redirect('wiblog:tags')
 
 	# Return any posts that are tagged with this
-	posts = Post.objects.filter(tags=tagObj)
+	posts = Post.objects.filter(tags=tagObj,status=Post.PUB)
 
 	# Go through all the posts, trim and format the post body
 	for post in posts:
