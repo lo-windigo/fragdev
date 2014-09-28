@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 
 ## Tag - A text tag, used to categorize posts
 class Tag(models.Model):
-	desc = models.CharField('Tag', max_length=50)
+	desc = models.CharField('Tag', max_length=50, unique=True)
 
 	def __unicode__(self):
 		return self.desc
