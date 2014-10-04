@@ -6,6 +6,7 @@
 	| |   | |\ \| | | | |_\ \ |/ /| |___\ \_/ / \___  || |\  \
 	\_|   \_| \_\_| |_/\____/___/ \____/ \___/      |_/\_| \_/
 
+Fragmented Development v4100 - Plain Jane
 by Windigo - http://fragdev.com
 
 /*============================================================*/
@@ -15,25 +16,16 @@ by Windigo - http://fragdev.com
 @font-face {
 	font-family: Main;
 	src:	local("Droid Sans"),
-				url("/fonts/DroidSans-webfont.woff") format("woff"),
-				url("/fonts/DroidSans-webfont.ttf") format("truetype");
+			url("/fonts/DroidSans-webfont.woff") format("woff"),
+			url("/fonts/DroidSans-webfont.ttf") format("truetype");
 	font-weight: normal;
 }
 
 @font-face {
 	font-family: Main;
 	src:	url("/fonts/DroidSans-Bold-webfont.woff") format("woff"),
-				url("/fonts/DroidSans-Bold-webfont.ttf") format("truetype");
+			url("/fonts/DroidSans-Bold-webfont.ttf") format("truetype");
 	font-weight: bold;
-}
-
-@font-face {
-	font-family: Icons;
-	src:	url("/fonts/fd4k.eot");
-	src:	url("/fonts/fd4k.eot?#iefix") format("embedded-opentype"),
-				url("/fonts/fd4k.woff") format("woff"),
-				url("/fonts/fd4k.ttf") format("truetype");
-	font-weight: normal;
 }
 
 
@@ -44,8 +36,6 @@ a {
 }
 
 body {
-	background: #000;
-	box-shadow: inset 0 0 6em #000;
 	margin: 0 auto 3em auto;
 	max-width: 58em;
 	padding: 0 1% 1px 1%;
@@ -73,9 +63,9 @@ hr {
 }
 
 html {
-	background: #1d1f21 url(/static/img/bg.jpg) no-repeat scroll 0 0;
+	background: #bed6d6;
 	background-size: 100% auto;
-	color: #c5c8c6;
+	color: #000;
 	font-family: 'Main', sans-serif;
 	font-synthesis: style;
 	line-height: 1.1;
@@ -142,8 +132,8 @@ textarea {
 .page-ancillary,
 .page-header,
 .page-footer:before {
-	background: #373b41; 
-	box-shadow: 0 .5em 0 rgba(0,0,0,.3); 
+	background: #587f7f; 
+	box-shadow: 0 .5em 0 rgba(0,0,0,.1); 
 	position: relative;
 	z-index: 24;
 }
@@ -239,17 +229,19 @@ textarea {
 /* FragDev Badge */
 .fd-badge {
 	background: #000;
-	border-radius: .5em;
-	box-shadow: 0 2px .25em #111;
+	border-bottom-left-radius: 2em 50%;
+	border-bottom-right-radius: 2em 50%;
+	border-top-left-radius: 2em 50%;
+	border-top-right-radius: 2em 50%;
 	float: left;
 	line-height: 1;
 	margin: 0;
-	padding: .5em;
+	padding: .5em 1em;
 	transition: all .5s;
 }
 
 .fd-badge a {
-	color: #d54e53;
+	color: #fff;
 	font-size: 1.5em;
 	text-decoration: none;
 }
