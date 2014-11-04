@@ -72,8 +72,24 @@ def post(request, slug):
 		# Form was validated, and contained good data
 		if form.is_valid():
 
-			# Create a new Comment object for ust to work with
+			# Save the comment
 			form.save()
+
+			# notify a mod
+			import smtplib
+			from email.mime.text import MIMEText
+
+			sender = 'wiblog@fragdev.com'
+			sendee = 'jacob@fragdev.com'
+	
+			msg = MIMEText('New Comment')
+			msg['Subject'] = 'Comments awaiting moderation'
+			msg['From'] = sender
+			msg['To'] = sendee
+
+			mailServer = smtplib.SMTP('localhost')
+			mailServer.sendmail(sender, [sendee], msg.as_string())
+			mailServer.quit
 
 	# If the form hasn't been submitted, get a blank form
 	else:
