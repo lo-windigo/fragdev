@@ -32,7 +32,13 @@ by Windigo - http://fragdev.com
 /* -=== Base ===- */
 
 a {
-	color: #f0c674;
+	color: #587f7f;
+}
+
+article+article,
+section+section {
+	border: 0 solid #587f7f;
+	border-width: 1px 0 0 0;
 }
 
 body {
@@ -52,20 +58,25 @@ dd {
 }
 
 h1 {
-	color: #fff;
+	color: #000;
+	text-shadow: rgba(0,0,0,.4) 0 .1em .1em;
+}
+
+h1>a {
+	text-shadow: rgba(28,41,41,.3) 0 .1em .1em;
 }
 
 hr {
-	color: #666;
-	background: #666;
+	background: #587f7f;
 	border: 0;
+	color: #587f7f;
 	height: .25em;
 }
 
 html {
 	background: #bed6d6;
 	background-size: 100% auto;
-	color: #000;
+	color: #1c2929;
 	font-family: 'Main', sans-serif;
 	font-synthesis: style;
 	line-height: 1.1;
@@ -74,11 +85,12 @@ html {
 
 input,
 textarea {
-	background: #c5c8c6;
-	border: 1px solid #000;
+	background: #eee;
+	border: 0;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
+	box-shadow: .25em .25em 0 rgba(0,0,0,.1); 
 	padding: .5em;
 }
 
@@ -113,9 +125,8 @@ textarea {
 	font-weight: bold;
 }
 
-.page-ancillary,
-.page-ancillary h1 {
-	color: #ffeead;
+.page-ancillary * {
+	color: #fff;
 }
 
 .page-ancillary ul {
@@ -157,7 +168,7 @@ textarea {
 
 .page-footer,
 .page-footer a {
-	color: #373b41;
+	color: #587f7f;
 }
 
 .page-header {
@@ -246,10 +257,6 @@ textarea {
 	text-decoration: none;
 }
 
-.fd-badge a span {
-	color: #e7c547;
-}
-
 /* Full width bar (also appears before page footer) */
 .full-width,
 .page-footer:before {
@@ -299,17 +306,17 @@ textarea {
 
 /* Navigation item - icon */
 .nav-icon {
-	color: #ffeead;
+	color: #fff;
 	text-decoration: none;
-	text-shadow: #000 0 2px .25em;
+	text-shadow: #000 .1em .1em 0;
 	transition: all .5s;
 }
 
 .nav-icon:before {
-	background: #ffeead;
+	background: #fff;
 	border-radius: 50%;
-	box-shadow: 0 .1em .25em #000;
-	color: #202226;
+	box-shadow: 0 .1em .1em rgba(0,0,0,.4);
+	color: #1c2929;
 	content: attr(data-icon);
 	display: inline-block;
 	font-family: 'Icons';
@@ -342,9 +349,9 @@ textarea {
 
 /* Tags */
 .tag {
-	background: #ffeead;
+	background: #fff;
 	border-radius: .25em;
-	color: #1d1f21;
+	color: #555;
 	display: inline-block;
 	margin: 0 .1em;
 	padding: .1em .25em;
@@ -370,7 +377,14 @@ textarea {
 a:active,
 a:hover,
 a:focus {
-	color: #e7c547; 
+	color: #000; 
+}
+
+h1>a:active,
+h1>a:hover,
+h1>a:focus {
+	color: #587f7f;
+	text-shadow: #fff 0 0 .5em;
 }
 
 input:active,
@@ -393,15 +407,16 @@ input[type=submit]:hover {
 .blog-nav-icon:active,
 .blog-nav-icon:focus,
 .blog-nav-icon:hover {
-	text-shadow: #e7c547 0 0 .3em;
+	color: #fff;
+	text-shadow: #fff 0 0 .3em;
 }
 
 .fd-badge:hover {
-	box-shadow: 0 0 .3em #e7c547;
+	box-shadow: 0 0 .3em #fff;
 }
 
 .fd-badge:hover a {
-	color: #e7c547;
+	color: #fff;
 }
 
 .nav-icon:active,
@@ -409,15 +424,16 @@ input[type=submit]:hover {
 .nav-icon:hover {
 	color: #fff;
 	outline: none;
-	text-shadow: #e7c547 0 0 .3em;
+	text-shadow: #000 0 0 .3em;
 }
 
 .nav-icon:active:before,
 .nav-icon:focus:before,
 .nav-icon:hover:before {
 	background: #fff;
-	color: #b59a38;
-	box-shadow: #e7c547 0 0 .3em;
+	color: #587f7f;
+	box-shadow: #fff 0 0 .3em;
+	/*box-shadow: #e7c547 0 0 .3em;*/
 }
 
 .skip a:focus {

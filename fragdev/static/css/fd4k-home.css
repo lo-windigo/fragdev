@@ -14,7 +14,7 @@
 
 .home-footer {
 	border-radius: 0 0 .5em .5em;
-	background: rgba(0,0,0,.7);
+	/*background: rgba(0,0,0,.7);*/
 	margin: 0;
 	padding: 1px 1em;
 }
@@ -30,17 +30,16 @@
 
 .home-intro {
 	clear: left;
-	color: #fff;
+	/*color: #fff;*/
 	float: left;
 	font-size: 1.25em;
 	max-width: 38%;
-	text-shadow: #000 1px 1px .1em;
 	width: 22em;
 }
 
 .home-post,
 .home-project {
-	background: rgba(0,0,0,.7);
+	/*background: rgba(0,0,0,.7);*/
 	clear: right;
 	float: right;
 	max-width: 61%;
@@ -53,7 +52,7 @@
 }
 
 .home-software {
-	background: rgba(0,0,0,.7);
+	/*background: rgba(0,0,0,.7);*/
 	clear: both;
 	padding: 1em;
 }
@@ -66,7 +65,6 @@
 
 .home-tagline {
 	font-size: 1.6em;
-	text-shadow: #000 .25em .25em .1em;
 }
 
 .home-thumbnail {
