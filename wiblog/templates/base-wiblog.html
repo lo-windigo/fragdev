@@ -11,12 +11,13 @@
 {% endblock %}
 
 {% block content %}
-			<h1>Fragmented Development</h1>
+			<h1>An Internet Weblog</h1>
 			<p>
-				This is the blog of Jacob Hume, AKA Windigo. Its content should not be
-				trusted, nor should it's author. Read at your own risk.
+				This is a repository for the thoughts, notes, and achievements
+				of <strong>Mr. Jacob Hume</strong>. It contains posts on a large variety of
+				subjects, technical and otherwise.
 			</p>
-
+			<hr>
 			{% for post in posts %}
 			<article>
 				<header class="post-header">
@@ -28,7 +29,7 @@
 					</p>
 				</header>
 				{{ post.body }}
-				<ul class="tag-cloud">
+				<ul class="tag-list">
 					{% for tag in post.tags.all %}
 						<li>
 							<a href="{% url "wiblog:tagged" tag %}" class="tag">{{ tag }}</a>

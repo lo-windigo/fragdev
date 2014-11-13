@@ -370,6 +370,22 @@ textarea {
 	margin: .5em .25em;
 }
 
+.tag-list {
+	margin: 0;
+	padding: 0;
+}
+
+.tag-list:before {
+	content: "Tags: ";
+	font-style: italic;
+}
+
+.tag-list li {
+	display: inline-block;
+	list-style: none;
+	margin: .5em .25em;
+}
+
 
 /* -=== State ===- */
 
