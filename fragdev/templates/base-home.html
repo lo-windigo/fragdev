@@ -58,7 +58,7 @@
 		</header>
 	</div>
 
-	<section class="home-intro">
+	<div class="home-intro">
 		<h1 class="home-tagline">Making websites for our fragmented web</h1>
 		<p>
 			The web is changing all the time. Whether visitors are using a laptop,
@@ -77,11 +77,14 @@
 		<p class="home-signature">
 			- Jacob Hume, Web Developer
 		</p>
-	</section>
+	</div>
 
 	{% if post %}
 	<section class="home-post">
-		<h1>Latest Post: {{ post.title }}</h1>
+		<h1>
+			Latest Post: <a href=
+				"{% url 'wiblog:post' post.slug %}">{{ post.title }}</a>
+		</h1>
 		{{ post.body }}
 		<p>
 			Read the full post: <a href=
