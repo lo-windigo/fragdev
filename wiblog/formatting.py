@@ -1,10 +1,15 @@
 from django.utils.safestring import mark_safe
-import markdown
+import CommonMark
 
 
 # Convert a markdown string into HTML5, and prevent Django from escaping it
 def mdToHTML(value):
-	return mark_safe(markdown.markdown(value, output_format="html5"))
+	parser = CommonMark.DocParser()
+	renderer = CommonMark.HTMLRenderer()
+
+	ast = parser.parse(value)
+
+	return mark_safe(renderer.render(ast))
 
 
 # Get a summary of a post
