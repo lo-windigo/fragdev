@@ -15,8 +15,7 @@ by Windigo - http://fragdev.com
 /* -=== Font Definitions ===- */
 @font-face {
 	font-family: Main;
-	src:	local("Droid Sans"),
-			url("/fonts/DroidSans-webfont.woff") format("woff"),
+	src:	url("/fonts/DroidSans-webfont.woff") format("woff"),
 			url("/fonts/DroidSans-webfont.ttf") format("truetype");
 	font-weight: normal;
 }
@@ -77,7 +76,7 @@ html {
 	background: #bed6d6;
 	background-size: 100% auto;
 	color: #1c2929;
-	font-family: 'Main', sans-serif;
+	font-family: 'Droid Sans', 'Main', sans-serif;
 	font-synthesis: style;
 	line-height: 1.1;
 	overflow-x: hidden;
@@ -201,7 +200,7 @@ textarea {
 /** extra hack added for specificity. Will fix later. */
 .blog-nav {
 	margin: 0;
-	padding: 0;
+	padding: 0 0 1em 0;
 }
 
 .blog-nav li {
@@ -211,19 +210,27 @@ textarea {
 	padding: .75em 0;
 }
 
-.blog-nav-icon {
-	text-shadow: #000 0 2px .25em;
+.blog-nav-icon:before {
+	background-repeat: no-repeat;
+	background-size: 2em 2em;
+	content: ' ';
+	display: inline-block;
+	height: 2em;
+	vertical-align: middle;
+	width: 2.5em;
 }
 
-.blog-nav-icon:before {
-	content: attr(data-icon);
-	display: inline-block;
-	font: 2em 'Icons';
-	float: left;
-	line-height: 2em;
-	margin: -.75em 0 0 0;
-	padding: 0 .25em 0 0;
-	vertical-align: middle;
+.blog-nav-archive:before {
+	background-image: url(/img/archive.svg);
+}
+
+.blog-nav-feed:before {
+	background-image: url(/img/feed.svg);
+	background-size: 1.8em 1.8em;
+}
+
+.blog-nav-tags:before {
+	background-image: url(/img/tags.svg);
 }
 
 /* Centered */
@@ -313,11 +320,14 @@ textarea {
 }
 
 .nav-icon:before {
-	background: #fff;
 	border-radius: 50%;
 	box-shadow: 0 .1em .1em rgba(0,0,0,.4);
 	color: #1c2929;
-	content: attr(data-icon);
+	content: " ";
+	background-color: #fff;
+	background-position: .25em .25em;
+	background-repeat: no-repeat;
+	background-size: 1em 1em;
 	display: inline-block;
 	font-family: 'Icons';
 	font-size: 2em;
@@ -327,6 +337,26 @@ textarea {
 	text-shadow: none;
 	transition: all .5s;
 	width: 1.5em;
+}
+
+.nav-about:before {
+	background-image: url(/img/nav-about.svg);
+}
+
+.nav-blog:before {
+	background-image: url(/img/nav-blog.svg);
+}
+
+.nav-contact:before {
+	background-image: url(/img/nav-contact.svg);
+}
+
+.nav-projects:before {
+	background-image: url(/img/nav-projects.svg);
+}
+
+.nav-services:before {
+	background-image: url(/img/nav-services.svg);
 }
 
 /* Blog Post - Date */
@@ -446,7 +476,7 @@ input[type=submit]:hover {
 .nav-icon:active:before,
 .nav-icon:focus:before,
 .nav-icon:hover:before {
-	background: #fff;
+	background-color: #fff;
 	color: #587f7f;
 	box-shadow: #fff 0 0 .3em;
 	/*box-shadow: #e7c547 0 0 .3em;*/

@@ -53,12 +53,20 @@
 				<h1>Navigation</h1>
 				<ul class="blog-nav">
 					<li>
-					<a href="{% url "wiblog:archive" %}" class="blog-nav-icon"
-						data-icon="📆">Archive</a>
+						<a class="blog-nav-icon blog-nav-archive"
+							href="{% url "wiblog:archive" %}">Archive</a>
 					</li>
 					<li>
-					<a href="{% url "wiblog:tags" %}" class="blog-nav-icon"
-						data-icon="">Tag Cloud</a>
+						<a class="blog-nav-icon blog-nav-tags"
+							href="{% url "wiblog:tags" %}">Tag Cloud</a>
+					</li>
+					<li>
+						<a class="blog-nav-icon blog-nav-feed"
+							href="{% url "wiblog:tags" %}">RSS feed</a>
+					</li>
+					<li>
+						<a class="blog-nav-icon blog-nav-feed"
+							href="{% url "wiblog:tags" %}">ATOM feed</a>
 					</li>
 				</ul>
 				{% block wiblog-ancillary %}
