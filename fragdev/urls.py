@@ -6,12 +6,16 @@ from django.views.generic import TemplateView
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('fragdev.views',
+# Include any views
+from . import views
+
+
+urlpatterns = [
 
 		# Handle all of the "static" pages
-		url(r'^$', 'home', name='home'),
-		url(r'^about/?$', 'about', name='about'),
-		url(r'^contact/?$', 'contact', name='contact'),
+		url(r'^$', views.home, name='home'),
+		url(r'^about/?$', views.about, name='about'),
+		url(r'^contact/?$', views.contact, name='contact'),
 		url(
 			r'^contacted/?$',
 			TemplateView.as_view(template_name="base-contacted.html"),
@@ -35,10 +39,13 @@ urlpatterns = patterns('fragdev.views',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-)
+]
 
 # Blog URLs
 if 'wiblog' in settings.INSTALLED_APPS:
-	urlpatterns += patterns('wiblog.views',
-		url(r'^blog/', include('wiblog.urls', app_name='wiblog', namespace='wiblog')),
-	)
+
+    import wiblog.urls
+
+    urlpatterns += [
+            url(r'^blog/', include(wiblog.urls, app_name='wiblog', namespace='wiblog')),
+    ]	
