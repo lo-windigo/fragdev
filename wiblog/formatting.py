@@ -4,12 +4,8 @@ import CommonMark
 
 # Convert a markdown string into HTML5, and prevent Django from escaping it
 def mdToHTML(value):
-	parser = CommonMark.Parser()
-	renderer = CommonMark.HTMLRenderer()
 
-	ast = parser.parse(value)
-
-	return mark_safe(renderer.render(ast))
+	return mark_safe(CommonMark.commonmark(value))
 
 
 # Get a summary of a post
