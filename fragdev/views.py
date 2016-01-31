@@ -20,8 +20,7 @@ def home(request):
 			post = Post.objects.filter(status=Post.PUB).order_by('-date')[0]
 			post.body = mdToHTML(summarize(post.body))
 
-	context = Context({'post': post})
-	return HttpResponse(template.render(context))
+	return HttpResponse(template.render({'post': post}))
 
 
 # About page
@@ -33,9 +32,8 @@ def about(request):
 	#	439624800	- Dec. 7th, 1983 (approx. time) in UNIX time
 	# 31536000	- Seconds in a year
 	age = (time.time() - 439624800) / 31536000 
-	context = Context({'age': age})
 
-	return HttpResponse(template.render(context))
+	return HttpResponse(template.render({'age': age}))
 
 
 # Contact page
@@ -71,6 +69,4 @@ def contact(request):
 		# Get an unbound form
 		form = ContactForm() 
 
-	context = RequestContext(request, {'form': form})
-
-	return HttpResponse(template.render(context))
+	return HttpResponse(template.render({'form': form}, request))
