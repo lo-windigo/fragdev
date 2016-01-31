@@ -3,7 +3,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import redirect
-from django.template import Context, RequestContext, loader
+from django.template import loader
 from wiblog.formatting import mdToHTML, summarize
 from wiblog.models import Comment, Post, Tag
 from wiblog.comments import CommentForm
@@ -22,8 +22,7 @@ def index(request):
 
 		post.body = mdToHTML(post.body)
 
-	context = Context({'posts': posts})
-	return HttpResponse(template.render(context))
+	return HttpResponse(template.render({'posts': posts}))
 
 
 ## Archive page
@@ -47,8 +46,7 @@ def archive(request):
 		# Append this post to the year list
 		orderedPosts[year].append(post)
 	
-	context = Context({'posts': orderedPosts})
-	return HttpResponse(template.render(context))
+	return HttpResponse(template.render({'posts': orderedPosts}))
 
 
 ## A single blog post
@@ -106,8 +104,8 @@ def post(request, slug):
 	for comment in comments:
 		comment.comment = mdToHTML(comment.comment)
 
-	context = RequestContext(request, {'form': form, 'post': post, 'comments': comments})
-	return HttpResponse(template.render(context))
+	return HttpResponse(template.render({'form': form, 'post': post,
+            'comments': comments}, request))
 
 
 ## Tags Tags TAGS
@@ -118,8 +116,7 @@ def tags(request):
 	# Get any tags that have been defined
 	tags = Tag.objects.order_by('desc')
 
-	context = Context({'tags': tags})
-	return HttpResponse(template.render(context))
+	return HttpResponse(template.render({'tags': tags}))
 
 
 ## Tagged Posts
@@ -141,5 +138,4 @@ def tagged_posts(request, tag):
 
 		post.body = mdToHTML(summarize(post.body))
 
-	context = Context({'posts': posts, 'tag': tagObj})
-	return HttpResponse(template.render(context))
+	return HttpResponse(template.render({'posts': posts, 'tag': tagObj}))
