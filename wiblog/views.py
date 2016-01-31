@@ -30,23 +30,9 @@ def archive(request):
 
 	template = loader.get_template('base-archive.html')
 
-	# Get all posts
-	posts = Post.objects.filter(status=Post.PUB).order_by('-date')
-	orderedPosts = {}
+	posts = Post.objects.filter(status=Post.PUB)
 
-	# Go through all the posts and sort them by year
-	for post in posts:
-		
-		year = post.date.year
-		
-		# If this is the first post of the year, start a new list
-		if year not in orderedPosts:
-			orderedPosts[year] = []
-
-		# Append this post to the year list
-		orderedPosts[year].append(post)
-	
-	return HttpResponse(template.render({'posts': orderedPosts}))
+	return HttpResponse(template.render({'posts': posts}))
 
 
 ## A single blog post

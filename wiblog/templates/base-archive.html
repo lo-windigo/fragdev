@@ -12,14 +12,11 @@
 			right place! Here's a chronological listing of all of the blog posts
 			to date.
 		</p>
-		{% for year, yearPosts in posts.items %}
-		<h1>{{ year }}</h1>
 		<ul>
-			{% for post in yearPosts %}
+		{% for post in posts|dictsortreversed:"date" %}
 			<li>{{ post.date|date:"Y-m-d" }}: <a href="{% url "wiblog:post" post.slug %}">{{ post.title }}</a></li>
-			{% endfor %}
-		</ul>
 		{% endfor %}
+		</ul>
 		{% else %}
 		<p>
 			It appears that there is no content to peruse at the moment! Not to
