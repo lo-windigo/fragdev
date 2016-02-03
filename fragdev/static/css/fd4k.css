@@ -15,15 +15,15 @@ by Windigo - http://fragdev.com
 /* -=== Font Definitions ===- */
 @font-face {
 	font-family: Main;
-	src:	url("/fonts/DroidSans-webfont.woff") format("woff"),
-			url("/fonts/DroidSans-webfont.ttf") format("truetype");
+	src:	url("/static/fonts/DroidSans-webfont.woff") format("woff"),
+			url("/static/fonts/DroidSans-webfont.ttf") format("truetype");
 	font-weight: normal;
 }
 
 @font-face {
 	font-family: Main;
-	src:	url("/fonts/DroidSans-Bold-webfont.woff") format("woff"),
-			url("/fonts/DroidSans-Bold-webfont.ttf") format("truetype");
+	src:	url("/static/fonts/DroidSans-Bold-webfont.woff") format("woff"),
+			url("/static/fonts/DroidSans-Bold-webfont.ttf") format("truetype");
 	font-weight: bold;
 }
 
@@ -221,16 +221,16 @@ textarea {
 }
 
 .blog-nav-archive:before {
-	background-image: url(/img/archive.svg);
+	background-image: url(/static/img/archive.svg);
 }
 
 .blog-nav-feed:before {
-	background-image: url(/img/feed.svg);
+	background-image: url(/static/img/feed.svg);
 	background-size: 1.8em 1.8em;
 }
 
 .blog-nav-tags:before {
-	background-image: url(/img/tags.svg);
+	background-image: url(/static/img/tags.svg);
 }
 
 /* Centered */
@@ -340,23 +340,23 @@ textarea {
 }
 
 .nav-about:before {
-	background-image: url(/img/nav-about.svg);
+	background-image: url(/static/img/nav-about.svg);
 }
 
 .nav-blog:before {
-	background-image: url(/img/nav-blog.svg);
+	background-image: url(/static/img/nav-blog.svg);
 }
 
 .nav-contact:before {
-	background-image: url(/img/nav-contact.svg);
+	background-image: url(/static/img/nav-contact.svg);
 }
 
 .nav-projects:before {
-	background-image: url(/img/nav-projects.svg);
+	background-image: url(/static/img/nav-projects.svg);
 }
 
 .nav-services:before {
-	background-image: url(/img/nav-services.svg);
+	background-image: url(/static/img/nav-services.svg);
 }
 
 /* Blog Post - Date */
