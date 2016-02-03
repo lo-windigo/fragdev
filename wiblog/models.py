@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 class Tag(models.Model):
 	desc = models.CharField('Tag', max_length=50, unique=True)
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.desc
 
 	def get_absolute_url(self):
@@ -28,7 +28,7 @@ class Post(models.Model):
 	tags = models.ManyToManyField(Tag, blank=True)
 	title = models.CharField(max_length=150)
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.title
 
 	def get_absolute_url(self):
@@ -54,7 +54,7 @@ class Comment(models.Model):
 
 
 	# Provide a decent representation for the admin section
-	def __unicode__(self):
+	def __str__(self):
 
 		prev = self.comment
 
