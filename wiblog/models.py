@@ -22,7 +22,8 @@ class Post(models.Model):
 		(PUB, 'Published'),
 	)
 	body = models.TextField()
-	date = models.DateTimeField(auto_now=True)
+	date = models.DateTimeField(auto_now_add=True)
+	updated = models.DateTimeField(auto_now=True)
 	slug = models.SlugField(max_length=150)
 	status = models.CharField(max_length=9, choices=PUBLISH_STATUS)
 	tags = models.ManyToManyField(Tag, blank=True)
@@ -47,7 +48,7 @@ class Comment(models.Model):
 	)
 	comment = models.TextField()
 	name = models.CharField(max_length=150)
-	date = models.DateTimeField(auto_now=True)
+	date = models.DateTimeField(auto_now_add=True)
 	moderated = models.CharField(choices=MOD_STATUS, default=UNK, max_length=14)
 	post = models.ForeignKey(Post)
 	url = models.URLField()
