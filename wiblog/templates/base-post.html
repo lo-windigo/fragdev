@@ -18,6 +18,9 @@
 				<h1 class="post-title">{{ post.title }}</h1>
 				<p class="post-date">
 					Posted on {{ post.date|date:"Y-m-d" }}
+					{% if post.updated > post.date %}
+					(Updated on {{ post.updated|date:"Y-m-d" }})
+					{% endif %}
 				</p>
 			</header>
 			{{ post.body }}
