@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 from django.core.urlresolvers import reverse
 
@@ -23,7 +24,8 @@ class Post(models.Model):
 	)
 	body = models.TextField()
 	date = models.DateTimeField(auto_now_add=True)
-	updated = models.DateTimeField(auto_now=True,default=datetime.now)
+	updated = models.DateTimeField(auto_now=True,
+                default=datetime.fromtimestamp(0))
 	slug = models.SlugField(max_length=150)
 	status = models.CharField(max_length=9, choices=PUBLISH_STATUS)
 	tags = models.ManyToManyField(Tag, blank=True)
