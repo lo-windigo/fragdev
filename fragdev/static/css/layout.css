@@ -1,0 +1,363 @@
+/*
+┌──────────────────────────────────────────────────────────────────┐
+│ ______               _____               _____  ___   ___   ___  │
+│|  ____|             |  __ \             | ____|/ _ \ / _ \ / _ \ │
+│| |__ _ __ __ _  __ _| |  | | _____   __ | |__ | | | | | | | | | |│
+│|  __| '__/ _` |/ _` | |  | |/ _ \ \ / / |___ \| | | | | | | | | |│
+│| |  | | | (_| | (_| | |__| |  __/\ V /   ___) | |_| | |_| | |_| |│
+│|_|  |_|  \__,_|\__, |_____/ \___| \_/   |____/ \___/ \___/ \___/ │
+│                 __/ |                                            │
+│                |___/                                             │
+└──────────────────────────────────────────────────────────────────┘	
+
+	Layout © 2016, Jacob Hume
+	Licensed AGPLv3, Rock on.
+*/
+
+
+
+/*= Font Styles ============*/
+
+@font-face {
+	font-family: 'FD-Header';
+	font-style: normal;
+	font-weight: 700;
+	src: local('Roboto Condensed Bold'), local('RobotoCondensed-Bold'),
+		url(/static/fonts/robotocondensed.woff2) format('woff2'),
+		url(https://fonts.gstatic.com/s/robotocondensed/v13/b9QBgL0iMZfDSpmcXcE8nHm2hrkyco9jQ3NKMXpgOBg.woff2) format('woff2');
+	unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000;
+}
+
+@font-face {
+	font-family: 'FD-Header';
+	font-style: normal;
+	font-weight: 700;
+	src: local('Roboto Condensed Bold'), local('RobotoCondensed-Bold'),
+		url(/static/fonts/robotocondensed.woff) format('woff'),
+		url(https://fonts.gstatic.com/s/robotocondensed/v13/b9QBgL0iMZfDSpmcXcE8nCSLrGe-fkSRw2DeVgOoWcQ.woff) format('woff')
+		url(/static/fonts/robotocondensed.ttf) format('truetype'),
+		url(https://fonts.gstatic.com/s/robotocondensed/v13/b9QBgL0iMZfDSpmcXcE8nDokq8qT6AIiNJ07Vf_NrVA.ttf) format('truetype');
+}
+
+@font-face {
+	font-family: 'FD-Body';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Roboto'), local('Roboto-Regular'),
+		url(/static/fonts/roboto-400.woff2) format('woff2'),
+		url(https://fonts.gstatic.com/s/roboto/v15/CWB0XYA8bzo0kSThX0UTuA.woff2) format('woff2');	
+	unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,
+		U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000;
+}
+
+@font-face {
+	font-family: 'FD-Body';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Roboto'), local('Roboto-Regular'),
+		url(/static/fonts/roboto-400.woff) format('woff'),
+		url(https://fonts.gstatic.com/s/roboto/v15/2UX7WLTfW3W8TclTUvlFyQ.woff) format('woff'),
+		url(/static/fonts/roboto-400.ttf) format('truetype'),
+		url(https://fonts.gstatic.com/s/roboto/v15/zN7GBFwfMP4uA6AR0HCoLQ.ttf) format('truetype');
+}
+
+@font-face {
+	font-family: 'FD-Body';
+	font-style: normal;
+	font-weight: 700;
+	src: local('Roboto Bold'), local('Roboto-Bold'),
+		url(/static/fonts/roboto-700.woff2) format('woff2'),
+		url(https://fonts.gstatic.com/s/roboto/v15/d-6IYplOFocCacKzxwXSOFtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');
+	unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000;
+}
+
+@font-face {
+	font-family: 'FD-Body';
+	font-style: normal;
+	font-weight: 700;
+	src: local('Roboto Bold'), local('Roboto-Bold'),
+		url(/static/fonts/roboto-700.woff) format('woff'),
+		url(https://fonts.gstatic.com/s/roboto/v15/d-6IYplOFocCacKzxwXSOD8E0i7KZn-EPnyo3HZu7kw.woff) format('woff')
+		url(/static/fonts/roboto-700.ttf) format('ttf'),
+		url(https://fonts.gstatic.com/s/roboto/v15/d-6IYplOFocCacKzxwXSOKCWcynf_cDxXwCLxiixG1c.ttf) format('truetype');
+}
+
+@font-face {
+	font-family: 'FD-Body';
+	font-style: italic;
+	font-weight: 400;
+	src: local('Roboto Italic'), local('Roboto-Italic'),
+		url(/static/fonts/roboto-italic-400.woff2) format('woff2'),
+		url(https://fonts.gstatic.com/s/roboto/v15/WxrXJa0C3KdtC7lMafG4dRTbgVql8nDJpwnrE27mub0.woff2) format('woff2');
+	unicode-range: U+0460-052F,U+20B4,U+2DE0-2DFF,U+A640-A69F;
+}
+
+@font-face {
+	font-family: 'FD-Body';
+	font-style: italic;
+	font-weight: 400;
+	src: local('Roboto Italic'), local('Roboto-Italic'),
+		url(/static/fonts/roboto-italic-400.woff) format('woff'),
+		url(https://fonts.gstatic.com/s/roboto/v15/1pO9eUAp8pSF8VnRTP3xnvesZW2xOQ-xsNqO47m55DA.woff) format('woff'),
+		url(/static/fonts/roboto-italic-400.ttf) format('ttf'),
+		url(https://fonts.gstatic.com/s/roboto/v15/W4wDsBUluyw0tK3tykhXEfesZW2xOQ-xsNqO47m55DA.ttf) format('truetype');
+}
+
+
+
+/*= Base Styles ============*/
+
+*,*:before,*:after {
+	box-sizing: inherit;
+}
+
+a {
+	color: #717f7f;
+	transition: color .25s;
+}
+
+article+article {
+	border: 0 solid #717f7f;
+	border-width: .125em 0 0 0;
+}
+
+aside {
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+aside,
+input,
+textarea {
+	background-color: #bed6d6;
+	border: 1px solid #abc0c0;
+	box-shadow: inset .25em .25em 0 #abc0c0;
+	color: #000;
+}
+
+body {
+	color: #171b1b;
+	font: 18px 'FD-Body',sans-serif;
+	line-height: 1.2;
+}
+
+footer {
+	text-align: center;
+}
+
+footer,h1,h2,h3,h4,header,nav {
+	color: #717f7f;
+	font-family: 'FD-Header',sans-serif;
+	font-weight: bold;
+}
+
+header>h1 {
+	font-size: 2em;
+}
+
+h1 {
+	font-size: 1.4em;
+}
+
+h2 {
+	font-size: 1.2em;
+}
+
+header {
+	text-align: center;
+}
+
+hr {
+	background: #717f7f;
+	border: 0;
+	height: .125em;
+	margin: 1em 2em;
+}
+
+html {
+	background: #bed6d6;
+	box-sizing: border-box;
+	padding: 1em;
+}
+
+pre {
+	max-height: 30em;
+}
+
+input,
+textarea {
+	font: 1em 'FD-Body',sans-serif;
+	padding: .75em;
+	transition: background-color .25s,box-shadow .25s;
+}
+
+input[type=submit] {
+	cursor: pointer;
+	font-weight: bold;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+input[type=email],
+input[type=text],
+input[type=url] {
+	min-width: 24em;
+	width: 50%;
+}
+
+textarea {
+	height: 6em;
+	width: 100%;
+}
+
+
+
+/*= Modules ================*/
+
+.a11y-link {
+	background: #fff;
+	position: fixed;
+	top: -10em;
+}
+
+.boxy {
+	background: #fefefe;
+	box-shadow: .5em .5em 0 #abc0c0;
+	padding: 1em;
+	margin: 1em 0;
+}
+
+.content-header {
+	color: #717f7f;
+}
+
+.content-header>h1 {
+	margin-bottom: 0;
+}
+
+.content-header>h1+p {
+	margin-top: 0;
+}
+
+.content-header>p {
+	font-style: italic;
+}
+
+.icon {
+	display: inline-block;
+	height: 48px;
+	width: 48px;
+}
+
+.nav,
+.sub-nav {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	list-style: none;
+}
+
+.nav {
+	margin: 0 0 1.5em 0;
+	padding: 1em 0;
+}
+
+.nav-item {
+	font-size: 1.3em;
+	font-weight: bold;
+	margin: .5em;
+	padding: .5em;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.site-title {
+	color: #fefefe;
+	font-size: 3em;
+	font-weight: bold;
+	letter-spacing: .025em;
+	line-height: 1;
+	margin: 0;
+	padding: 0;
+	text-shadow: .125em .125em 0 #abc0c0;
+	text-transform: uppercase;
+}
+
+.sub-nav {
+	margin: 0 0 1em 0;
+	padding: .5em 0;
+}
+
+.sub-nav .nav-item {
+	font-size: 1em;
+	text-decoration: underline;
+}
+
+/*= State ==================*/
+
+a:active,
+a:focus,
+a:hover {
+	color: #000;
+}
+
+input:active,
+input:focus,
+input:hover,
+textarea:active,
+textarea:focus,
+textarea:hover {
+	background-color: #fefefe;
+	box-shadow: .25em .25em 0 #fefefe;
+}
+
+.a11y-link:active,
+.a11y-link:focus {
+	top: 1em;
+}
+
+
+/*= Responsive =================*/
+
+@media screen and (min-width: 48em) {
+
+	.content,
+	.nav,
+	.site-title {
+		max-width: 48em;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+
+@media screen and (max-width: 700px) {
+
+	.nav-item {
+		font-size: 1em;
+		margin: .25em;
+		padding: .25em;
+	}
+
+	body {
+		font-size: 1em;
+	}
+
+	html {
+		padding: .25em;
+	}
+
+	input[type=email],
+	input[type=text],
+	input[type=url] {
+		min-width: 0;
+		max-width: 24em;
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	html {
+		padding: 0;
+	}
+}
