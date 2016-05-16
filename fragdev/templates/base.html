@@ -5,111 +5,46 @@
 <head>
 	<title>{% block title %}{% endblock %} - Fragmented Development</title>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="/static/css/fd4k.css">
-	<!--[if LTE IE 8]>
-		<link rel="stylesheet" type="text/css" href="/css/fd8.css">
-		<script>
-			var html5 = ['article','figure','figcaption','footer','header','nav','section'];
-
-			for(i=0;i<html5.length;i++) {
-				document.createElement(html5[i]);
-			}
-		</script>
-	<![endif]-->
+	<link rel="stylesheet" type="text/css" href="/static/css/layout.css">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 {% block head %}{% endblock %}
 </head>
 
 <body>
-	<div class="page-header full-width">
-		<header>
-			<div class="skip">
-				<a href="#content">Skip to content</a>
-				<a href="#nav">Skip to navigation</a>
-			</div>
-			<div class="fd-badge">
-				<a href="{% url 'home' %}">Fragmented<br>
-				Development</a>
-			</div>
-			<nav class="main-nav" id="nav">
-				<ul>
-					<li>
-						<a class="nav-icon nav-services"
-							href="{% url 'services' %}">Services</a></li>
-					<li>
-						<a class="nav-icon nav-blog"
-							href="{% url 'wiblog:index' %}">&nbsp;Blog&nbsp;</a>
-					</li>
-					<li>
-						<a class="nav-icon nav-about"
-							href="{% url 'about' %}">About</a>
-					</li>
-					<li>
-						<a class="nav-icon nav-projects"
-							href="{% url 'projects' %}">Projects</a>
-					</li>
-					<li>
-						<a class="nav-icon nav-contact"
-							href="{% url 'contact' %}">Contact</a>
-					</li>
-				</ul>
-			</nav>
-		</header>
-	</div>
+	<a href="#content" class="a11y-link">Skip to content</a>
+	<header class="header">
+		<div class="site-title">
+			Fragmented Development
+		</div>
+		<nav>
+			<ul class="nav boxy">
+				<li><a class="nav-item" href="{% url 'about' %}>About</a></li>
+				<li><a class="nav-item" href="{% url 'wiblog:index' %}>Blog</a></li>
+				<li><a class="nav-item" href="{% url 'contact' %}>Contact</a></li>
+				<li><a class="nav-item" href="{% url 'projects' %}>Projects</a></li>
+				<li><a class="nav-item" href="{% url 'hire' %}>Hire</a></li>
+			</ul>
+		</nav>
+	</header>
 
-	<section class="page-content" id="content">
+	<section class="content boxy" id="content">
 		{% block content %}
 		{% endblock %}
 	</section>
-	<section class="page-ancillary">
-		{% block ancillary %}
-		<h1>What is FragDev?</h1>
-		<p>
-			<em><q>Fragmented Development</q></em>, abbreviated <em>FragDev</em>, summarizes the
-			nature of web development. Many disparate technologies make today's web, and this variety
-			makes development both challenging and enjoyable.
-		</p>
-		<p>
-			It's also where <strong>Jacob Hume</strong>, a web developer and Free Software
-			enthusiast, puts apps and files. On the internet, he is usually found under the username
-			<strong>Windigo</strong>.
-		</p>
-		<h2>Support Fragdev</h2>
-		<p>
-			Do you use a FragDev service, and desire to give back? Donate to a software project! We
-			wouldn't be around without them.
-		</p>
-		<p>
-			<em>Still not enough?</em> If you really feel the need to chip in for the cost of running the server,
-			feel free to Flattr us. All proceeds will go towards server costs and improvements.
-		</p>
-		<p class="c">
-			<script id='fbd67li'>(function(i){var
-				f,s=document.getElementById(i);f=document.createElement('iframe');f.src='//api.flattr.com/button/view/?uid=windigo&button=compact&url=http%3A%2F%2Ffragdev.com';f.title='Flattr';f.height=20;f.width=110;f.style.borderWidth=0;s.parentNode.insertBefore(f,s);})('fbd67li');</script>
-			<noscript>
-				<a href="https://flattr.com/submit/auto?user_id=windigo&url=http%3A%2F%2Ffragdev.com"><img
-					src="/img/flattr-badge-large.png" alt="Flattr this"
-					title="Flattr this"></a>
-			</noscript>
-		</p>
-		{% endblock %}
-	</section>
-
-	<footer class="page-footer full-width">
-		<p>
-			The layout "FragDev 4000" was developed by Jacob Hume, and the HTML and CSS is released
-			under the <a href="https://www.gnu.org/licenses/agpl">GNU AFFERO GENERAL PUBLIC LICENSE
-			v3</a> or Later. The font "<a href="https://www.google.com/fonts/specimen/Droid+Sans">Droid
-			Sans</a>" &copy; Google, and the <a href= "https://icomoon.io/">IcoMoon icons</a> are
-			released under a CC BY 4.0 license.
-		</p>
-		<p>
-			Jacob Hume is &copy; himself, circa 1983, and cannot be used or
-			reproduced without permission and an advanced understanding
-			of human genetics and biochemistry. Void where prohibited,
-			may contain peanuts.
-		</p>
+	<nav>
+		<ul class="nav">
+			<li><a class="nav-item" href="{% url 'about' %}>About</a></li>
+			<li><a class="nav-item" href="{% url 'wiblog:index' %}>Blog</a></li>
+			<li><a class="nav-item" href="{% url 'contact' %}>Contact</a></li>
+			<li><a class="nav-item" href="{% url 'projects' %}>Projects</a></li>
+			<li><a class="nav-item" href="{% url 'hire' %}>Hire</a></li>
+		</ul>
+	</nav>
+	<footer>
+		© 2016, Jacob Hume. CSS/HTML/JS released under AGPLv3. Typeface is <a
+		href="https://www.google.com/fonts/specimen/Roboto">Roboto</a>,
+		by Christian Robertson.
 	</footer>
 </body>
 
