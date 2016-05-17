@@ -32,9 +32,9 @@ urlpatterns = [
 			name='resume'
 		),
 		url(
-			r'^services/?$',
-			TemplateView.as_view(template_name="base-services.html"),
-			name='services'
+			r'^hire/?$',
+			TemplateView.as_view(template_name="page-hire.html"),
+			name='hire'
 		),
 
     # Uncomment the next line to enable the admin:
