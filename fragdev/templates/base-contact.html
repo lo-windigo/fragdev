@@ -1,11 +1,12 @@
 {% extends "base.html" %}
-{% block title %}Contact Me - Fragmented Development{% endblock %}
+{% block title %}Contact Me{% endblock %}
 {% block content %}
-			<h1>Contact Me</h1>
-			<p>
-				Questions? Comments? Compliments? Split Complements? You can send them
-				all to me with the form below.
-			</p>
+			<header class="content-title">
+				<h1>Contact Me</h1>
+				<p>
+					I accept questions, comments, or ASCII art postcards.
+				</p>
+			</header>
 			<form method="post" action="/contact">
 				{% csrf_token %}
 				{{ form.non_field_errors }}
@@ -41,22 +42,12 @@
 					<input type="submit" value="Send Message">
 				</p>
 			</form>
-{% endblock %}
-
-{% block ancillary %}
-				<h1>Alternates</h1>
-				<p>
-					You can also use these fine communication methods to get ahold of me:
-				</p>
-				<ul>
-					<li>Status.net: <a href="https://micro.fragdev.com/windigo/">@windigo@micro.fragdev.com</a></li>
-					<li>IRC: windigo on freenode.net</li>
-					<li>Yelling "Windigo" very loudly</li>
-					<li>Upload a <a href="http://hackerpublicradio.org">HPR</a> episode with your message</li>
-				</ul>
-				<p>
-					None of these methods are preferred, but if for some reason my email form is not to your
-					liking, they should do in a pinch. Except the yelling method, that's mostly in there
-					for laughs.
-				</p>
+			<h2>Alternates</h2>
+			<p>
+				I am also fairly active on GNUsocial (<a href=
+				"https://micro.fragdev.com/windigo/">@windigo@micro.fragdev.com</a>
+				and accept encrypted emails using my <a href=
+				"/static/misc/windigo-public.asc">public key</a>
+				(<strong><code>0xDAECFD4CBCC76ED6</code></strong>).
+			</p>
 {% endblock %}
