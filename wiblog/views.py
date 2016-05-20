@@ -12,7 +12,7 @@ from wiblog.comments import CommentForm
 ## Blog Index
 def index(request):
 
-	template = loader.get_template('base-wiblog.html')
+	template = loader.get_template('page-wiblog.html')
 
 	# Get a few posts to start with
 	posts = Post.objects.filter(status=Post.PUB).order_by('-date')[:5]
@@ -28,7 +28,7 @@ def index(request):
 ## Archive page
 def archive(request):
 
-	template = loader.get_template('base-archive.html')
+	template = loader.get_template('page-archive.html')
 
 	posts = Post.objects.filter(status=Post.PUB)
 
@@ -38,7 +38,7 @@ def archive(request):
 ## A single blog post
 def post(request, slug):
 
-	template = loader.get_template('base-post.html')
+	template = loader.get_template('page-post.html')
 
 	# Try to get the requested post
 	try:
@@ -97,7 +97,7 @@ def post(request, slug):
 ## Tags Tags TAGS
 def tags(request):
 
-	template = loader.get_template('base-tags.html')
+	template = loader.get_template('page-tags.html')
 	
 	# Get any tags that have been defined
 	tags = Tag.objects.order_by('desc')
@@ -108,7 +108,7 @@ def tags(request):
 ## Tagged Posts
 def tagged_posts(request, tag):
 
-	template = loader.get_template('base-tagged.html')
+	template = loader.get_template('page-tagged.html')
 
 	# Get the tag we're looking for
 	try:
