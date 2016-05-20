@@ -18,17 +18,17 @@ urlpatterns = [
 		url(r'^contact/?$', views.contact, name='contact'),
 		url(
 			r'^contacted/?$',
-			TemplateView.as_view(template_name="base-contacted.html"),
+			TemplateView.as_view(template_name="page-contacted.html"),
 			name='contacted'
 		),
 		url(
 			r'^projects/?$',
-			TemplateView.as_view(template_name="base-projects.html"),
+			TemplateView.as_view(template_name="page-projects.html"),
 			name='projects'
 		),
 		url(
 			r'^resume/?$',
-			TemplateView.as_view(template_name="base-resume.html"),
+			TemplateView.as_view(template_name="page-resume.html"),
 			name='resume'
 		),
 		url(
