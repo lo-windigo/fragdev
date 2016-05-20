@@ -5,7 +5,9 @@
 
 
 {% block content %}
-		<h1>Ye Olde Archive</h1>
+		<header class="content-header">
+			<h1>Ye Olde Archive</h1>
+		</header>
 		{% if posts|length %}
 		<p>
 			If you're interested in some dusty, aged content, then you're in the
@@ -24,24 +26,4 @@
 			dusty posts that you can pick up and enjoy.
 		</p>
 		{% endif %}
-{% endblock %}
-
-
-{% block wiblog-ancillary %}
-				<h1>History</h1>
-				<p>
-					This blog has gone through a couple different permutations. Originally
-					a static blog that I wrote in plain HTML to learn the dvorak keyboard
-					layout (still haven't, by the by), it was then transitioned to a
-					LifeType blog.
-				</p>
-				<p>
-					After it was clear that LifeType wasn't undergoing too much active
-					development, and the comment spam became a little hard to handle, I
-					disabled the lifetype blog and threw up a static PHP site sans-blog.
-				</p>
-				<p>
-					The latest iteration was created in Django, mostly as an exercise to
-					help me learn Django.
-				</p>
 {% endblock %}
