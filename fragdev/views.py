@@ -8,7 +8,7 @@ import time
 
 
 def home(request):
-	template = loader.get_template('base-home.html')
+	template = loader.get_template('page-home.html')
 	post = False
 
 	# Try to get the latest blog post
@@ -26,7 +26,7 @@ def home(request):
 # About page
 def about(request):
 
-	template = loader.get_template('base-about.html')
+	template = loader.get_template('page-about.html')
 
 	# Calculate my age to the nearest... well, whatever
 	#	439624800	- Dec. 7th, 1983 (approx. time) in UNIX time
@@ -39,7 +39,7 @@ def about(request):
 # Contact page
 def contact(request):
 
-	template = loader.get_template('base-contact.html')
+	template = loader.get_template('page-contact.html')
 
 	# If the form has been submitted...
 	if request.method == 'POST':
