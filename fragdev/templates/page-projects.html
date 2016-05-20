@@ -3,28 +3,36 @@
 {% block title %}Projects{% endblock %}
 
 {% block content %}
+		<header class="content-header">
 			<h1>Projects</h1>
 			<p>
-				This is a small collection of some random projects I've done over the years. They're all
-				open source, so feel free to use them. I hope to add more as I dig them out of archives.
+				A summary of the projects I've completed/contributed to 
 			</p>
-			<aside>
-				Please pardon the mess; I'm still in the process of moving code
-				around due to the Gitorious project shuttering its service.
-			</aside>
-			<h2>
+		</header>
+		<aside>
+			<p>
+				A good majority of the coding I do is in public.
+				I'm on <a href="https://gitlab.com/u/windigo">Gitlab</a>, or
+				<a href="https://github.com/lo-windigo">GitHub</a> where I'll
+				try to mirror my repositories for those who prefer that service.
+			</p>
+		</aside>
+		<article>
+			<h1>
 				<a href="https://gitlab.com/windigo/battlehill">Battle Hill
 					Brewing Company website</a>
-			</h2>
+			</h1>
 			<p>
 				The first basic website I'd done in quite a few years, the
 				Battle Hill Brewing Company website represents a small brewery
 				in Northern New York.
 			</p>
-			<h2>
+		</article>
+		<article>
+			<h1>
 				<a href="https://gitlab.com/groups/florrie-comic-management-system">Florrie:
 					Comic Management System</a>
-			</h2>
+			</h1>
 			<p>
 				This project was started years ago in conjunction with the <a href=
 				"https://valcielle.fragdev.com">Val'Cielle</a> web comic.
@@ -37,7 +45,9 @@
 				<a href="https://github.com/lo-windigo/florrie">get Florrie on
 				Github</a> if you prefer.
 			</p>
-			<h2>{#<a href="">#}Getreel{#</a>#}</h2>
+		</article>
+		<article>
+			<h1>{#<a href="">#}Getreel{#</a>#}</h1>
 			<p>
 				A web service for people with data caps. This service allows you to add
 				videos to be downloaded at a schedule time, and played as files or via
@@ -47,13 +57,17 @@
 			<p>
 				I created the responsive GUI for Getreel.
 			</p>
-			<h2><a href="">jQuery DynMap Chat Widget</a></h2>
+		</article>
+		<article>
+			<h1>{#<a href="">#}jQuery DynMap Chat Widget{#</a>#}</h1>
 			<p>
 				I play a lot of <a href="http://minecraft.net">Minecraft</a>, and help run a server or two.
 				So that we could display the server chat on our website, I whipped up a little chunk of
 				jQuery that would pull the chat text from the DynMap plugin.
 			</p>
-			<h2>{#<a href="">#}BarCamp Badge Creator{#</a>#}</h2>
+		</article>
+		<article>
+			<h1>{#<a href="">#}BarCamp Badge Creator{#</a>#}</h1>
 			<p>
 				I was lucky enough to attend the first and second <a href="http://oggcamp.org/">OggCamp</a>
 				un-conferences, and was able to meet quite a few people I had gotten to know online. There
@@ -63,26 +77,17 @@
 				A quick coding sprint later, I had a small PHP script that would generate you a "Hello,
 				My Name Is" image that you could print out and stick on your shirt/laptop/etc.
 			</p>
-			<h2><a href="http://hackerpublicradio.org">Hacker Public Radio</a></h2>
+		</article>
+		<article>
+			<h1><a href="http://hackerpublicradio.org">Hacker Public Radio</a></h1>
 			<p>
 				As someone who enjoys the akward, knobly bits of technology and the stranger, more obscure
 				aspects of DIY, I'm an avid listener and occasional contributer to the <a href="http://hackerpublicradio.org">Hacker Public Radio</a>
 				network. Feel free to check out some of my contributions, and more importantly, make some of
 				your own. Hacker Public Radio is always looking for new hosts!
 			</p>
+		</article>
 {% endblock %}
 
 {% block ancillary %}
-			<h1>Social Coding</h1>
-			<p>
-				A good majority of the coding I do is in public. You can check
-				me out (no version control pun intended, honest) on <a
-					href="https://gitlab.com/u/windigo">Gitlab</a>, or follow me
-				on <a href="https://github.com/lo-windigo">GitHub</a> where I'll
-				try to mirror my repositories for those who prefer that service.
-			</p>
-			<p>
-				In addition to the projects I have listed here, I have several
-				config files for programs I use. I hope someone finds them useful!
-			</p>
 {% endblock %}

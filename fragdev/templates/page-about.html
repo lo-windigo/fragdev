@@ -1,52 +1,49 @@
 {% extends "base.html" %}
 
-{% block title %}About Jacob Hume, FragDev - Fragmented Development{% endblock %}
+{% block title %}About Jacob Hume{% endblock %}
 
 {% block content %}
+		<header class="content-header">
 			<h1>About Jake</h1>
 			<p>
-				Hi - I'm a {{ age }}-year-old guy (refresh the page-that number should be updated every
-				second) living in a woodsy cabin just outside of Point Arena, California.
+				I'm {{ age }}-year old living on the sunny North coast of California.
 			</p>
-			<p>
-				I work as an IT Technician & Network Administrator, and I am
-				available for contract web design and development work. If I can help you
-				or your company, please <a href="{% url 'contact' %}">contact me</a>!
-			</p>
-			<p>
-				I dig coffee, <a href="http://www.gnu.org/philosophy/free-sw.html">Free software</a>,
-				and <a href="http://minecraft.net">Minecraft</a>.
-			</p>
-			<h2>History of Fragmented Development</h2>
-			<p>
-				<strong>Fragmented Development</strong> was originally started as a Web Design company,
-				going by the name of Wednesday Bubbles. While mildly successful in it's
-				own small way, WB had several problems; first, the general public cannot
-				spell Wednesday. Also, it's very hard to gain respect with a name that
-				includes the word "Bubbles" in it. So, I did an informal poll on my blog, and Fragmented
-				Media won out. This didn't last long, simply because the "Media" attatchment was much too
-				restrictive, and didn't really reflect what we could do. So, in late 2003 the name was
-				changed one final time to Fragmented Development, and the domain was registered in early
-				2004.
-			</p>
-			<p>
-				After a couple reorganizations and different groupings, <strong>Fragmented
-				Development</strong> has become my personal website, where I host a small basketfull of
-				Free software applications.
-			</p>
-{% endblock %}
-{% block ancillary %}
-			<figure>
-				<img src="/static/img/windigo.jpg" alt="An illustration of Windigo, sitting with a plate of cookies, gesticulating">
-				<figcaption>
-					illustration by Anne Hoffer
-				</figcaption>
-			</figure>
-			<h1>Public Key</h1>
-			<p>
-				In case you have an interest in privacy and cryptography, you can download my <a href=
-				"/static/misc/windigo-public.asc">public key</a> as an ASCII-armored text file, or you can
-				simply fetch it from your favorite keyserver. My key ID is
-				<strong><code>0xDAECFD4CBCC76ED6</code></strong>.
-			</p>
+		</header>
+		<figure>
+			<img src="/static/img/windigo.jpg" alt="An illustration of Windigo, sitting with a plate of cookies, gesticulating">
+			<figcaption>illustration by Anne Hoffer</figcaption>
+		</figure>
+		<p>
+			I work as an IT Technician &amp; Network Administrator, and I am
+			available for contract web design and development work. If I can help you
+			or your company, please <a href="{% url 'contact' %}">contact me</a>!
+		</p>
+		<p>
+			I dig coffee, <a href="http://www.gnu.org/philosophy/free-sw.html">Free software</a>,
+			and <a href="http://minecraft.net">Minecraft</a>.
+		</p>
+		<h7>Public Key</h2>
+		<p>
+			In case you have an interest in privacy and cryptography, you can download my <a href=
+			"/static/misc/windigo-public.asc">public key</a> as an ASCII-armored text file, or you can
+			simply fetch it from your favorite keyserver. My key ID is
+			<strong><code>0xDAECFD4CBCC76ED6</code></strong>.
+		</p>
+		<h2>History of Fragmented Development</h2>
+		<p>
+			<strong>Fragmented Development</strong> was originally started as a Web Design company,
+			going by the name of Wednesday Bubbles. While mildly successful in it's
+			own small way, WB had several problems; first, the general public cannot
+			spell Wednesday. Also, it's very hard to gain respect with a name that
+			includes the word "Bubbles" in it. So, I did an informal poll on my blog, and Fragmented
+			Media won out. This didn't last long, simply because the "Media" attatchment was much too
+			restrictive, and didn't really reflect what we could do. So, in late 2003 the name was
+			changed one final time to Fragmented Development, and the domain was registered in early
+			2004.
+		</p>
+		<p>
+			After a couple reorganizations and different groupings, <strong>Fragmented
+			Development</strong> has become my personal website, where I host a small basketfull of
+			Free software applications.
+		</p>
 {% endblock %}

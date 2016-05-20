@@ -1,53 +1,53 @@
 {% extends "base.html" %}
 {% block title %}Contact Me{% endblock %}
 {% block content %}
-			<header class="content-title">
-				<h1>Contact Me</h1>
-				<p>
-					I accept questions, comments, or ASCII art postcards.
-				</p>
-			</header>
-			<form method="post" action="/contact">
-				{% csrf_token %}
-				{{ form.non_field_errors }}
-				<p>
-					{{ form.name.errors }}
-					<label for="id_name">
-						{{ form.name.label }}:<br>
-						{{ form.name }}
-					</label>
-				</p>
-				<p>
-					{{ form.email.errors }}
-					<label for="id_email">
-						{{ form.email.label }}:<br>
-						{{ form.email }}
-					</label>
-				</p>
-				<p>
-					{{ form.message.errors }}
-					<label for="id_message">
-						{{ form.message.label }}:<br>
-						{{ form.message }}
-					</label>
-				</p>
-				<p>
-					{{ form.verify.errors }}
-					<label for="id_verify">
-						{{ form.verify.label }}:<br>
-						{{ form.verify }}
-					</label>
-				</p>
-				<p class="c">
-					<input type="submit" value="Send Message">
-				</p>
-			</form>
-			<h2>Alternates</h2>
+		<header class="content-header">
+			<h1>Contact Me</h1>
 			<p>
-				I am also fairly active on GNUsocial (<a href=
-				"https://micro.fragdev.com/windigo/">@windigo@micro.fragdev.com</a>
-				and accept encrypted emails using my <a href=
-				"/static/misc/windigo-public.asc">public key</a>
-				(<strong><code>0xDAECFD4CBCC76ED6</code></strong>).
+				I accept questions, comments, or ASCII art postcards.
 			</p>
+		</header>
+		<form method="post" action="/contact">
+			{% csrf_token %}
+			{{ form.non_field_errors }}
+			<p>
+				{{ form.name.errors }}
+				<label for="id_name">
+					{{ form.name.label }}:<br>
+					{{ form.name }}
+				</label>
+			</p>
+			<p>
+				{{ form.email.errors }}
+				<label for="id_email">
+					{{ form.email.label }}:<br>
+					{{ form.email }}
+				</label>
+			</p>
+			<p>
+				{{ form.message.errors }}
+				<label for="id_message">
+					{{ form.message.label }}:<br>
+					{{ form.message }}
+				</label>
+			</p>
+			<p>
+				{{ form.verify.errors }}
+				<label for="id_verify">
+					{{ form.verify.label }}:<br>
+					{{ form.verify }}
+				</label>
+			</p>
+			<p class="c">
+				<input type="submit" value="Send Message">
+			</p>
+		</form>
+		<h2>Alternates</h2>
+		<p>
+			I am also fairly active on GNUsocial (<a href=
+			"https://micro.fragdev.com/windigo/">@windigo@micro.fragdev.com</a>
+			and accept encrypted emails using my <a href=
+			"/static/misc/windigo-public.asc">public key</a>
+			(<strong><code>0xDAECFD4CBCC76ED6</code></strong>).
+		</p>
 {% endblock %}
