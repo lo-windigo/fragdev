@@ -5,6 +5,7 @@
 
 
 {% block content %}
+		<header>
 			<nav>
                 <ul class="sub-nav">
                     <li><a class="nav-item" href="{% url "wiblog:archive" %}">Archive</a></li>
@@ -13,7 +14,8 @@
                     <li><a class="nav-item" href="{% url "wiblog:atom" %}">ATOM</a></li>
                 </ul>
             </nav>
-		<h1>Posts Tagged With <span class="tag">{{ tag }}</span></h1>
+			<h1>Posts Tagged With <span class="tag">{{ tag }}</span></h1>
+		</header>
 		{% if posts %}
 		<p>
 			All of the following posts share a tag, and are related to that subject.
