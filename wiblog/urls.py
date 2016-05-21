@@ -1,4 +1,4 @@
-ZZZZZrom django.conf.urls import patterns, url
+from django.conf.urls import patterns, url
 from wiblog import views
 from wiblog.feeds import PostFeedAtom, PostFeedRSS
 
