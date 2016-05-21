@@ -6,6 +6,14 @@
 
 {% block content %}
 		<header class="content-header">
+			<nav>
+                <ul class="sub-nav">
+                    <li><a class="nav-item" href="{% url "wiblog:archive" %}">Archive</a></li>
+                    <li><a class="nav-item" href="{% url "wiblog:tags" %}">Tags</a></li>
+                    <li><a class="nav-item" href="{% url "wiblog:rss" %}">RSS</a></li>
+                    <li><a class="nav-item" href="{% url "wiblog:atom" %}">ATOM</a></li>
+                </ul>
+            </nav>
 			<h1>Ye Olde Archive</h1>
 		</header>
 		{% if posts|length %}

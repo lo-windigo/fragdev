@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.template import loader
-from wiblog.formatting import mdToHTML, summarize
+from wiblog.formatting import postSort, mdToHTML, summarize
 from wiblog.models import Comment, Post, Tag
 from wiblog.comments import CommentForm
 
@@ -12,7 +12,7 @@ from wiblog.comments import CommentForm
 ## Blog Index
 def index(request):
 
-	template = loader.get_template('page-wiblog.html')
+	template = loader.get_template('base-wiblog.html')
 
 	# Get a few posts to start with
 	posts = Post.objects.filter(status=Post.PUB).order_by('-date')[:5]

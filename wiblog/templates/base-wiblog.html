@@ -13,7 +13,15 @@
 {% endblock %}
 
 {% block content %}
-			<header>
+			<header class="content-header">
+			<nav>
+                <ul class="sub-nav">
+                    <li><a class="nav-item" href="{% url "wiblog:archive" %}">Archive</a></li>
+                    <li><a class="nav-item" href="{% url "wiblog:tags" %}">Tags</a></li>
+                    <li><a class="nav-item" href="{% url "wiblog:rss" %}">RSS</a></li>
+                    <li><a class="nav-item" href="{% url "wiblog:atom" %}">ATOM</a></li>
+                </ul>
+            </nav>
 				<h1>Blog</h1>
 				<p>
 					This is a repository for the thoughts, notes, and achievements
@@ -51,29 +59,4 @@
 				For a full list of posts, feel free to check out the <a
 				href="{% url "wiblog:archive" %}">Archive</a>!
 			</p>
-{% endblock %}
-
-
-{% block ancillary %}
-				<h1>Navigation</h1>
-				<ul class="blog-nav">
-					<li>
-						<a class="blog-nav-icon blog-nav-archive"
-							href="{% url "wiblog:archive" %}">Archive</a>
-					</li>
-					<li>
-						<a class="blog-nav-icon blog-nav-tags"
-							href="{% url "wiblog:tags" %}">Tag Cloud</a>
-					</li>
-					<li>
-						<a class="blog-nav-icon blog-nav-feed"
-							href="{% url "wiblog:rss" %}">RSS feed</a>
-					</li>
-					<li>
-						<a class="blog-nav-icon blog-nav-feed"
-							href="{% url "wiblog:atom" %}">ATOM feed</a>
-					</li>
-				</ul>
-				{% block wiblog-ancillary %}
-				{% endblock %}
 {% endblock %}

@@ -5,6 +5,14 @@
 
 
 {% block content %}
+			<nav>
+                <ul class="sub-nav">
+                    <li><a class="nav-item" href="{% url "wiblog:archive" %}">Archive</a></li>
+                    <li><a class="nav-item" href="{% url "wiblog:tags" %}">Tags</a></li>
+                    <li><a class="nav-item" href="{% url "wiblog:rss" %}">RSS</a></li>
+                    <li><a class="nav-item" href="{% url "wiblog:atom" %}">ATOM</a></li>
+                </ul>
+            </nav>
 		<h1>Posts Tagged With <span class="tag">{{ tag }}</span></h1>
 		{% if posts %}
 		<p>
