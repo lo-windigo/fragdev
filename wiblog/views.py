@@ -30,7 +30,7 @@ def archive(request):
 
 	template = loader.get_template('page-archive.html')
 
-	posts = Post.objects.filter(status=Post.PUB)
+	posts = postSort(Post.objects.filter(status=Post.PUB))
 
 	return HttpResponse(template.render({'posts': posts}))
 

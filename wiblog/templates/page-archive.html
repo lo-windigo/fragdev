@@ -22,11 +22,14 @@
 			right place! Here's a chronological listing of all of the blog posts
 			to date.
 		</p>
+		{% for year, yearPosts in posts.items %}
+		<h2>{{ year }}</h2>
 		<ul>
-		{% for post in posts|dictsortreversed:"date" %}
-			<li>{{ post.date|date:"Y-m-d" }}: <a href="{% url "wiblog:post" post.slug %}">{{ post.title }}</a></li>
-		{% endfor %}
+			{% for post in yearPosts %}
+			<li>{{ post.date|date:"F jS" }}: <a href="{% url "wiblog:post" post.slug %}">{{ post.title }}</a></li>
+			{% endfor %}
 		</ul>
+		{% endfor %}
 		{% else %}
 		<p>
 			It appears that there is no content to peruse at the moment! Not to
