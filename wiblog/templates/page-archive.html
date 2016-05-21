@@ -15,17 +15,19 @@
                 </ul>
             </nav>
 			<h1>Ye Olde Archive</h1>
+			<p>
+				A chronological listing of all of the blog posts to date.
+			</p>
 		</header>
 		{% if posts|length %}
-		<p>
-			If you're interested in some dusty, aged content, then you're in the
-			right place! Here's a chronological listing of all of the blog posts
-			to date.
-		</p>
-		{% for year, yearPosts in posts.items %}
-		<h2>{{ year }}</h2>
+
+		{% regroup posts.all|dictsortreversed:"date.year" by date.year as yearPosts %}
+
+		<h2>{{ year.grouper }}</h2>
+		{% for year in yearPosts %}
+		<h2>{{ year.grouper }}</h2>
 		<ul>
-			{% for post in yearPosts %}
+			{% for post in year.list reversed %}
 			<li>{{ post.date|date:"F jS" }}: <a href="{% url "wiblog:post" post.slug %}">{{ post.title }}</a></li>
 			{% endfor %}
 		</ul>
