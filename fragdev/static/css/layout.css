@@ -270,6 +270,11 @@ textarea {
 	padding-left: 0;
 }
 
+.home-thumbnail {
+	float: right;
+	margin: 0 0 1em 1em;
+}
+
 .nav,
 .sub-nav {
 	display: flex;
