@@ -250,10 +250,24 @@ textarea {
 	font-style: italic;
 }
 
-.icon {
+.home-modules h1 {
+	font-size: 2em;
+	text-align: center;
+}
+
+.home-software-list {
+	margin: 1em 0;
+	padding: 0;
+	text-align: center;
+}
+
+.home-software-list>li {
 	display: inline-block;
-	height: 48px;
-	width: 48px;
+	padding-left: 1em;
+}
+
+.home-software-list>li:first-child {
+	padding-left: 0;
 }
 
 .nav,
@@ -301,6 +315,44 @@ textarea {
 	text-decoration: underline;
 }
 
+.tag {
+	border: 1px solid #abc0c0;
+    color: #555;
+    display: inline-block;
+    padding: 0.1em 0.25em;
+    text-decoration: none;
+}
+
+.tag-cloud {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+.tag-cloud li,
+.tag-list li {
+	display: inline-block;
+	list-style: none;
+}
+
+.tag-cloud .tag {
+    margin: .5em;
+}
+
+.tag-list {
+	margin: 0 0 1em 0;
+	padding: 0;
+}
+
+.tag-list::before {
+	content: "Tags: ";
+	font-style: italics;
+}
+
+
 /*= State ==================*/
 
 a:active,
@@ -329,17 +381,36 @@ textarea:hover {
 
 @media screen and (min-width: 48em) {
 
-	.content,
+	main.boxy,
 	.nav,
 	.site-title {
 		max-width: 48em;
 		margin-left: auto;
 		margin-right: auto;
 	}
+
+	.home-modules {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.home-modules>article {
+		padding: 0 .5em;
+		width: 50%;
+	}
+
+	.home-modules>article+article {
+		border-width: 0;
+	}
 }
 
 
 @media screen and (max-width: 700px) {
+
+	.home-modules {
+		display: block;
+	}
 
 	.nav-item {
 		font-size: 1em;

@@ -1,202 +1,95 @@
-<!doctype html>
+{% extends "base.html" %}
 
-<html>
+{% block title %}About Jacob Hume{% endblock %}
 
-<head>
-	<title>Fragmented Development</title>
-	<meta charset="UTF-8">
-	<link rel="openid.server" href="https://id.fragdev.com/">
-	<link rel="openid2.provider" href="https://id.fragdev.com/">
-	<link rel="stylesheet" type="text/css" href="/static/css/fd4k.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/fd4k-home.css">
-	<!--[if LTE IE 8]>
-		<link rel="stylesheet" type="text/css" href="/css/fd8.css">
-		<script>
-			var html5 = ['article','figure','figcaption','footer','header','nav','section'];
+{% block content %}
+		<section class="home-modules">
 
-			for(i=0;i<html5.length;i++) {
-				document.createElement(html5[i]);
-			}
-		</script>
-	<![endif]-->
-	<meta name="viewport" content="width=device-width,initial-scale=1.0">
-	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-</head>
+			{% if post %}
+			<article>
+				<h1>Blog</h1>
+				<h2>
+					<a href="{% url 'wiblog:post' post.slug %}">{{ post.title }}</a>
+				</h2>
+				{{ post.body }}
+				<p>
+					Read the full post: <a href=
+					"{% url 'wiblog:post' post.slug %}">{{ post.title }}</a>
+				</p>
+			</article>
+			{% endif %}
 
-<body class="page-home">
-	<div class="page-header full-width">
-		<header>
-			<div class="skip">
-				<a href="#content">Skip to content</a>
-				<a href="#nav">Skip to navigation</a>
-			</div>
-			<div class="fd-badge">
-				<a href="{% url 'home' %}">Fragmented<br>
-				Development</a>
-			</div>
-			<nav class="main-nav" id="nav">
+			<article>
+				<h1>Current Project</h1>
+				<h2><a href="http://battlehillbrewing.com/">Battle Hill
+					Brewing Company</a></h2>
+				<p class="home-thumbnail">
+					<img src="/static/misc/battlehill-thumb.png" width=125 height=125
+						alt="A snapshot of the Battle Hill website">
+				</p>
+				<p>
+					Family is important to me. When my Uncle, Jim Hume, decided to
+					start a brewery and finally make a living doing what he loves,
+					I was thrilled. When he asked me for some help with his website, I
+					couldn't refuse!
+				</p>
+				<p>
+					If you should happen to be in Fort Ann, New York, stop by the <a
+						href="http://battlehillbrewing.com/">Battle Hill Brewing
+						Company</a>, and pick up a pint.
+				</p>
+			</article>
+
+			<article>
+				<h1>Web Applications</h1>
+				<p>
+					I run the following <abbr title=
+					"free, libre, open source software">FLOSS</abbr> software:
+				</p>
 				<ul>
 					<li>
-						<a class="nav-icon nav-services"
-							href="{% url 'services' %}">Services</a></li>
+						<a href="https://micro.fragdev.com">GNUsocial</a>
+					</li>
+					<li>Mumble — (mumble.fragdev.net)</li>
 					<li>
-						<a class="nav-icon nav-blog"
-							href="{% url 'wiblog:index' %}">&nbsp;Blog&nbsp;</a>
+						<a href="https://cloud.fragdev.com">Owncloud</a>
 					</li>
 					<li>
-						<a class="nav-icon nav-about"
-							href="{% url 'about' %}">About</a>
+						<a href="https://mail.fragdev.com">Roundcube</a>
 					</li>
 					<li>
-						<a class="nav-icon nav-projects"
-							href="{% url 'projects' %}">Projects</a>
+						<a href="https://links.fragdev.com">SemanticScuttle</a>
 					</li>
 					<li>
-						<a class="nav-icon nav-contact"
-							href="{% url 'contact' %}">Contact</a>
+						<a href="https://ttrss.fragdev.com">Tiny Tiny RSS</a>
 					</li>
 				</ul>
-			</nav>
-		</header>
-	</div>
+				<p>
+					If you would like an account on any of these services, feel
+					free to <a href="/contact">contact me</a>.
+				</p>
+			</article>
 
-	<div class="home-intro">
-		<h1 class="home-tagline">Making websites for the fragmented web</h1>
-		<p>
-			The web is changing all the time. Whether visitors are using a laptop,
-			a phone, or listening to a screen reader, your website needs to work
-			for them.
-		</p>
-		<p>
-			<strong>I can help.</strong>
-		</p>
-		<p>
-			I develop fast, beautiful websites that work for your
-			users. If you or your business needs a new website, help with an
-			existing website, or another of our <a href="{% url 'services' %}">services</a>,
-			please <a href="{% url 'contact' %}">contact me</a>!
-		</p>
-		<p class="home-signature">
-			- Jacob Hume, Web Developer
-		</p>
-	</div>
+			<article>
+				<h1>Platform</h1>
+				<p>
+					Our servers run a host of underlying software that allows us to host sites
+					and applications:
+				</p>
+				<ul class="home-software-list">
+					<li>Debian GNU/Linux</li>
+					<li>PHP</li>
+					<li>Python</li>
+					<li>Django</li>
+					<li>Nginx</li>
+					<li>OpenSSH</li>
+					<li>MySQL</li>
+					<li>Postfix</li>
+					<li>Dovecot</li>
+					<li>SpamAssassin</li>
+					<li>SQLite</li>
+				</ul>
+			</article>
 
-	{% if post %}
-	<section class="home-post">
-		<h1>
-			Latest Post: <a href=
-				"{% url 'wiblog:post' post.slug %}">{{ post.title }}</a>
-		</h1>
-		{{ post.body }}
-		<p>
-			Read the full post: <a href=
-			"{% url 'wiblog:post' post.slug %}">{{ post.title }}</a>
-		</p>
-	</section>
-	{% endif %}
-
-	<section class="home-project">
-		<h1>Latest Project: <a href="http://battlehillbrewing.com/">Battle Hill
-			Brewing Company</a></h1>
-		<p class="home-thumbnail">
-			<img src="/static/misc/battlehill-thumb.png" width=125 height=125
-				alt="A snapshot of the Battle Hill website">
-		</p>
-		<p>
-			Family is important to me. When my Uncle, Jim Hume, decided to
-			start a brewery and finally make a living doing what he loves,
-			I was thrilled. When he asked me for some help with his website, I
-			couldn't refuse!
-		</p>
-		<p>
-			If you should happen to be in Fort Ann, New York, stop by the <a
-				href="http://battlehillbrewing.com/">Battle Hill Brewing
-				Company</a>, and pick up a pint.
-		</p>
-	</section>
-
-	<section class="home-software">
-		<h1>Software</h1>
-		<p>
-			Here at Fragmented Development, we run the following <abbr title=
-			"free, libre, open source software">FLOSS</abbr> software:
-		</p>
-		<dl>
-			<dt>
-				<a href="https://micro.fragdev.com">GNUsocial</a>
-			</dt>
-			<dd>
-				<a href="http://gnu.io/social">GNUsocial</a> is twitter, without
-				all the exclusion and proprietary
-				bits! In addition, it's federated - so users on our GNUsocial
-				instance can send messages to users on other independent instances.
-			</dd>
-			<dt>Mumble — (mumble.fragdev.net)</dt>
-			<dd>
-				Mumble is a voice chat server. It's a great way to talk to several
-				people at once, have a one-on-one chat, or record that episode
-				of <a href="http://hackerpublicradio.org/">Hacker Public Radio</a>
-				that you owe to Ken Fallon.
-			</dd>
-			<dt>
-				<a href="https://links.fragdev.com">SemanticScuttle</a>
-			</dt>
-			<dd>
-				A social bookmarking application, SemanticScuttle is very similar
-				to Del.icio.us &mdash; before the remake.
-			</dd>
-			<dt>
-				<a href="https://ttrss.fragdev.com">Tiny Tiny RSS</a>
-			</dt>
-			<dd>
-				A very functional, lightweight <abbr title=
-				"really simple syndication">RSS</abbr> reader with a few extra social
-				functions. If you like Google Reader, you should give TTRSS a try.
-			</dd>
-			<dt>
-				<a href="https://mail.fragdev.com">Roundcube</a>
-			</dt>
-			<dd>
-				A smooth, simple webmail interface, Roundcube is a great web-based
-				IMAP email client. It can be used as an interface to any IMAP
-				server, but on FragDev it talks to Dovecot and Postfix.
-			</dd>
-		</dl>
-		<h2>Platform</h2>
-		<p>
-			Our servers run a host of underlying software that allows us to host sites
-			and applications:
-		</p>
-		<ul class="home-software-list">
-			<li>Debian GNU/Linux</li>
-			<li>Apache</li>
-			<li>PHP</li>
-			<li>Python</li>
-			<li>Django</li>
-			<li>Nginx</li>
-			<li>OpenSSH</li>
-			<li>MySQL</li>
-			<li>Postfix</li>
-			<li>Dovecot</li>
-			<li>SpamAssassin</li>
-			<li>SQLite</li>
-		</ul>
-	</section>
-
-	<footer class="page-footer full-width">
-		<div class="home-footer">
-			<p>
-				The layout "FragDev 4000" was developed by Jacob Hume, and the HTML and CSS is released
-				under the <a href="https://www.gnu.org/licenses/agpl">GNU AFFERO GENERAL PUBLIC LICENSE
-				v3</a> or Later. The font "<a href="https://www.google.com/fonts/specimen/Droid+Sans">Droid
-				Sans</a>" &copy; Google, and the <a href=
-				"http://zurb.com/playground/foundation-icons">Foundations icon font</a> is &copy; Zurb.
-				Jacob Hume is &copy; himself, circa 1983, and cannot be used or reproduced without
-				permission or an advanced understanding of human genomics and biochemistry.
-				Void where prohibited, may contain peanuts.
-			</p>
-		</div>
-	</footer>
-</body>
-
-</html>
+		</section>
+{% endblock %}
