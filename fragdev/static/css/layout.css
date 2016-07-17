@@ -445,3 +445,18 @@ textarea:hover {
 		padding: 0;
 	}
 }
+
+@media print {
+
+	.boxy {
+		box-shadow: none;
+	}
+
+	html {
+		padding: 0;
+	}
+
+	nav {
+		display: none;
+	}
+}
