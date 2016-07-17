@@ -452,8 +452,27 @@ textarea:hover {
 		box-shadow: none;
 	}
 
+	a {
+		text-decoration: none;
+	}
+
+	body {
+		margin: 0;
+	}
+
 	html {
 		padding: 0;
+	}
+
+	main {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	main a::after {
+		color: #333;
+		content: " (" attr(href) ") ";
+		font-style: italic;
 	}
 
 	nav {
