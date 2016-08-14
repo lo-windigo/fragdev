@@ -12,9 +12,8 @@ from . import views
 
 urlpatterns = [
 
-    # Handle all of the "static" pages
-    url(r'^$', views.home, name='projects'),
-    url(r'^(?P<slug>.+)$', views.post, name='post'),
+    url(r'^$', views.index, name='projects'),
+    url(r'^(?P<slug>.+)$', views.post, name='project'),
 ]
 
 # Blog URLs
