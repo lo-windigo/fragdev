@@ -40,7 +40,7 @@ class Image(models.Model):
         # TODO
 
         # Save the content type (required for headers later)
-        self.content_type = what(imgFile)
+        self.content_type = what(self.imgFile)
 
         super(Image, self).save(*args, **kwargs)
 
