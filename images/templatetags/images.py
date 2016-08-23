@@ -13,7 +13,11 @@
 # You should have received a copy of the GNU General Public License
 # along with FragDev.  If not, see <http://www.gnu.org/licenses/>.
 
-from . import Images
+from django import template
+from images.models import Image
+
+register = template.Library()
+
 
 @register.filter(name="image")
 def dynamic_image(value, arg):
