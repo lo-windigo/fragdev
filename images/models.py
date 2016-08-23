@@ -25,7 +25,7 @@ class Image(models.Model):
     '''
     title = models.CharField(max_length=250)
     desc = models.TextField()
-    date = models.DateTimeFiel(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True)
     imgFile = models.FileField(upload_to='img/')
     slug = models.SlugField()
     content_type = models.CharField(max_length=30)
@@ -42,7 +42,7 @@ class Image(models.Model):
         # Save the content type (required for headers later)
         self.content_type = what(imgFile)
 
-        super(Image, self).save(*args, *kwargs)
+        super(Image, self).save(*args, **kwargs)
 
 
     def get_absolute_url(self):
