@@ -13,7 +13,9 @@
 # You should have received a copy of the GNU General Public License
 # along with FragDev.  If not, see <http://www.gnu.org/licenses/>.
 
-from django.http import Http404, Http500, HttpResponse
+from django.http import Http404, HttpResponse
+from django.core.exceptions import ObjectDoesNotExist
+from .models import Image
 
 
 def index(request, slug):
@@ -24,13 +26,9 @@ def index(request, slug):
     # Try to get the requested post
     try:
         image = Image.objects.get(slug=slug)
-
-        while open(image.imgFile.open("rb")) as imageFile:
-            return HttpReponse(imageFile.read(),
-                content_type="image/{}".format(image.content_type))
+        imageFile = image.imgFile.open("rb")
+        return HttpReponse(imageFile.read(),
+            content_type="image/{}".format(image.content_type))
 
     except ObjectDoesNotExist:
         raise Http404("Image does not exist")
-
-    except IOError:
-        raise Http500("Cannot read image")

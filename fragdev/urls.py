@@ -49,3 +49,11 @@ if 'wiblog' in settings.INSTALLED_APPS:
     urlpatterns += [
             url(r'^blog/', include(wiblog.urls, app_name='wiblog', namespace='wiblog')),
     ]	
+
+if 'images' in settings.INSTALLED_APPS:
+
+    import images.urls
+
+    urlpatterns += [
+            url(r'^img/', include(images.urls, app_name='images', namespace='images')),
+    ]	
