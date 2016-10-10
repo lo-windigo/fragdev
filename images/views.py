@@ -18,7 +18,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from .models import Image
 
 
-def index(request, slug):
+def image(request, slug):
     '''
     Return a single image
     '''
