@@ -1,0 +1,3 @@
+Django
+CommonMark
+Pillow
