@@ -1,8 +1,7 @@
 from django.conf import settings
 from django.conf.urls import include, url
 from django.views.generic import TemplateView
-
-# Uncomment the next two lines to enable the admin:
+from django.conf.urls.static import static
 from django.contrib import admin
 admin.autodiscover()
 
@@ -40,6 +39,14 @@ urlpatterns = [
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
 ]
+
+# Set up some custom url patterns for debugging
+if settings.DEBUG:
+    # Append static files
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+    # Append media directory
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Blog URLs
 if 'wiblog' in settings.INSTALLED_APPS:
