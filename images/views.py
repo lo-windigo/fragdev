@@ -14,8 +14,9 @@
 # along with FragDev.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.http import Http404, HttpResponse
-from django.core.exceptions import ObjectDoesNotExist
 from .models import Image
+from django.core.exceptions import ObjectDoesNotExist
+from fragdev import settings
 
 
 def image(request, slug):
@@ -27,7 +28,7 @@ def image(request, slug):
     try:
         image = Image.objects.get(slug=slug)
         imageFile = image.imgFile.open("rb")
-        return HttpReponse(imageFile.read(),
+        return HttpResponse(imageFile.read(),
             content_type="image/{}".format(image.content_type))
 
     except ObjectDoesNotExist:
