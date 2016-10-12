@@ -1,6 +1,3 @@
-from django.conf.urls import url
-from . import views
+# Placeholder urlpatterns list, in case views are added
+urlpatterns = []
 
-urlpatterns = [
-	url(r'^(?P<slug>.+)$', views.image, name='image'),
-]

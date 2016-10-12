@@ -14,7 +14,6 @@
 # along with FragDev.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.db import models
-from django.core.urlresolvers import reverse
 from django.utils.text import slugify
 from imghdr import what
 
@@ -46,7 +45,7 @@ class Image(models.Model):
 
 
     def get_absolute_url(self):
-        return reverse("images:image", args=[self.slug])
+        return self.imgFile.url
 
     def __str__(self):
         return self.title
