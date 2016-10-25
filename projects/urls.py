@@ -1,25 +1,23 @@
-from django.conf import settings
-from django.conf.urls import include, url
-from django.views.generic import TemplateView
+# This file is part of the FragDev Website.
+# 
+# the FragDev Website is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# the FragDev Website is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
-# Uncomment the next two lines to enable the admin:
-from django.contrib import admin
-admin.autodiscover()
-
-# Include any views
+from django.conf.urls import url
 from . import views
 
-
 urlpatterns = [
-
     url(r'^$', views.index, name='projects'),
-    url(r'^(?P<slug>.+)$', views.post, name='project'),
+    url(r'^(?P<slug>.+)', views.project, name='project'),
 ]
 
-# Blog URLs
-if 'projects' in settings.INSTALLED_APPS:
-
-    urlpatterns += [
-            url(r'^projects/', include(projects.urls, app_name='projects',
-                namespace='projects')),
-    ]	
