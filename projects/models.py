@@ -22,22 +22,27 @@ class Project(models.Model):
     A project that I have contributed to, for display on the Projects page
     '''
 
-    PUBLIC = 'pub'
+    COMPLETED = 'com'
+    DEVELOPMENT = 'dev'
     HIDDEN = 'hid'
     PROJECT_STATUS = (
-        (PUBLIC, 'Public'),
+        (COMPLETED, 'Completed'),
+        (DEVELOPMENT, 'In development'),
         (HIDDEN, 'Hidden'),
     )
 
-    name = models.CharField(max_length=150)
-    desc = models.TextField()
+    name = models.CharField('name', max_length=150)
+    desc = models.TextField('description')
     date = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=3, choices=PROJECT_STATUS)
     github = models.URLField(blank=True)
     gitlab = models.URLField(blank=True)
     website = models.URLField(blank=True)
     slug = models.SlugField(max_length=150)
-    thumbnail = models.ForeignKey('images.Image', models.CASCADE)
+    thumbnail = models.ForeignKey('images.Image',
+            models.CASCADE,
+            blank=True,
+            null=True)
 
     def __str__(self):
         return self.name
