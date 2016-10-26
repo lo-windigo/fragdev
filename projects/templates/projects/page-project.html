@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+
+{% block title %}{{ project.title }}{% endblock %}
+
+
+{% block content %}
+		<header class="content-header">
+			<h1>{{ project.title }}</h1>
+		</header>
+		{{ project.body }}
+		{% if project.tags.all %}
+		<p>
+			Tags:
+			{% for tag in project.tags.all %}
+				<a href="{% url "wiblog:tagged" tag %}">{{ tag }}</a>
+			{% endfor %}
+		</p>
+		{% endif %}
+		<hr>
+		<h2>Comments</h2>
+		{% for comment in comments %}
+		<blockquote class="blog-comment">
+			{{ comment.comment }}
+			<p>
+				<cite>
+					{% firstof comment.name 'Anonymous' %}
+					{% if comment.url %}
+					 &ndash; {{ comment.url|urlize }}
+					{% endif %}
+				</cite>
+			</p>
+		</blockquote>
+		{% endfor %}
+		{% if not form.is_valid %}
+		<h2 id="add-comment">Add Your Comment</h2>
+		<form method="post">
+			{% csrf_token %}
+			{{ form.non_field_errors }}
+			<p>
+				{{ form.name.errors }}
+				<label for="id_name">
+					{{ form.name.label }}:<br>
+					{{ form.name }}
+				</label>
+			</p>
+			<p>
+				{{ form.url.errors }}
+				<label for="id_url">
+					{{ form.url.label }}:<br>
+					{{ form.url }}
+				</label>
+			</p>
+			<p>
+				{{ form.comment.errors }}
+				<label for="id_comment">
+					{{ form.comment.label }}:<br>
+					{{ form.comment }}
+				</label>
+			</p>
+			<p>
+				{{ form.verify.errors }}
+				<label for="id_verify">
+					{{ form.verify.label }}:<br>
+					{{ form.verify }}
+				</label>
+			</p>
+			<p>
+				<input type="submit" value="Make Comment">
+			</p>
+		</form>
+		{% endif %}
+{% endblock %}

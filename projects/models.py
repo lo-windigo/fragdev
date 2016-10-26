@@ -40,7 +40,7 @@ class Project(models.Model):
     thumbnail = models.ForeignKey('Image', models.CASCADE)
 
     def __str__(self):
-            return self.name
+        return self.name
 
     def get_absolute_url(self):
         return reverse("project", args=[self.slug])
