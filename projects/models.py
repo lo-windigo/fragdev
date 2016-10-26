@@ -37,11 +37,11 @@ class Project(models.Model):
     gitlab = models.URLField(blank=True)
     website = models.URLField(blank=True)
     slug = models.SlugField(max_length=150)
-    thumbnail = models.ForeignKey('Image', models.CASCADE)
+    thumbnail = models.ForeignKey('images.Image', models.CASCADE)
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("project", args=[self.slug])
+        return reverse("projects:project", args=[self.slug])
 

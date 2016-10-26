@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %}Fragmented Development{% endblock %}
 
 {% block head %}
@@ -31,7 +33,8 @@
 				<h2><a href="http://battlehillbrewing.com/">Battle Hill
 					Brewing Company</a></h2>
 				<p class="home-thumbnail">
-					<img src="/static/misc/battlehill-thumb.png" width=125 height=125
+					<img src="{% static "/static/misc/battlehill-thumb.png" %}"
+						width=125 height=125
 						alt="A snapshot of the Battle Hill website">
 				</p>
 				<p>
