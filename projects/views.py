@@ -13,7 +13,7 @@
 # You should have received a copy of the GNU General Public License
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.template import loader
 from .models import Project
@@ -24,7 +24,7 @@ def index(request):
     Project listing
     '''
 
-    projects = Project.objects.filter(status=Project.PUBLIC).order_by('-date')
+    projects = Project.objects.exclude(status=Project.HIDDEN).order_by('-date')
     template = loader.get_template('projects/page-index.html')
 
     return HttpResponse(template.render({'projects': projects}))
@@ -36,7 +36,7 @@ def project(request, slug):
     '''
 
     try:
-        project = Project.objects.get(slug=slug,status=Project.PUBLIC)
+        project = Project.objects.exclude(status=Project.HIDDEN).get(slug=slug)
     except ObjectDoesNotExist:
         raise Http404('Project {} does not exist' % slug)
 
