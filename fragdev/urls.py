@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 admin.autodiscover()
 
-# Include any views
+# Include primary views
 from . import views
 
 
@@ -31,24 +31,19 @@ urlpatterns = [
     url(r'^about/?$', views.about, name='about'),
     url(r'^contact/?$', views.contact, name='contact'),
     url(
-            r'^contacted/?$',
-            TemplateView.as_view(template_name="page-contacted.html"),
-            name='contacted'
+        r'^contacted/?$',
+        TemplateView.as_view(template_name="page-contacted.html"),
+        name='contacted'
     ),
     url(
-            r'^projects/?$',
-            TemplateView.as_view(template_name="page-projects.html"),
-            name='projects'
+        r'^resume/?$',
+        TemplateView.as_view(template_name="page-resume.html"),
+        name='resume'
     ),
     url(
-            r'^resume/?$',
-            TemplateView.as_view(template_name="page-resume.html"),
-            name='resume'
-    ),
-    url(
-            r'^hire/?$',
-            TemplateView.as_view(template_name="page-hire.html"),
-            name='hire'
+        r'^hire/?$',
+        TemplateView.as_view(template_name="page-hire.html"),
+        name='hire'
     ),
 
     # Uncomment the next line to enable the admin:
@@ -69,13 +64,28 @@ if 'wiblog' in settings.INSTALLED_APPS:
     import wiblog.urls
 
     urlpatterns += [
-            url(r'^blog/', include(wiblog.urls, app_name='wiblog', namespace='wiblog')),
+        url(r'^blog/', include(wiblog.urls, app_name='wiblog', namespace='wiblog')),
     ]	
 
+# Dynamic image URLs
 if 'images' in settings.INSTALLED_APPS:
 
     import images.urls
 
     urlpatterns += [
-            url(r'^img/', include(images.urls, app_name='images', namespace='images')),
+        url(r'^img/', include(images.urls, app_name='images', namespace='images')),
     ]	
+
+# Project URLs
+if 'projects' in settings.INSTALLED_APPS:
+
+    import projects.urls
+
+    urlpatterns += [
+        url(r'^projects/', include(
+            projects.urls,
+            app_name='projects',
+            namespace='projects')
+        ),
+    ]	
+
