@@ -1,15 +1,20 @@
 {% extends "base.html" %}
+{% load static %}
 
 
 {% block title %}Projects{% endblock %}
 
 
 {% block head %}
+	<link rel="stylesheet" type="text/css" href=
+		"{% static "projects/css/projects.css" %}">
 	<style>
 	{% for project in projects %}
+		{% if project.thumbnail %}
 		#{{ project.slug }} {
 			background-image: url('{% url project.thumbnail %}');
 		}
+		{% endif %}
 	{% endfor %}
 	</style>
 {% endblock %}
@@ -22,19 +27,18 @@
 				A collection of the various projects I've worked on.
 			</p>
 		</header>
-		<aside>
-			<p>
-				A good majority of the coding I do is in public.
-				I'm on <a href="https://gitlab.com/u/windigo">Gitlab</a>, or
-				<a href="https://github.com/lo-windigo">GitHub</a> where I'll
-				try to mirror my repositories for those who prefer that service.
-			</p>
-		</aside>
+		<p>
+			A good majority of the coding I do is in public.
+			I'm on <a href="https://gitlab.com/u/windigo">Gitlab</a>, or
+			<a href="https://github.com/lo-windigo">GitHub</a> where I'll
+			try to mirror my repositories for those who prefer that service.
+		</p>
 		<ul class="project-thumbnails">
-		{% for project in projects.all %}
+		{% for project in projects %}
 			<li id="{{ project.slug }}">
-				<a class="project-thumbnail" href="{% url project %}">
-				<span>{{ project.title }}</span></a>
+				<a class="project-thumbnail" href=
+				"{% url "projects:project" project.slug %}">
+				<span>{{ project.name }}</span></a>
 			</li>
 		{% endfor %}
 		</ul>
