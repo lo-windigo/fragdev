@@ -24,20 +24,29 @@ class Project(models.Model):
 
     COMPLETED = 'com'
     DEVELOPMENT = 'dev'
+    PRODUCTION = 'prd'
     HIDDEN = 'hid'
     PROJECT_STATUS = (
         (COMPLETED, 'Completed'),
         (DEVELOPMENT, 'In development'),
+        (PRODUCTION, 'In Production'),
         (HIDDEN, 'Hidden'),
     )
 
     name = models.CharField('name', max_length=150)
     desc = models.TextField('description')
+    short_desc = models.CharField('short description',
+            max_length=300,
+            blank=True)
+    license = models.CharField('code license',
+            max_length=50,
+            blank=True)
     date = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=3, choices=PROJECT_STATUS)
     github = models.URLField(blank=True)
     gitlab = models.URLField(blank=True)
     website = models.URLField(blank=True)
+    example = models.URLField('example URL', blank=True)
     slug = models.SlugField(max_length=150)
     thumbnail = models.ForeignKey('images.Image',
             models.CASCADE,
