@@ -13,9 +13,11 @@
 # You should have received a copy of the GNU General Public License
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
+from CommonMark import commonmark
 from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.template import loader
+from django.utils.safestring import mark_safe
 from .models import Project
 
 
@@ -40,6 +42,9 @@ def project(request, slug):
     except ObjectDoesNotExist:
         raise Http404('Project {} does not exist' % slug)
 
+    # Mark up the markdown in the project description
+    project.desc = mark_safe(commonmark(project.desc))   
+    
     template = loader.get_template('projects/page-project.html')
 
     return HttpResponse(template.render({'project': project}))
