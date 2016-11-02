@@ -1,73 +1,78 @@
 {% extends "base.html" %}
+{% load static %}
 
 
-{% block title %}{{ project.title }}{% endblock %}
+{% block title %}{{ project.name }}{% endblock %}
+
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href=
+		"{% static "projects/css/projects.css" %}">
+{% endblock %}
 
 
 {% block content %}
-		<header class="content-header">
-			<h1>{{ project.title }}</h1>
-		</header>
-		{{ project.body }}
-		{% if project.tags.all %}
-		<p>
-			Tags:
-			{% for tag in project.tags.all %}
-				<a href="{% url "wiblog:tagged" tag %}">{{ tag }}</a>
-			{% endfor %}
-		</p>
-		{% endif %}
-		<hr>
-		<h2>Comments</h2>
-		{% for comment in comments %}
-		<blockquote class="blog-comment">
-			{{ comment.comment }}
+		<div class="project">
+			<header class="content-header">
+				<h1>{{ project.name }}</h1>
+				{% if project.short_desc %}
+				<p>
+					{{ project.short_desc }}
+				</p>
+				{% endif %}
+			</header>
+			{% if project.thumbnail %}
+			<figure class="project-image">
+				<img src="{{ project.thumbnail.get_absolute_url }}"
+					alt="A screenshot of {{ project.name }}">
+			</figure>
+			{% endif %}
+			<dl class="project-meta">
+				{% if project.status %}
+					<dt>Status</dt>
+					<dd>{{ project.get_status_display }}</dd>
+				{% endif %}
+				{% if project.license %}
+					<dt>License</dt>
+					<dd>{{ project.license }}</dd>
+				{% endif %}
+				{% if project.website %}
+					<dt>Website</dt>
+					<dd>
+						<a href="{{ project.website }}">{{ project.website }}</a>
+					</dd>
+				{% endif %}
+				{% if project.gitlab %}
+					<dt>Gitlab</dt>
+					<dd>
+						<a href="{{ project.gitlab }}">{{ project.name }} on
+						Gitlab</a>
+					</dd>
+				{% endif %}
+				{% if project.github %}
+					<dt>Github</dt>
+					<dd>
+						<a href="{{ project.github }}">{{ project.name }} on
+						Github</a>
+					</dd>
+				{% endif %}
+				{% if project.example %}
+					<dt>Example</dt>
+					<dd><a href="{{ project.example }}">{{ project.example }}</a></dd>
+				{% endif %}
+			</dl>
+			{% if project.tags.all %}
 			<p>
-				<cite>
-					{% firstof comment.name 'Anonymous' %}
-					{% if comment.url %}
-					 &ndash; {{ comment.url|urlize }}
-					{% endif %}
-				</cite>
+				Tags:
+				{% for tag in project.tags.all %}
+					<a href="{% url "project:tagged" tag %}">{{ tag }}</a>
+				{% endfor %}
 			</p>
-		</blockquote>
-		{% endfor %}
-		{% if not form.is_valid %}
-		<h2 id="add-comment">Add Your Comment</h2>
-		<form method="post">
-			{% csrf_token %}
-			{{ form.non_field_errors }}
-			<p>
-				{{ form.name.errors }}
-				<label for="id_name">
-					{{ form.name.label }}:<br>
-					{{ form.name }}
-				</label>
-			</p>
-			<p>
-				{{ form.url.errors }}
-				<label for="id_url">
-					{{ form.url.label }}:<br>
-					{{ form.url }}
-				</label>
-			</p>
-			<p>
-				{{ form.comment.errors }}
-				<label for="id_comment">
-					{{ form.comment.label }}:<br>
-					{{ form.comment }}
-				</label>
-			</p>
-			<p>
-				{{ form.verify.errors }}
-				<label for="id_verify">
-					{{ form.verify.label }}:<br>
-					{{ form.verify }}
-				</label>
-			</p>
-			<p>
-				<input type="submit" value="Make Comment">
-			</p>
-		</form>
-		{% endif %}
+			{% endif %}
+			{% if project.desc %}
+			<div class="project-details">
+				{{ project.desc }}
+			</div>
+			{% endif %}
+		</div>
 {% endblock %}

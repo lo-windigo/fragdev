@@ -1,3 +1,53 @@
+.project {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.project-details {
+	flex-grow: 2;
+}
+
+.project>header {
+	flex-grow: 2;
+	width: 100%;
+}
+
+.project-image>img {
+	width: 100%;
+}
+
+.project-image,
+.project-meta {
+	/*width: 48%;*/
+	flex: 2 1 48%;
+}
+
+.project-meta {
+	padding: 0;
+}
+
+.project-image + .project-meta {
+	margin-left: 3%;
+}
+
+.project-meta>dt {
+	font-weight: bold;
+	float: left;
+	clear: left;
+	width: 5em;
+}
+
+.project-meta>dd {
+	float: left;
+	margin: 0 0 1em 0;
+	padding: 0;
+}
+
+.project-meta>dt:after {
+	content: ":";
+}
 
 .project-thumbnails {
 	margin: 0;

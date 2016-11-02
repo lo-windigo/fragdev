@@ -12,7 +12,7 @@
 	{% for project in projects %}
 		{% if project.thumbnail %}
 		#{{ project.slug }} {
-			background-image: url('{% url project.thumbnail %}');
+			background-image: url('{{ project.thumbnail.get_absolute_url }}');
 		}
 		{% endif %}
 	{% endfor %}
