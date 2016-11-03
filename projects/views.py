@@ -15,6 +15,7 @@
 
 from CommonMark import commonmark
 from django.http import Http404, HttpResponse
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 from django.template import loader
 from django.utils.safestring import mark_safe
