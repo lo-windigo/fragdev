@@ -41,7 +41,7 @@ def project(request, slug):
     try:
         project = Project.objects.exclude(status=Project.HIDDEN).get(slug=slug)
     except ObjectDoesNotExist:
-        raise Http404('Project {} does not exist' % slug)
+        raise Http404('Project "%s" does not exist' % slug)
 
     # Mark up the markdown in the project description
     project.desc = mark_safe(commonmark(project.desc))   
