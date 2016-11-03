@@ -28,27 +28,26 @@
 			</article>
 			{% endif %}
 
+			{% if project %}
 			<article>
 				<h1>Current Project</h1>
-				<h2><a href="http://battlehillbrewing.com/">Battle Hill
-					Brewing Company</a></h2>
-				<p class="home-thumbnail">
-					<img src="{% static "/static/misc/battlehill-thumb.png" %}"
-						width=125 height=125
-						alt="A snapshot of the Battle Hill website">
-				</p>
+				<h2>
+					<a href="{% url 'projects:project' project.slug %}">{{ project.name }}</a>
+				</h2>
+				{% if project.short_desc %}
 				<p>
-					Family is important to me. When my Uncle, Jim Hume, decided to
-					start a brewery and finally make a living doing what he loves,
-					I was thrilled. When he asked me for some help with his website, I
-					couldn't refuse!
+					{{ project.short_desc }}
 				</p>
+				{% endif %}
+				{% if project.thumbnail %}
 				<p>
-					If you should happen to be in Fort Ann, New York, stop by the <a
-						href="http://battlehillbrewing.com/">Battle Hill Brewing
-						Company</a>, and pick up a pint.
+					<a href="{% url 'projects:project' project.slug %}"><img
+					src="{{ project.thumbnail.get_absolute_url }}" width="100%"
+					alt="{{ project.thumbnail.desc }}"></a>
 				</p>
+				{% endif %}
 			</article>
+			{% endif %}
 
 			<article>
 				<h1>Web Applications</h1>

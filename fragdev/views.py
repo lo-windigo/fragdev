@@ -25,6 +25,7 @@ import time
 def home(request):
 	template = loader.get_template('page-home.html')
 	post = False
+	project = False
 
 	# Try to get the latest blog post
 	if 'wiblog' in settings.INSTALLED_APPS:
@@ -35,7 +36,17 @@ def home(request):
 			post = Post.objects.filter(status=Post.PUB).order_by('-date')[0]
 			post.body = mdToHTML(summarize(post.body))
 
-	return HttpResponse(template.render({'post': post}))
+	# Try to get the latest project
+	if 'projects' in settings.INSTALLED_APPS:
+		from projects.models import Project
+
+		if Project.objects.count() > 0:
+			project = Project.objects.exclude(status=Project.HIDDEN).order_by('-date')[0]
+
+	return HttpResponse(template.render({
+            'post': post,
+            'project': project
+            }))
 
 
 # About page
