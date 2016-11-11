@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 
 {% block title %}Blog{% endblock %}
@@ -8,8 +9,10 @@
 		title="Fragmented Development Blog (Atom)">
 	<link href="{% url "wiblog:rss" %}" rel="alternate" type="application/rss+xml"
 		title="Fragmented Development Blog (RSS)">
-	<link rel="stylesheet" type="text/css" href="/static/css/prism.css">
-	<script type="text/javascript" src="/static/js/prism.js"></script>
+	<link rel="stylesheet" type="text/css"
+		href="{% static "/wiblog/css/prism.css" %}">
+	<script type="text/javascript"
+		 src="{% static "/wiblog/js/prism.js" %}"></script>
 {% endblock %}
 
 {% block content %}
