@@ -14,129 +14,117 @@
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.template.context_processors import csrf
-from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
-from django.http import HttpResponse
-from django.shortcuts import redirect
-from django.template import loader
-from wiblog.formatting import mdToHTML, summarize
+from django.shortcuts import get_object_or_404, redirect, render
+from wiblog.util.formatting import render_markdown
 from wiblog.models import Comment, Post, Tag
-from wiblog.comments import CommentForm
+from wiblog.util.comments import CommentForm
 
 
-## Blog Index
 def index(request):
+    """ Blog index: Show a list of the most recent posts
+    """
 
-	template = loader.get_template('base-wiblog.html')
+    # Get the 5 latest posts
+    posts = Post.objects.filter(status=Post.PUB).order_by('-date')[:5]
 
-	# Get a few posts to start with
-	posts = Post.objects.filter(status=Post.PUB).order_by('-date')[:5]
+    # Go through all the posts and format the post body
+    for post in posts:
+        post.body = render_markdown(post.body)
 
-	# Go through all the posts, trim and format the post body
-	for post in posts:
-
-		post.body = mdToHTML(post.body)
-
-	return HttpResponse(template.render({'posts': posts}))
+    return render(request, 'base-wiblog.html', {'posts': posts}))
 
 
-## Archive page
 def archive(request):
+    """ An archival listing of all public posts
+    """
 
-	template = loader.get_template('page-archive.html')
+    posts = Post.objects.filter(status=Post.PUB)
 
-	posts = Post.objects.filter(status=Post.PUB)
-
-	return HttpResponse(template.render({'posts': posts}))
+    return render(request, 'page-archive.html', template.render({'posts': posts}))
 
 
-## A single blog post
 def post(request, slug):
+    """ A single blog post
+    """
 
-	template = loader.get_template('page-post.html')
+    template = loader.get_template()
 
-	# Try to get the requested post
-	try:
-		post = Post.objects.get(slug=slug)
-	except ObjectDoesNotExist:
-		return redirect('wiblog:archive')
+    # Try to get the requested post
+    post = get_object_or_404(Post, slug=slug)
 
-	# If the form has been submitted...
-	if request.method == 'POST':
+    # If the form has been submitted...
+    if request.method == 'POST':
 
-		# A form bound to the POST data
-		comment = Comment(post=post)
-		form = CommentForm(request.POST, instance=comment)
+        # A form bound to the POST data
+        comment = Comment(post=post)
+        form = CommentForm(request.POST, instance=comment)
 
-		# Form was validated, and contained good data
-		if form.is_valid():
+        # Form was validated, and contained good data
+        if form.is_valid():
 
-			# Save the comment
-			form.save()
+            # Save the comment
+            form.save()
 
-			# notify a mod
-			import smtplib
-			from email.mime.text import MIMEText
+            # notify a mod
+            import smtplib
+            from email.mime.text import MIMEText
 
-			sender = 'wiblog@fragdev.com'
-			sendee = 'jacob@fragdev.com'
-	
-			msg = MIMEText('New Comment')
-			msg['Subject'] = 'Comments awaiting moderation'
-			msg['From'] = sender
-			msg['To'] = sendee
+            sender = 'wiblog@fragdev.com'
+            sendee = 'jacob@fragdev.com'
+    
+            msg = MIMEText('New Comment')
+            msg['Subject'] = 'Comments awaiting moderation'
+            msg['From'] = sender
+            msg['To'] = sendee
 
-			mailServer = smtplib.SMTP('localhost')
-			mailServer.sendmail(sender, [sendee], msg.as_string())
-			mailServer.quit
+            mailServer = smtplib.SMTP('localhost')
+            mailServer.sendmail(sender, [sendee], msg.as_string())
+            mailServer.quit
 
-	# If the form hasn't been submitted, get a blank form
-	else:
-		form = CommentForm() 
+    # If the form hasn't been submitted, get a blank form
+    else:
+        form = CommentForm() 
 
-	# Get any comments that go with a post
-	# TODO: Add Pagination if you become wildly popular
-	comments = Comment.objects.filter(post=post,moderated=Comment.HAM).order_by('-date')
+    # Get any comments that go with a post
+    # TODO: Add Pagination if you become wildly popular
+    comments = Comment.objects.filter(post=post,moderated=Comment.HAM).order_by('-date')
 
-	# Format the post body for display
-	post.body = mdToHTML(post.body)
+    # Format the post body for display
+    post.body = render_markdown(post.body)
 
-	# Format the comments for display
-	for comment in comments:
-		comment.comment = mdToHTML(comment.comment)
+    # Format the comments for display
+    for comment in comments:
+        comment.comment = render_markdown(comment.comment)
 
-	return HttpResponse(template.render({'form': form, 'post': post,
-            'comments': comments}, request))
+    return render(request,
+        'page-post.html',
+        {
+            'form': form,
+            'post': post,
+            'comments': comments
+        })
 
 
-## Tags Tags TAGS
 def tags(request):
+    """ Display any blog tags that have been defined
+    """
+    
+    # Get any tags that have been defined
+    tags = Tag.objects.order_by('desc')
 
-	template = loader.get_template('page-tags.html')
-	
-	# Get any tags that have been defined
-	tags = Tag.objects.order_by('desc')
-
-	return HttpResponse(template.render({'tags': tags}))
+    return HttpResponse(request, 'page-tags.html', {'tags': tags})
 
 
-## Tagged Posts
 def tagged_posts(request, tag):
+    """ Show any posts that are associated with a tag
+    """
 
-	template = loader.get_template('page-tagged.html')
+    tagObj = get_object_or_404(Tag, desc=tag)
+    posts = Post.objects.filter(tags=tagObj,status=Post.PUB)
 
-	# Get the tag we're looking for
-	try:
-		tagObj = Tag.objects.get(desc=tag)
-	except ObjectDoesNotExist:
-		return redirect('wiblog:tags')
+    # Go through all the posts, trim and format the post body
+    for post in posts:
+        post.body = render_markdown(post.body)
 
-	# Return any posts that are tagged with this
-	posts = Post.objects.filter(tags=tagObj,status=Post.PUB)
-
-	# Go through all the posts, trim and format the post body
-	for post in posts:
-
-		post.body = mdToHTML(summarize(post.body))
-
-	return HttpResponse(template.render({'posts': posts, 'tag': tagObj}))
+    return render(request, 'page-tagged.html', {'posts': posts, 'tag': tagObj})
