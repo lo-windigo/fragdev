@@ -32,7 +32,7 @@ def index(request):
     for post in posts:
         post.body = render_markdown(post.body)
 
-    return render(request, 'base-wiblog.html', {'posts': posts}))
+    return render(request, 'base-wiblog.html', {'posts': posts})
 
 
 def archive(request):
@@ -41,7 +41,7 @@ def archive(request):
 
     posts = Post.objects.filter(status=Post.PUB)
 
-    return render(request, 'page-archive.html', template.render({'posts': posts}))
+    return render(request, 'page-archive.html', {'posts': posts})
 
 
 def post(request, slug):
@@ -113,7 +113,7 @@ def tags(request):
     # Get any tags that have been defined
     tags = Tag.objects.order_by('desc')
 
-    return HttpResponse(request, 'page-tags.html', {'tags': tags})
+    return render(request, 'page-tags.html', {'tags': tags})
 
 
 def tagged_posts(request, tag):

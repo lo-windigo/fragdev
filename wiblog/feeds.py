@@ -15,7 +15,7 @@
 
 from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Atom1Feed, Rss201rev2Feed
-from wiblog.formatting import mdToHTML
+from wiblog.util.formatting import render_markdown
 from wiblog.models import Post, Tag
 
 
@@ -37,7 +37,7 @@ other miscellaneous topics.
 
 		# Format posts for the feed
 		for post in posts:
-			post.body = mdToHTML(post.body)
+			post.body = render_markdown(post.body)
 
 		return posts
 
