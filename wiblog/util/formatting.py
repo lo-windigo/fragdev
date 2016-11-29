@@ -20,7 +20,7 @@ from django.core.exceptions import ObjectDoesNotExist
 import re
 
 
-def mdToHTML(value):
+def render_markdown(value):
     """Convert a markdown string into HTML5, and prevent Django from escaping it
     """
     tags = []
@@ -65,3 +65,4 @@ def summarize(fullBody):
         return fullBody[:firstNewline]
 
     return fullBody
+
