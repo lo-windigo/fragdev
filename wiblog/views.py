@@ -48,8 +48,6 @@ def post(request, slug):
     """ A single blog post
     """
 
-    template = loader.get_template()
-
     # Try to get the requested post
     post = get_object_or_404(Post, slug=slug)
 
