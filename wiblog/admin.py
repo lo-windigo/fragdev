@@ -16,6 +16,12 @@
 from django.contrib import admin
 from wiblog.models import Comment,Post,Tag
 
-admin.site.register(Post)
+
+class PostAdmin(admin.ModelAdmin):
+    fields = ('title', 'slug', 'body', 'tags', 'status')
+    prepopulated_fields = {'slug': ('title', )}
+
+
+admin.site.register(Post, PostAdmin)
 admin.site.register(Tag)
 admin.site.register(Comment)
