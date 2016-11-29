@@ -23,27 +23,30 @@ import time
 
 
 def home(request):
-	template = loader.get_template('page-home.html')
-	post = False
-	project = False
+    """ The homepage; list the latest blog post, project, and some other
+    pertinent information
+    """
+    template = loader.get_template('page-home.html')
+    post = False
+    project = False
 
-	# Try to get the latest blog post
-	if 'wiblog' in settings.INSTALLED_APPS:
-		from wiblog.models import Post
-		from wiblog.formatting import mdToHTML, summarize
+    # Try to get the latest blog post
+    if 'wiblog' in settings.INSTALLED_APPS:
+        from wiblog.models import Post
+        from wiblog.util.formatting import render_markdown, summarize
 
-		if Post.objects.count() > 0:
-			post = Post.objects.filter(status=Post.PUB).order_by('-date')[0]
-			post.body = mdToHTML(summarize(post.body))
+        if Post.objects.count() > 0:
+            post = Post.objects.filter(status=Post.PUB).order_by('-date')[0]
+            post.body = render_markdown(summarize(post.body))
 
-	# Try to get the latest project
-	if 'projects' in settings.INSTALLED_APPS:
-		from projects.models import Project
+    # Try to get the latest project
+    if 'projects' in settings.INSTALLED_APPS:
+        from projects.models import Project
 
-		if Project.objects.count() > 0:
-			project = Project.objects.exclude(status=Project.HIDDEN).order_by('-date')[0]
+        if Project.objects.count() > 0:
+            project = Project.objects.exclude(status=Project.HIDDEN).order_by('-date')[0]
 
-	return HttpResponse(template.render({
+    return HttpResponse(template.render({
             'post': post,
             'project': project
             }))
@@ -52,47 +55,47 @@ def home(request):
 # About page
 def about(request):
 
-	template = loader.get_template('page-about.html')
+    template = loader.get_template('page-about.html')
 
-	# Calculate my age to the nearest... well, whatever
-	#	439624800	- Dec. 7th, 1983 (approx. time) in UNIX time
-	# 31536000	- Seconds in a year
-	age = (time.time() - 439624800) / 31536000 
+    # Calculate my age to the nearest... well, whatever
+    #    439624800    - Dec. 7th, 1983 (approx. time) in UNIX time
+    # 31536000    - Seconds in a year
+    age = (time.time() - 439624800) / 31536000 
 
-	return HttpResponse(template.render({'age': age}))
+    return HttpResponse(template.render({'age': age}))
 
 
 # Contact page
 def contact(request):
 
-	template = loader.get_template('page-contact.html')
+    template = loader.get_template('page-contact.html')
 
-	# If the form has been submitted...
-	if request.method == 'POST':
+    # If the form has been submitted...
+    if request.method == 'POST':
 
-		# A form bound to the POST data
-		form = ContactForm(request.POST)
+        # A form bound to the POST data
+        form = ContactForm(request.POST)
 
-		# All validation rules pass
-		if form.is_valid():
+        # All validation rules pass
+        if form.is_valid():
 
-			# Process the data in form.cleaned_data
-			name = form.cleaned_data['name']
-			email = form.cleaned_data['email']
-			message = form.cleaned_data['message']
+            # Process the data in form.cleaned_data
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
 
-			fullBody = 'Name: ' + name + ' - ' + email + '\nMessage:\n' + message
+            fullBody = 'Name: ' + name + ' - ' + email + '\nMessage:\n' + message
 
-			recipients = [ settings.CONTACT_EMAIL ]
+            recipients = [ settings.CONTACT_EMAIL ]
 
-			from django.core.mail import send_mail
-			send_mail(settings.CONTACT_SUBJECT, fullBody, settings.CONTACT_SENDER, recipients)
+            from django.core.mail import send_mail
+            send_mail(settings.CONTACT_SUBJECT, fullBody, settings.CONTACT_SENDER, recipients)
 
-			# Redirect after POST
-			return HttpResponseRedirect(reverse('contacted'))
+            # Redirect after POST
+            return HttpResponseRedirect(reverse('contacted'))
 
-	else:
-		# Get an unbound form
-		form = ContactForm() 
+    else:
+        # Get an unbound form
+        form = ContactForm() 
 
-	return HttpResponse(template.render({'form': form}, request))
+    return HttpResponse(template.render({'form': form}, request))
