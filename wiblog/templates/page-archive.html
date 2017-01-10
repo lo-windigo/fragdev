@@ -23,7 +23,6 @@
 
 		{% regroup posts.all|dictsortreversed:"date.year" by date.year as yearPosts %}
 
-		<h2>{{ year.grouper }}</h2>
 		{% for year in yearPosts %}
 		<h2>{{ year.grouper }}</h2>
 		<ul>
