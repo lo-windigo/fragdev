@@ -262,6 +262,11 @@ textarea {
 	font-style: italic;
 }
 
+.error {
+	color: #f50;
+	font-weight: bold;
+}
+
 .home-modules h1 {
 	font-size: 2em;
 	text-align: center;
