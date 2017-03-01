@@ -246,6 +246,10 @@ textarea {
 	margin: 1em 0;
 }
 
+.boxy img {
+	max-width: 100%;
+}
+
 .content-header {
 	color: #717f7f;
 }
