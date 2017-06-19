@@ -14,16 +14,39 @@
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
 from django import forms
-from django.core.exceptions import ValidationError
+from django.conf import settings
+from django.core.mail import send_mail
+from .util.validate_ham import ANTI_SPAM, validate_ham
 
-# Anti-spam validation
-def validate_ham(value):
-	if value != 'power':
-		raise ValidationError('Anti-spam value incorrect: you may be a robot')
 
-# The form for the Contact page
+MESSAGE_TEMPLATE = '''
+Name: {} <{}>
+Message:
+{}
+'''
+
+
 class ContactForm(forms.Form):
-	name = forms.CharField(max_length=100)
-	email = forms.EmailField()
-	message	= forms.CharField(widget=forms.Textarea)
-	verify = forms.CharField(label='Anti-spam: Type in the word "power"',validators=[validate_ham],max_length=5)
+    """
+    Compose and send an email
+    """
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    message = forms.CharField(widget=forms.Textarea)
+    verify = forms.CharField(label='Anti-spam: Type in the word "{}"' \
+            .format(ANTI_SPAM),
+            validators=[validate_ham],
+            max_length=len(ANTI_SPAM))
+
+    def form_valid(self, form):
+        """
+        Send email with cleaned_data from form
+        """
+        name = form.cleaned_data['name']
+        email = form.cleaned_data['email']
+        message = form.cleaned_data['message']
+        full_body = MESSAGE_TEMPLATE.format(name, email, message)
+        recipients = [ settings.CONTACT_EMAIL ]
+
+        send_mail(settings.CONTACT_SUBJECT, fullBody, settings.CONTACT_SENDER, recipients)
+

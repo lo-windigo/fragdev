@@ -18,35 +18,33 @@ from django.conf.urls import include, url
 from django.views.generic import TemplateView
 from django.conf.urls.static import static
 from django.contrib import admin
-admin.autodiscover()
-
-# Include primary views
 from . import views
 
+# Register admin pages
+admin.autodiscover()
 
 urlpatterns = [
-
-    # Handle all of the "static" pages
-    url(r'^$', views.home, name='home'),
-    url(r'^about/?$', views.about, name='about'),
-    url(r'^contact/?$', views.contact, name='contact'),
-    url(
-        r'^contacted/?$',
+    url(r'^$',
+        views.HomeView.as_view(),
+        name='home'),
+    url(r'^about/?$',
+        views.AboutView.as_view(),
+        name='about'),
+    url(r'^contact/?$',
+        views.ContactView.as_view(),
+        name='contact'),
+    url(r'^contacted/?$',
         TemplateView.as_view(template_name="page-contacted.html"),
         name='contacted'
     ),
-    url(
-        r'^resume/?$',
+    url(r'^resume/?$',
         TemplateView.as_view(template_name="page-resume.html"),
         name='resume'
     ),
-    url(
-        r'^hire/?$',
+    url(r'^hire/?$',
         TemplateView.as_view(template_name="page-hire.html"),
         name='hire'
     ),
-
-    # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
 ]
 
@@ -58,6 +56,7 @@ if settings.DEBUG:
     # Append media directory
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+
 # Blog URLs
 if 'wiblog' in settings.INSTALLED_APPS:
 
@@ -67,6 +66,7 @@ if 'wiblog' in settings.INSTALLED_APPS:
         url(r'^blog/', include(wiblog.urls, app_name='wiblog', namespace='wiblog')),
     ]	
 
+
 # Dynamic image URLs
 if 'images' in settings.INSTALLED_APPS:
 
@@ -75,6 +75,7 @@ if 'images' in settings.INSTALLED_APPS:
     urlpatterns += [
         url(r'^img/', include(images.urls, app_name='images', namespace='images')),
     ]	
+
 
 # Project URLs
 if 'projects' in settings.INSTALLED_APPS:

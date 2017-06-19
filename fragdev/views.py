@@ -14,88 +14,76 @@
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseRedirect
-from django.template import Context, RequestContext, loader
+from django.views.generic import TemplateView
+from django.views.generic.edit import FormView
 from django.template.context_processors import csrf
-from django.core.urlresolvers import reverse
-from fragdev.contact import ContactForm
+from django.core.urlresolvers import reverse, reverse_lazy
+from fragdev import forms
 import time
 
 
-def home(request):
-    """ The homepage; list the latest blog post, project, and some other
+class HomeView(TemplateView):
+    """
+    The homepage; list the latest blog post, project, and some other
     pertinent information
     """
-    template = loader.get_template('page-home.html')
-    post = False
-    project = False
+    template_name = 'page-home.html'
 
-    # Try to get the latest blog post
-    if 'wiblog' in settings.INSTALLED_APPS:
-        from wiblog.models import Post
-        from wiblog.util.formatting import render_markdown, summarize
+    def get_context_data(self, **kwargs):
+        """
+        Add latest blog post and latest project as context
+        """
+        context = super().get_context_data(**kwargs)
 
-        if Post.objects.count() > 0:
-            post = Post.objects.filter(status=Post.PUB).order_by('-date')[0]
-            post.body = render_markdown(summarize(post.body))
+        # Get the latest blog post
+        if 'wiblog' in settings.INSTALLED_APPS:
+            from wiblog.models import Post
+            from wiblog.util.formatting import render_markdown, summarize
 
-    # Try to get the latest project
-    if 'projects' in settings.INSTALLED_APPS:
-        from projects.models import Project
+            try:
+                post = Post.objects.filter(status=Post.PUB).order_by('-date')[0]
+                post.body = render_markdown(summarize(post.body))
 
-        if Project.objects.count() > 0:
-            project = Project.objects.exclude(status=Project.HIDDEN).order_by('-date')[0]
+                context['post'] = post
+            except:
+                pass
 
-    return HttpResponse(template.render({
-            'post': post,
-            'project': project
-            }))
+        # Try to get the latest project
+        if 'projects' in settings.INSTALLED_APPS:
+            from projects.models import Project
 
+            try:
+                projects = Project.objects.exclude(status=Project.HIDDEN)
+                context['project'] = projects.order_by('-date')[0]
+            except:
+                pass
 
-# About page
-def about(request):
-
-    template = loader.get_template('page-about.html')
-
-    # Calculate my age to the nearest... well, whatever
-    #    439624800    - Dec. 7th, 1983 (approx. time) in UNIX time
-    # 31536000    - Seconds in a year
-    age = (time.time() - 439624800) / 31536000 
-
-    return HttpResponse(template.render({'age': age}))
+        return context
 
 
-# Contact page
-def contact(request):
+class AboutView(TemplateView):
+    """
+    About Me page
+    """
+    template_name = 'page-about.html'
 
-    template = loader.get_template('page-contact.html')
+    def get_context_data(self, **kwargs):
+        """
+        Calculate my age to the nearest... well, whatever
+        439664400 - Dec. 7th, 1983, 11PM in UNIX time
+        31536000  - Seconds in a year
+        """
+        context = super().get_context_data(**kwargs)
+        context['age'] = (time.time() - 439664400) / 31536000 
 
-    # If the form has been submitted...
-    if request.method == 'POST':
+        return context
 
-        # A form bound to the POST data
-        form = ContactForm(request.POST)
 
-        # All validation rules pass
-        if form.is_valid():
+class ContactView(FormView):
+    """
+    A neat way for people to email me through a HTML form
+    """
+    form_class = forms.ContactForm
+    success_url = reverse_lazy('contacted')
+    template_name = 'page-contact.html'
 
-            # Process the data in form.cleaned_data
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
-            message = form.cleaned_data['message']
-
-            fullBody = 'Name: ' + name + ' - ' + email + '\nMessage:\n' + message
-
-            recipients = [ settings.CONTACT_EMAIL ]
-
-            from django.core.mail import send_mail
-            send_mail(settings.CONTACT_SUBJECT, fullBody, settings.CONTACT_SENDER, recipients)
-
-            # Redirect after POST
-            return HttpResponseRedirect(reverse('contacted'))
-
-    else:
-        # Get an unbound form
-        form = ContactForm() 
-
-    return HttpResponse(template.render({'form': form}, request))
