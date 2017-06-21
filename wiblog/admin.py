@@ -14,14 +14,18 @@
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.contrib import admin
-from wiblog.models import Comment,Post,Tag
+from . import models
 
 
 class PostAdmin(admin.ModelAdmin):
+    """
+    Customize the post admin slightly
+    """
     fields = ('title', 'slug', 'body', 'tags', 'status')
     prepopulated_fields = {'slug': ('title', )}
 
 
-admin.site.register(Post, PostAdmin)
-admin.site.register(Tag)
-admin.site.register(Comment)
+# Register all our models with the built-in admin
+admin.site.register(models.Post, PostAdmin)
+admin.site.register(models.Comment)
+admin.site.register(models.Tag)
