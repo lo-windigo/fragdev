@@ -13,16 +13,21 @@
 # You should have received a copy of the GNU General Public License
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
-from django.forms import ModelForm
 from django import forms
 from fragdev.util.validate_ham import ANTI_SPAM, validate_ham
-from wiblog.models import Comment
+from . import models
 
-class CommentForm(ModelForm):
-	verify = forms.CharField(label='Anti-spam: Type in the word "{}"'\
-                .format(ANTI_SPAM),
-                validators=[validate_ham],
-                max_length=len(ANTI_SPAM))
-	class Meta:
-		model = Comment
-		fields = ('name', 'url', 'comment')
+
+class CommentForm(forms.ModelForm):
+    """
+    Allow visitors to leave comments
+    """
+    verify = forms.CharField(label='Anti-spam: Type in the word "{}"'\
+        .format(ANTI_SPAM),
+        validators=[validate_ham],
+        max_length=len(ANTI_SPAM))
+
+    class Meta:
+        model = models.Comment
+        fields = ('name', 'url', 'comment')
+
