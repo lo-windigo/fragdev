@@ -1,3 +1,4 @@
+#
 # This file is part of the FragDev Website.
 # 
 # the FragDev Website is free software: you can redistribute it and/or modify
@@ -15,6 +16,7 @@
 
 from django.db import models
 from django.core.urlresolvers import reverse
+from . import managers
 
 
 class Tag(models.Model):
@@ -50,6 +52,7 @@ class Post(models.Model):
             blank=True,
             null=True)
     title = models.CharField(max_length=150)
+    published = managers.PublishedPostManager()
 
     def __str__(self):
         return self.title
