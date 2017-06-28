@@ -14,9 +14,14 @@
 # You should have received a copy of the GNU General Public License
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
-from django.db import models
+import re
+from CommonMark import commonmark
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
+from django.db import models
+from django.utils.safestring import mark_safe
 from . import managers
+from images.models import Image
 
 
 class Tag(models.Model):
@@ -55,10 +60,70 @@ class Post(models.Model):
     published = managers.PublishedPostManager()
 
     def __str__(self):
+        """
+        Use the post title to represent the object in the admin section
+        """
         return self.title
 
     def get_absolute_url(self):
+        """
+        Use the post title to represent the object in the admin section
+        """
         return reverse("wiblog:post", args=[self.slug])
+
+    def format(self, markdown):
+        """
+        Format markdown into HTML, including custom image tags
+        """
+        tags = []
+
+        # Find all instance of the dynamic image markdown
+        for tag in re.finditer(r'\!\[I:([\w-]+)\]', self.body):
+
+            tag_slug = tag.group(1)
+
+            try:
+                image = Image.objects.get(slug=tag_slug)
+                tag_dict = dict()
+
+                tag_dict['start'] = tag.start()
+                tag_dict['end'] = tag.end()
+                tag_dict['image'] = image
+
+                tags.append(tag_dict)
+
+            except ObjectDoesNotExist:
+                pass
+
+        # Replace all of the tags with actual markdown image tags, backwards, to
+        # prevent changing string positions and messing up substitution
+        for tag_dict in reversed(tags):
+
+            markdown = markdown[:tag_dict['start']] + \
+                '![{}]({})'.format(tag_dict['image'].desc,
+                        tag_dict['image'].get_absolute_url()) + \
+                markdown[tag_dict['end']:]
+
+        return mark_safe(commonmark(markdown))
+
+    @property
+    def formatted(self):
+        """
+        Return the rendered post body
+        """
+        return self.format(self.body)
+
+    @property
+    def formatted_summary(self):
+        """
+        Return a rendered post summary
+        """
+        try:
+            summary = self.body[:self.body.index("\n")]
+        except:
+            summary = self.body
+
+        return self.format(summary)
 
 
 class Comment(models.Model):
