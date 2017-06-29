@@ -6,14 +6,7 @@
 
 {% block content %}
 		<header class="content-header">
-			<nav>
-                <ul class="sub-nav">
-                    <li><a class="nav-item" href="{% url "wiblog:archive" %}">Archive</a></li>
-                    <li><a class="nav-item" href="{% url "wiblog:tags" %}">Tags</a></li>
-                    <li><a class="nav-item" href="{% url "wiblog:rss" %}">RSS</a></li>
-                    <li><a class="nav-item" href="{% url "wiblog:atom" %}">ATOM</a></li>
-                </ul>
-            </nav>
+			{% include "partial-nav.html" %}
 			<h1>Ye Olde Archive</h1>
 			<p>
 				A chronological listing of all of the blog posts to date.
@@ -27,7 +20,10 @@
 		<h2>{{ year.grouper }}</h2>
 		<ul>
 			{% for post in year.list reversed %}
-			<li>{{ post.date|date:"F jS" }}: <a href="{% url "wiblog:post" post.slug %}">{{ post.title }}</a></li>
+			<li>
+				{{ post.date|date:"F jS" }}: <a href=
+					"{% url "wiblog:post" post.slug %}">{{ post.title }}</a>
+			</li>
 			{% endfor %}
 		</ul>
 		{% endfor %}

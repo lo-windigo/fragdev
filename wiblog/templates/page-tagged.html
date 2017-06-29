@@ -6,27 +6,20 @@
 
 {% block content %}
 		<header>
-			<nav>
-                <ul class="sub-nav">
-                    <li><a class="nav-item" href="{% url "wiblog:archive" %}">Archive</a></li>
-                    <li><a class="nav-item" href="{% url "wiblog:tags" %}">Tags</a></li>
-                    <li><a class="nav-item" href="{% url "wiblog:rss" %}">RSS</a></li>
-                    <li><a class="nav-item" href="{% url "wiblog:atom" %}">ATOM</a></li>
-                </ul>
-            </nav>
+			{% include "partial-nav.html" %}
 			<h1>Posts Tagged With <span class="tag">{{ tag }}</span></h1>
 		</header>
-		{% if posts %}
+		{% if tag.posts.count > 0 %}
 		<p>
 			All of the following posts share a tag, and are related to that subject.
 			If you would like to try another subject, you can pick from the
 			available <a href="{% url "wiblog:tags" %}">tags</a>.
 		</p>
-		{% for post in posts %}
+		{% for post in tag.posts.all %}
 
 		<article>
 			<h1>{{ post.title }}</h1>
-			{{ post.body }}
+			{{ post.formatted_summary }}
 			<p>
 				Read the full post: <a href=
 				"{% url "wiblog:post" post.slug %}">{{ post.title }}</a>

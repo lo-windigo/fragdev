@@ -147,6 +147,7 @@ class Comment(models.Model):
     post = models.ForeignKey(Post)
     url = models.URLField(blank=True,
             null=True)
+    approved = managers.ApprovedCommentsManager()
 
     def __str__(self):
         """

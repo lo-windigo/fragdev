@@ -13,116 +13,94 @@
 # You should have received a copy of the GNU General Public License
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
+import smtplib
+from email.mime.text import MIMEText
 from django.template.context_processors import csrf
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404, redirect, render
-from wiblog.util.formatting import render_markdown
-from wiblog.models import Comment, Post, Tag
-from wiblog.util.comments import CommentForm
+from django.views import generic 
+from django.views.generic import edit
+from . import forms, models
 
 
-def index(request):
-    """ Blog index: Show a list of the most recent posts
+class IndexView(generic.ListView):
     """
-
-    # Get the 5 latest posts
-    posts = Post.objects.filter(status=Post.PUB).order_by('-date')[:5]
-
-    # Go through all the posts and format the post body
-    for post in posts:
-        post.body = render_markdown(post.body)
-
-    return render(request, 'base-wiblog.html', {'posts': posts})
-
-
-def archive(request):
-    """ An archival listing of all public posts
+    Blog index: Show a list of the most recent posts
     """
+    context_object_name = 'posts'
+    paginate_by = 5
+    queryset = models.Post.published.order_by('-date')
+    template_name = 'page-index.html'
 
-    posts = Post.objects.filter(status=Post.PUB)
 
-    return render(request, 'page-archive.html', {'posts': posts})
-
-
-def post(request, slug):
-    """ A single blog post
+class ArchiveView(generic.ListView):
     """
-
-    # Try to get the requested post
-    post = get_object_or_404(Post, slug=slug)
-
-    # If the form has been submitted...
-    if request.method == 'POST':
-
-        # A form bound to the POST data
-        comment = Comment(post=post)
-        form = CommentForm(request.POST, instance=comment)
-
-        # Form was validated, and contained good data
-        if form.is_valid():
-
-            # Save the comment
-            form.save()
-
-            # notify a mod
-            import smtplib
-            from email.mime.text import MIMEText
-
-            sender = 'wiblog@fragdev.com'
-            sendee = 'jacob@fragdev.com'
-    
-            msg = MIMEText('New Comment')
-            msg['Subject'] = 'Comments awaiting moderation'
-            msg['From'] = sender
-            msg['To'] = sendee
-
-            mailServer = smtplib.SMTP('localhost')
-            mailServer.sendmail(sender, [sendee], msg.as_string())
-            mailServer.quit
-
-    # If the form hasn't been submitted, get a blank form
-    else:
-        form = CommentForm() 
-
-    # Get any comments that go with a post
-    # TODO: Add Pagination if you become wildly popular
-    comments = Comment.objects.filter(post=post,moderated=Comment.HAM).order_by('-date')
-
-    # Format the post body for display
-    post.body = render_markdown(post.body)
-
-    # Format the comments for display
-    for comment in comments:
-        comment.comment = render_markdown(comment.comment)
-
-    return render(request,
-        'page-post.html',
-        {
-            'form': form,
-            'post': post,
-            'comments': comments
-        })
-
-
-def tags(request):
-    """ Display any blog tags that have been defined
+    An archival listing of all public posts
     """
-    
-    # Get any tags that have been defined
-    tags = Tag.objects.order_by('desc')
-
-    return render(request, 'page-tags.html', {'tags': tags})
+    context_object_name = 'posts'
+    queryset = models.Post.published.all()
+    template_name = 'page-archive.html'
 
 
-def tagged_posts(request, tag):
-    """ Show any posts that are associated with a tag
+class CommentView(edit.FormView):
     """
+    Processing comments
+    """
+    form_class = forms.CommentForm
+    template_name = 'page-contact.html'
 
-    tagObj = get_object_or_404(Tag, desc=tag)
-    posts = Post.objects.filter(tags=tagObj,status=Post.PUB)
+    def form_valid(self, form):
+        """
+        If handling a valid form, make sure to email a notification to someone
+        who can moderate it
+        """
+        sender = 'wiblog@fragdev.com'
+        sendee = 'jacob@fragdev.com'
 
-    # Go through all the posts, trim and format the post body
-    for post in posts:
-        post.body = render_markdown(post.body)
+        msg = MIMEText('New Comment')
+        msg['Subject'] = 'Comments awaiting moderation'
+        msg['From'] = sender
+        msg['To'] = sendee
 
-    return render(request, 'page-tagged.html', {'posts': posts, 'tag': tagObj})
+        mailServer = smtplib.SMTP('localhost')
+        mailServer.sendmail(sender, [sendee], msg.as_string())
+        mailServer.quit
+
+        return super().form_valid(self, form)
+
+
+class PostView(generic.DetailView):
+    """
+    A single blog post
+    """
+    context_object_name = 'post'
+    model = models.Post
+    template_name = 'page-post.html'
+
+    def get_context(self, **kwargs):
+        """
+        Add a comment form to the default context
+        """
+        context = super().get_context(**kwargs)
+
+        # Send in a comment form
+        context['form'] = forms.CommentForm(post=self.object)
+
+        return context
+
+
+class TagsView(generic.ListView):
+    """
+    Display any blog tags that have been defined
+    """
+    queryset = models.Tag.objects.order_by('desc')
+    context_object_name = 'tags'
+
+
+class TaggedPostView(generic.DetailView):
+    """
+    Show any posts that are associated with a tag
+    """
+    context_object_name = 'tag'
+    template_name = 'page-tagged.html'
+

@@ -17,14 +17,7 @@
 
 {% block content %}
 			<header class="content-header">
-			<nav>
-                <ul class="sub-nav">
-                    <li><a class="nav-item" href="{% url "wiblog:archive" %}">Archive</a></li>
-                    <li><a class="nav-item" href="{% url "wiblog:tags" %}">Tags</a></li>
-                    <li><a class="nav-item" href="{% url "wiblog:rss" %}">RSS</a></li>
-                    <li><a class="nav-item" href="{% url "wiblog:atom" %}">ATOM</a></li>
-                </ul>
-            </nav>
+				{% include "partial-nav.html" %}
 				<h1>Blog</h1>
 				<p>
 					This is a repository for the thoughts, notes, and achievements
@@ -46,7 +39,7 @@
 						{% endif %}
 					</p>
 				</header>
-				{{ post.body }}
+				{{ post.formatted_summary }}
 				<ul class="tag-list">
 					{% for tag in post.tags.all %}
 						<li>

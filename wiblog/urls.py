@@ -14,15 +14,31 @@
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.conf.urls import url
-from wiblog import views
-from wiblog.feeds import PostFeedAtom, PostFeedRSS
+from wiblog import feeds, views
 
 urlpatterns = [
-	url(r'^archive/?$', views.archive, name='archive'),
-	url(r'^feeds/atom/?$', PostFeedAtom(), name='atom'),
-	url(r'^feeds/rss/?$', PostFeedRSS(), name='rss'),
-	url(r'^tagged/(?P<tag>.+)/$', views.tagged_posts, name='tagged'),
-	url(r'^tags/?$', views.tags, name='tags'),
-	url(r'^(?P<slug>.+)$', views.post, name='post'),
-	url(r'^$', views.index, name='index'),
+	url(r'^archive/?$',
+            views.ArchiveView.as_view(),
+            name='archive'),
+	url(r'^comment/?$',
+            views.CommentView.as_view(),
+            name='tags'),
+	url(r'^feeds/atom/?$',
+            feeds.PostFeedAtom(),
+            name='atom'),
+	url(r'^feeds/rss/?$',
+            feeds.PostFeedRSS(),
+            name='rss'),
+	url(r'^tagged/(?P<tag>.+)/$',
+            views.TaggedPostView.as_view(),
+            name='tagged'),
+	url(r'^tags/?$',
+            views.TagsView.as_view(),
+            name='tags'),
+	url(r'^(?P<slug>.+)$',
+            views.PostView.as_view(),
+            name='post'),
+	url(r'^$',
+            views.IndexView.as_view(),
+            name='index'),
 ]

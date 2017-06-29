@@ -15,14 +15,7 @@
 		</div>
 		{% endif %}
 		<header class="content-header">
-			<nav>
-                <ul class="sub-nav">
-                    <li><a class="nav-item" href="{% url "wiblog:archive" %}">Archive</a></li>
-                    <li><a class="nav-item" href="{% url "wiblog:tags" %}">Tags</a></li>
-                    <li><a class="nav-item" href="{% url "wiblog:rss" %}">RSS</a></li>
-                    <li><a class="nav-item" href="{% url "wiblog:atom" %}">ATOM</a></li>
-                </ul>
-            </nav>
+			{% include "partial-nav.html" %}
 			<h1>{{ post.title }}</h1>
 			{% if post.subtitle %}
 			<p>
@@ -36,7 +29,7 @@
 				{% endif %}
 			</p>
 		</header>
-		{{ post.body }}
+		{{ post.formatted }}
 		{% if post.tags.all %}
 		<p>
 			Tags:
@@ -47,7 +40,7 @@
 		{% endif %}
 		<hr>
 		<h2>Comments</h2>
-		{% for comment in comments %}
+		{% for comment in post.comments.all %}
 		<blockquote class="blog-comment">
 			{{ comment.comment }}
 			<p>
@@ -60,9 +53,8 @@
 			</p>
 		</blockquote>
 		{% endfor %}
-		{% if not form.is_valid %}
 		<h2 id="add-comment">Add Your Comment</h2>
-		<form method="post">
+		<form method="post" action="{% url "wiblog:comment" %}">
 			{% csrf_token %}
 			{{ form.non_field_errors }}
 			<p>
@@ -97,5 +89,4 @@
 				<input type="submit" value="Make Comment">
 			</p>
 		</form>
-		{% endif %}
 {% endblock %}

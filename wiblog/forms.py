@@ -29,5 +29,8 @@ class CommentForm(forms.ModelForm):
 
     class Meta:
         model = models.Comment
-        fields = ('name', 'url', 'comment')
+        fields = ('name', 'url', 'comment', 'post')
+        widgets = {
+                'post': forms.HiddenInput()
+                }
 

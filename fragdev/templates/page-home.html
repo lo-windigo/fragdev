@@ -20,7 +20,7 @@
 				<h2>
 					<a href="{% url 'wiblog:post' post.slug %}">{{ post.title }}</a>
 				</h2>
-				{{ post.body }}
+				{{ post.formatted_summary }}
 				<p>
 					Read the full post: <a href=
 					"{% url 'wiblog:post' post.slug %}">{{ post.title }}</a>
@@ -56,9 +56,6 @@
 					"free, libre, open source software">FLOSS</abbr> software:
 				</p>
 				<ul>
-					<li>
-						<a href="https://micro.fragdev.com">GNUsocial</a>
-					</li>
 					<li>Mumble — (mumble.fragdev.net)</li>
 					<li>
 						<a href="https://cloud.fragdev.com">Owncloud</a>

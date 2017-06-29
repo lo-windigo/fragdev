@@ -15,7 +15,15 @@
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.db import models
-from . import models as fd_models
+from . import models as w_models
+
+
+class ApprovedCommentsManager(models.Manager):
+    """
+    A manager that filters out unmoderated comments
+    """
+    def get_queryset(self):
+        return super().get_queryset().filter(moderated=w_models.Comment.HAM)
 
 
 class PublishedPostManager(models.Manager):
@@ -23,5 +31,5 @@ class PublishedPostManager(models.Manager):
     A manager that only deals with published posts
     """
     def get_queryset(self):
-        return super().get_queryset().filter(status=fd_models.Post.PUB)
+        return super().get_queryset().filter(status=w_models.Post.PUB)
 

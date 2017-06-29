@@ -38,13 +38,9 @@ class HomeView(TemplateView):
         # Get the latest blog post
         if 'wiblog' in settings.INSTALLED_APPS:
             from wiblog.models import Post
-            from wiblog.util.formatting import render_markdown, summarize
 
             try:
-                post = Post.objects.filter(status=Post.PUB).order_by('-date')[0]
-                post.body = render_markdown(summarize(post.body))
-
-                context['post'] = post
+                context['post'] = Post.published.order_by('-date').first()
             except:
                 pass
 
