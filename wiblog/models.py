@@ -54,8 +54,7 @@ class Post(models.Model):
     status = models.CharField(max_length=9,
             choices=PUBLISH_STATUS)
     tags = models.ManyToManyField(Tag,
-            blank=True,
-            null=True)
+            blank=True)
     title = models.CharField(max_length=150)
     published = managers.PublishedPostManager()
 
