@@ -1,10 +1,16 @@
 
+from os.path import join
+
+
 #################
 # Common values #
 #################
 
 DOMAIN = 'example.com'
-WEBROOT = '/path/to/webroot'
+WEBROOT = '/path/to/virtualenv'
+STATIC_ROOT = join(WEBROOT, 'srv/static')
+MEDIA_ROOT = join(WEBROOT, 'srv/media')
+
 
 #################
 
@@ -26,7 +32,7 @@ DATABASES = {
 	# sqlite3
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "{}/file.sqlite".format(WEBROOT),
+        "NAME": join(WEBROOT, "srv/db.sqlite"),
     }
 	# MySQL
 #    "default": {
