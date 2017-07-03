@@ -9,13 +9,13 @@
 			{% include "partial-nav.html" %}
 			<h1>Posts Tagged With <span class="tag">{{ tag }}</span></h1>
 		</header>
-		{% if tag.posts.count > 0 %}
+		{% if tag.post_set.count > 0 %}
 		<p>
 			All of the following posts share a tag, and are related to that subject.
 			If you would like to try another subject, you can pick from the
 			available <a href="{% url "wiblog:tags" %}">tags</a>.
 		</p>
-		{% for post in tag.posts.all %}
+		{% for post in tag.post_set.all|dictsortreversed:"date.year" %}
 
 		<article>
 			<h1>{{ post.title }}</h1>

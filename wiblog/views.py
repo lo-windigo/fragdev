@@ -93,8 +93,8 @@ class TagsView(generic.ListView):
     """
     Display any blog tags that have been defined
     """
-    queryset = models.Tag.objects.order_by('desc')
     context_object_name = 'tags'
+    queryset = models.Tag.objects.order_by('desc')
     template_name = 'page-tags.html'
 
 
@@ -103,5 +103,8 @@ class TaggedPostView(generic.DetailView):
     Show any posts that are associated with a tag
     """
     context_object_name = 'tag'
+    model = models.Tag
+    slug_field = 'desc'
+    slug_url_kwarg = 'tag'
     template_name = 'page-tagged.html'
 

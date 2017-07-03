@@ -28,7 +28,7 @@ class Tag(models.Model):
     """
     A category of post or other object
     """
-    desc = models.CharField('Tag', max_length=50, unique=True)
+    desc = models.SlugField('Tag', max_length=50, unique=True)
 
     def __str__(self):
         return self.desc
