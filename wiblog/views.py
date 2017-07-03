@@ -30,7 +30,7 @@ class IndexView(generic.ListView):
     context_object_name = 'posts'
     paginate_by = 5
     queryset = models.Post.published.order_by('-date')
-    template_name = 'page-index.html'
+    template_name = 'base-wiblog.html'
 
 
 class ArchiveView(generic.ListView):
@@ -95,6 +95,7 @@ class TagsView(generic.ListView):
     """
     queryset = models.Tag.objects.order_by('desc')
     context_object_name = 'tags'
+    template_name = 'page-tags.html'
 
 
 class TaggedPostView(generic.DetailView):

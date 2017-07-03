@@ -32,7 +32,7 @@ other miscellaneous topics.
         """
         Get the posts present in this feed
         """
-        return  models.Post.published.order_by('-date')
+        return  models.Post.published.order_by('-date')[:10]
 
     def item_title(self, item):
         """
