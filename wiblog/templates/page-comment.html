@@ -1,0 +1,49 @@
+{% extends "base-wiblog.html" %}
+
+
+{% block title %}{{ post.title }}{% endblock %}
+
+
+{% block content %}
+		<header class="content-header">
+			{% include "partial-nav.html" %}
+			<h1>Comment</h1>
+		</header>
+		<h2 id="add-comment">Add Your Comment</h2>
+		<form method="post" action="{% url "wiblog:comment" %}">
+			{% csrf_token %}
+			{{ form.non_field_errors }}
+			<p>
+				{{ form.post }}
+				{{ form.name.errors }}
+				<label for="id_name">
+					{{ form.name.label }}:<br>
+					{{ form.name }}
+				</label>
+			</p>
+			<p>
+				{{ form.url.errors }}
+				<label for="id_url">
+					{{ form.url.label }}:<br>
+					{{ form.url }}
+				</label>
+			</p>
+			<p>
+				{{ form.comment.errors }}
+				<label for="id_comment">
+					{{ form.comment.label }}:<br>
+					{{ form.comment }}
+				</label>
+			</p>
+			<p>
+				{{ form.verify.errors }}
+				<label for="id_verify">
+					{{ form.verify.label }}:<br>
+					{{ form.verify }}
+				</label>
+			</p>
+			<p>
+				<input type="submit" value="Make Comment">
+			</p>
+		</form>
+{% endblock %}

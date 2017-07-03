@@ -14,7 +14,8 @@
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.conf.urls import url
-from wiblog import feeds, views
+from django.views.generic import TemplateView
+from . import feeds, views
 
 urlpatterns = [
 	url(r'^archive/?$',
@@ -22,7 +23,10 @@ urlpatterns = [
             name='archive'),
 	url(r'^comment/?$',
             views.CommentView.as_view(),
-            name='tags'),
+            name='comment'),
+	url(r'^comment-successful/?$',
+            TemplateView.as_view(template_name="page-commented.html"),
+            name='comment-successful'),
 	url(r'^feeds/atom/?$',
             feeds.PostFeedAtom(),
             name='atom'),

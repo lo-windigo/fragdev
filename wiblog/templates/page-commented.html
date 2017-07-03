@@ -1,0 +1,26 @@
+{% extends "base-wiblog.html" %}
+
+
+{% block title %}Comment Saved{% endblock %}
+
+
+{% block content %}
+		<header class="content-header">
+			{% include "partial-nav.html" %}
+			<h1>Comment Saved</h1>
+			<p>
+				Your feedback is important to me… unless you're a spam bot.
+			</p>
+		</header>
+		<p>
+			Hey, thanks for leaving me a comment. I really do appreciate that
+			you took your time to leave me your thoughts.
+		</p>
+		<p>
+			Unfortunately, I have to moderate them to prevent getting spammed 
+			into oblivion. It should appear shortly.
+		</p>
+		<p>
+			<a href="{% url "wiblog:index" %}">Home</a>
+		</p>
+{% endblock %}

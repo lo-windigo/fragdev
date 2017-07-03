@@ -15,9 +15,11 @@
 
 import smtplib
 from email.mime.text import MIMEText
-from django.template.context_processors import csrf
+from django.conf import settings
 from django.core.mail import send_mail
+from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import get_object_or_404, redirect, render
+from django.template.context_processors import csrf
 from django.views import generic 
 from django.views.generic import edit
 from . import forms, models
@@ -42,20 +44,22 @@ class ArchiveView(generic.ListView):
     template_name = 'page-archive.html'
 
 
-class CommentView(edit.FormView):
+class CommentView(edit.CreateView):
     """
     Processing comments
     """
     form_class = forms.CommentForm
-    template_name = 'page-contact.html'
+    model = models.Comment
+    success_url = reverse_lazy('comment-successful')
+    template_name = 'page-comment.html'
 
     def form_valid(self, form):
         """
         If handling a valid form, make sure to email a notification to someone
         who can moderate it
         """
-        sender = 'wiblog@fragdev.com'
-        sendee = 'jacob@fragdev.com'
+        sender = settings.CONTACT_SENDER
+        sendee = settings.CONTACT_EMAIL
 
         msg = MIMEText('New Comment')
         msg['Subject'] = 'Comments awaiting moderation'
@@ -77,14 +81,16 @@ class PostView(generic.DetailView):
     model = models.Post
     template_name = 'page-post.html'
 
-    def get_context(self, **kwargs):
+    def get_context_data(self, **kwargs):
         """
         Add a comment form to the default context
         """
-        context = super().get_context(**kwargs)
+        context = super().get_context_data(**kwargs)
 
         # Send in a comment form
-        context['form'] = forms.CommentForm(post=self.object)
+        context['comment_form'] = forms.CommentForm(initial={
+            'post': self.object.pk,
+            })
 
         return context
 

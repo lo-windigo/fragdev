@@ -152,5 +152,18 @@ class Comment(models.Model):
         """
         Provide a decent representation for the admin section
         """
-        return '{}: {}'.format(self.name, preview[:75])
+        return '{}: {}'.format(self.name, self.comment[:75])
+
+    def format(self, markdown):
+        """
+        Format markdown into HTML
+        """
+        return mark_safe(commonmark(markdown))
+
+    @property
+    def formatted(self):
+        """
+        Return the rendered comment body
+        """
+        return self.format(self.comment)
 
