@@ -70,7 +70,7 @@ class CommentView(edit.CreateView):
         mailServer.sendmail(sender, [sendee], msg.as_string())
         mailServer.quit
 
-        return super().form_valid(self, form)
+        return super().form_valid(form)
 
 
 class PostView(generic.DetailView):
