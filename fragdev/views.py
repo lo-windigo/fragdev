@@ -99,7 +99,7 @@ Message:
         full_body = MESSAGE_TEMPLATE.format(name, email, message)
         recipients = [ settings.CONTACT_EMAIL ]
 
-        send_mail(settings.CONTACT_SUBJECT, fullBody, settings.CONTACT_SENDER, recipients)
+        send_mail(settings.CONTACT_SUBJECT, full_body, settings.CONTACT_SENDER, recipients)
 
         return super().form_valid(form)
 
