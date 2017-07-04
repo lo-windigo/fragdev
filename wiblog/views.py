@@ -53,7 +53,7 @@ class CommentView(edit.CreateView):
     success_url = reverse_lazy('comment-successful')
     template_name = 'page-comment.html'
 
-    def form_valid(form):
+    def form_valid(self, form):
         """
         If handling a valid form, make sure to email a notification to someone
         who can moderate it
