@@ -50,7 +50,7 @@ class CommentView(edit.CreateView):
     """
     form_class = forms.CommentForm
     model = models.Comment
-    success_url = reverse_lazy('comment-successful')
+    success_url = reverse_lazy('wiblog:comment-successful')
     template_name = 'page-comment.html'
 
     def form_valid(self, form):
