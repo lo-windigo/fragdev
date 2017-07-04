@@ -53,6 +53,9 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag,
             blank=True)
     title = models.CharField(max_length=150)
+
+    # Define model managers
+    objects = models.Manager() 
     published = managers.PublishedPostManager()
 
     def __str__(self):
@@ -139,6 +142,9 @@ class Comment(models.Model):
     post = models.ForeignKey(Post)
     url = models.URLField(blank=True,
             null=True)
+
+    # Define model managers
+    objects = models.Manager() 
     approved = managers.ApprovedCommentsManager()
 
     def __str__(self):
