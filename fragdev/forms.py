@@ -14,16 +14,7 @@
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
 from django import forms
-from django.conf import settings
-from django.core.mail import send_mail
 from .util.validate_ham import ANTI_SPAM, validate_ham
-
-
-MESSAGE_TEMPLATE = '''
-Name: {} <{}>
-Message:
-{}
-'''
 
 
 class ContactForm(forms.Form):
@@ -37,16 +28,4 @@ class ContactForm(forms.Form):
             .format(ANTI_SPAM),
             validators=[validate_ham],
             max_length=len(ANTI_SPAM))
-
-    def form_valid(self, form):
-        """
-        Send email with cleaned_data from form
-        """
-        name = form.cleaned_data['name']
-        email = form.cleaned_data['email']
-        message = form.cleaned_data['message']
-        full_body = MESSAGE_TEMPLATE.format(name, email, message)
-        recipients = [ settings.CONTACT_EMAIL ]
-
-        send_mail(settings.CONTACT_SUBJECT, fullBody, settings.CONTACT_SENDER, recipients)
 
