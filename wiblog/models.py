@@ -20,7 +20,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.safestring import mark_safe
-from wiblog import managers
+from wiblog import choices, managers
 from images.models import Image
 
 
@@ -41,12 +41,9 @@ class Post(models.Model):
     """
     A single blog post
     """
-    DFT = 'DFT'
-    PUB = 'PUB'
-    PUBLISH_STATUS = (
-        (DFT, 'Draft'),
-        (PUB, 'Published'),
-    )
+    DFT = choices.PostChoices.DFT
+    PUB = choices.PostChoices.PUB
+    PUBLISH_STATUS = choices.PostChoices.PUBLISH_STATUS
     body = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -129,14 +126,10 @@ class Comment(models.Model):
     """
     Comments - Other people's input on posts
     """
-    HAM = 'HAM'
-    SPM = 'SPM'
-    UNK = 'UNK'
-    MOD_STATUS = (
-        (HAM, 'Valid'),
-        (SPM, 'Invalid (Spam)'),
-        (UNK, 'Unmoderated'),
-    )
+    HAM = choices.CommentChoices.HAM
+    SPM = choices.CommentChoices.SPM
+    UNK = choices.CommentChoices.UNK
+    MOD_STATUS = choices.CommentChoices.MOD_STATUS
     comment = models.TextField()
     name = models.CharField(max_length=150)
     date = models.DateTimeField(auto_now_add=True)

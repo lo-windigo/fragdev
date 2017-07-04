@@ -14,24 +14,22 @@
 # You should have received a copy of the GNU General Public License
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
-from django.db import models
-from wiblog import choices
 
+class CommentChoices():
+    HAM = 'HAM'
+    SPM = 'SPM'
+    UNK = 'UNK'
+    MOD_STATUS = (
+        (HAM, 'Valid'),
+        (SPM, 'Invalid (Spam)'),
+        (UNK, 'Unmoderated'),
+    )
 
-class ApprovedCommentsManager(models.Manager):
-    """
-    A manager that filters out unmoderated comments
-    """
-    def get_queryset(self):
-        return super().get_queryset().filter(
-                moderated=choices.CommentChoices.HAM)
-
-
-class PublishedPostManager(models.Manager):
-    """
-    A manager that only deals with published posts
-    """
-    def get_queryset(self):
-        return super().get_queryset().filter(
-                status=choices.PostChoices.PUB)
+class PostChoices():
+    DFT = 'DFT'
+    PUB = 'PUB'
+    PUBLISH_STATUS = (
+        (DFT, 'Draft'),
+        (PUB, 'Published'),
+    )
 
