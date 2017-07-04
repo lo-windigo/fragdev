@@ -15,7 +15,7 @@
 
 from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Atom1Feed, Rss201rev2Feed
-from . import models
+from wiblog import models
 
 
 # RSS Feed Class

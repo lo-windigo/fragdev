@@ -22,7 +22,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.template.context_processors import csrf
 from django.views import generic 
 from django.views.generic import edit
-from . import forms, models
+from wiblog import forms, models
 
 
 class IndexView(generic.ListView):

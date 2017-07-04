@@ -15,7 +15,7 @@
 
 from django import forms
 from fragdev.util.validate_ham import ANTI_SPAM, validate_ham
-from . import models
+from wiblog import models
 
 
 class CommentForm(forms.ModelForm):

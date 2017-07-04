@@ -14,7 +14,7 @@
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.contrib import admin
-from . import models
+from wiblog import models
 
 
 class PostAdmin(admin.ModelAdmin):

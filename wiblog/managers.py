@@ -15,7 +15,7 @@
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.db import models
-from . import models as w_models
+from wiblog import models as w_models
 
 
 class ApprovedCommentsManager(models.Manager):

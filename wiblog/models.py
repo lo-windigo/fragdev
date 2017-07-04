@@ -20,7 +20,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.safestring import mark_safe
-from . import managers
+from wiblog import managers
 from images.models import Image
 
 

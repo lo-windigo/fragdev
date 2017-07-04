@@ -14,7 +14,7 @@
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.conf.urls import url
-from . import views
+from projects import views
 
 urlpatterns = [
     url(r'^$', views.index, name='projects'),
