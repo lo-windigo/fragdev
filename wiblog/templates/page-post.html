@@ -32,7 +32,7 @@
 		{% if post.comment_set.count > 0 %}
 		<hr>
 		<h2>Comments</h2>
-		{% for comment in post.comment_set.all|dictsortreversed:"date" %}
+		{% for comment in post.comments|dictsortreversed:"date" %}
 		<blockquote class="blog-comment">
 			{{ comment.comment }}
 			<p>

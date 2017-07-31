@@ -105,6 +105,12 @@ class Post(models.Model):
 
         return mark_safe(commonmark(markdown))
 
+    def comments(self):
+        """
+        Only return moderated comments that apply to this post
+        """
+        return Comment.approved.filter(post=self.pk)
+
     @property
     def formatted(self):
         """

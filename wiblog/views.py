@@ -49,7 +49,7 @@ class CommentView(edit.CreateView):
     Processing comments
     """
     form_class = forms.CommentForm
-    model = models.Comment
+    model = Comment
     success_url = reverse_lazy('wiblog:comment-successful')
     template_name = 'page-comment.html'
 
