@@ -13,13 +13,13 @@
 # You should have received a copy of the GNU General Public License
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
-# Django settings for fragdev project.
-import os
+import os, stat
 
+
+# Default DEBUG value to false - overridden in local_settings.py
 DEBUG = False
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
-# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ['127.0.0.1']
 
 # Local time zone for this installation. Choices can be found here:
@@ -65,6 +65,9 @@ STATIC_URL = '/static/'
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 MEDIA_URL = '/media/'
+
+# Default filesystem permissions for uploaded files
+FILE_UPLOAD_PERMISSIONS = stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP
 
 # List of callables that know how to import templates from various sources.
 MIDDLEWARE_CLASSES = (
