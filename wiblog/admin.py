@@ -14,7 +14,29 @@
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.contrib import admin
+from django import forms
 from wiblog import models
+
+
+class CommentForm(forms.ModelForm):
+    """
+    Specify a couple changes to the default model form for comments
+    """
+    class Meta:
+        model = models.Comment
+        fields = ('name', 'url', 'comment', 'moderated', 'post')
+        widgets = {
+                'moderated': forms.RadioSelect(
+                    choices=models.Comment.MOD_STATUS),
+                }
+
+
+class CommentAdmin(admin.ModelAdmin):
+    """
+    Add extra functionality to the comments admin section
+    """
+    form = CommentForm
+    list_filter = ('moderated',)
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -27,5 +49,5 @@ class PostAdmin(admin.ModelAdmin):
 
 # Register all our models with the built-in admin
 admin.site.register(models.Post, PostAdmin)
-admin.site.register(models.Comment)
+admin.site.register(models.Comment, CommentAdmin)
 admin.site.register(models.Tag)
