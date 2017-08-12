@@ -77,7 +77,7 @@ class Post(models.Model):
         tags = []
 
         # Find all instance of the dynamic image markdown
-        for tag in re.finditer(r'\!\[I:([\w-]+)\]', self.body):
+        for tag in re.finditer(r'\!\[I:([\w-]+)\]', markdown):
 
             tag_slug = tag.group(1)
 
@@ -123,10 +123,15 @@ class Post(models.Model):
         """
         Return a rendered post summary
         """
+
+        # FIX: For some reason, CRLF line endings are getting into Post data??
+        post_text = self.body.replace("\r", "")
+
+        # Get the first paragraph of text, and format that
         try:
-            summary = self.body[:self.body.index("\n")]
-        except:
-            summary = self.body
+            summary = post_text[:post_text.index("\n\n")]
+        except ValueError:
+            summary = post_text
 
         return self.format(summary)
 
