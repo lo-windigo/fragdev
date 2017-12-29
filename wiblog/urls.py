@@ -17,6 +17,8 @@ from django.conf.urls import url
 from django.views.generic import TemplateView
 from wiblog import feeds, views
 
+app_name = 'wiblog'
+
 urlpatterns = [
 	url(r'^archive/?$',
             views.ArchiveView.as_view(),

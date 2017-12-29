@@ -17,7 +17,7 @@
 import re
 from CommonMark import commonmark
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models
 from django.utils.safestring import mark_safe
 from wiblog import choices, managers
@@ -150,7 +150,7 @@ class Comment(models.Model):
     moderated = models.CharField(choices=MOD_STATUS,
             default=UNK,
             max_length=14)
-    post = models.ForeignKey(Post)
+    post = models.ForeignKey(Post, models.CASCADE)
     url = models.URLField(blank=True,
             null=True)
 

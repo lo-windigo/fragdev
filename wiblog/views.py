@@ -17,7 +17,7 @@ import smtplib
 from email.mime.text import MIMEText
 from django.conf import settings
 from django.core.mail import send_mail
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template.context_processors import csrf
 from django.views import generic 

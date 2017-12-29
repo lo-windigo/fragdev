@@ -14,5 +14,8 @@
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
 # Placeholder urlpatterns list, in case views are added
+
+app_name = 'images'
+
 urlpatterns = []
 

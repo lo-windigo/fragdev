@@ -18,7 +18,7 @@ from django.core.mail import send_mail
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 from django.template.context_processors import csrf
-from django.core.urlresolvers import reverse, reverse_lazy
+from django.urls import reverse, reverse_lazy
 from fragdev import forms
 import time
 

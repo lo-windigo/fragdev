@@ -45,7 +45,7 @@ urlpatterns = [
         TemplateView.as_view(template_name="page-hire.html"),
         name='hire'
     ),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
 ]
 
 # Set up some custom url patterns for debugging
@@ -63,7 +63,7 @@ if 'wiblog' in settings.INSTALLED_APPS:
     import wiblog.urls
 
     urlpatterns += [
-        url(r'^blog/', include(wiblog.urls, app_name='wiblog', namespace='wiblog')),
+        url(r'^blog/', include(wiblog.urls)),
     ]	
 
 
@@ -73,7 +73,7 @@ if 'images' in settings.INSTALLED_APPS:
     import images.urls
 
     urlpatterns += [
-        url(r'^img/', include(images.urls, app_name='images', namespace='images')),
+        url(r'^img/', include(images.urls)),
     ]	
 
 
@@ -83,10 +83,6 @@ if 'projects' in settings.INSTALLED_APPS:
     import projects.urls
 
     urlpatterns += [
-        url(r'^projects/', include(
-            projects.urls,
-            app_name='projects',
-            namespace='projects')
-        ),
+        url(r'^projects/', include(projects.urls)),
     ]	
 
