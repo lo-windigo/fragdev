@@ -1,0 +1,26 @@
+{
+	"name": "Fragmented Development",
+	"snort_name": "FragDev",
+	"description": "The personal and professional website of Jacob Hume",
+	"background_color": "#bed6d6",
+	"dir": "ltr",
+	"icons": [
+		{
+			"src": "img/fd-icon-1x.png",
+			"type": "image/png",
+			"sizes": "48x48"
+		},
+		{
+			"src": "img/fd-icon-2x.png",
+			"type": "image/png",
+			"sizes": "96x96"
+		},
+		{
+			"src": "img/fd-icon-4x.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		}
+	],
+	"lang": "en-US",
+	"start_url": "/"
+}
