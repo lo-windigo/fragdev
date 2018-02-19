@@ -6,17 +6,17 @@
 	"dir": "ltr",
 	"icons": [
 		{
-			"src": "img/fd-icon-1x.png",
+			"src": "/static/fragdev/fd-icon-1x.png",
 			"type": "image/png",
 			"sizes": "48x48"
 		},
 		{
-			"src": "img/fd-icon-2x.png",
+			"src": "/static/fragdev/fd-icon-2x.png",
 			"type": "image/png",
 			"sizes": "96x96"
 		},
 		{
-			"src": "img/fd-icon-4x.png",
+			"src": "/static/fragdev/fd-icon-4x.png",
 			"type": "image/png",
 			"sizes": "192x192"
 		}
