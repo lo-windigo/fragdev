@@ -14,7 +14,7 @@
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 from django.template.context_processors import csrf
@@ -83,23 +83,30 @@ class ContactView(FormView):
     form_class = forms.ContactForm
     success_url = reverse_lazy('contacted')
     template_name = 'page-contact.html'
+    MESSAGE_TEMPLATE = '''
+Name: {} <{}>
+Message:
+{}
+'''
 
     def form_valid(self, form):
         """
         Send email with cleaned_data from form
         """
-        MESSAGE_TEMPLATE = '''
-Name: {} <{}>
-Message:
-{}
-'''
-        name = form.cleaned_data['name']
-        email = form.cleaned_data['email']
-        message = form.cleaned_data['message']
-        full_body = MESSAGE_TEMPLATE.format(name, email, message)
-        recipients = [ settings.CONTACT_EMAIL ]
+        email = EmailMessage()
+        contact_name = form.cleaned_data['name']
+        contact_email = form.cleaned_data['email']
+        contact_message = form.cleaned_data['message']
 
-        send_mail(settings.CONTACT_SUBJECT, full_body, settings.CONTACT_SENDER, recipients)
+        # Set up the EmailMessage object
+        email.body = self.MESSAGE_TEMPLATE.format(contact_name, contact_email,
+                contact_message)
+        email.to = [ settings.CONTACT_EMAIL ]
+        email.subject = settings.CONTACT_SUBJECT
+        email.from_email = settings.CONTACT_SENDER
+        email.reply_to = [ form.cleaned_data['email'] ]
+
+        email.send()
 
         return super().form_valid(form)
 
