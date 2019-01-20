@@ -20,6 +20,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
 from django.db import models
 from django.utils.safestring import mark_safe
+from django.utils.text import slugify
+from django.utils.timezone import now
 from wiblog import choices, managers
 from images.models import Image
 
@@ -45,8 +47,8 @@ class Post(models.Model):
     PUB = choices.PostChoices.PUB
     PUBLISH_STATUS = choices.PostChoices.PUBLISH_STATUS
     body = models.TextField()
-    date = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    date = models.DateTimeField(default=now)
+    updated = models.DateTimeField(blank=True, null=True)
     slug = models.SlugField(max_length=150)
     status = models.CharField(max_length=9,
             choices=PUBLISH_STATUS)
@@ -134,6 +136,24 @@ class Post(models.Model):
             summary = post_text
 
         return self.format(summary)
+
+
+    def save(self, show_updated=True):
+        """
+        Override the save method to do a bunch of sensible stuff, like setting
+        default field values and setting up the slug field
+        """
+
+        # Default slug: just slugify the title
+        if not self.slug:
+            self.slug = slugify(self.title)
+
+        # Update the updated time, if this is an existing object
+        if self.id and show_updated:
+            self.updated = now()
+
+        # Call the actual save method
+        super().save()
 
 
 class Comment(models.Model):
