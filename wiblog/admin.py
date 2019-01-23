@@ -39,11 +39,27 @@ class CommentAdmin(admin.ModelAdmin):
     list_filter = ('moderated',)
 
 
+class PostForm(forms.ModelForm):
+    """
+    Specify a couple changes to the default model form for comments
+    """
+    class Meta:
+        model = models.Post
+        fields = ('title', 'slug', 'body', 'tags', 'status')
+        widgets = {
+                'status': forms.RadioSelect(
+                    choices=models.Post.PUBLISH_STATUS),
+                }
+
+
 class PostAdmin(admin.ModelAdmin):
     """
     Customize the post admin slightly
     """
-    fields = ('title', 'slug', 'body', 'tags', 'status')
+    #TODO: Can be reinstated after bulk post import
+    #admin_order_field = '-date'
+    form = PostForm
+    list_filter = ('status',)
     prepopulated_fields = {'slug': ('title', )}
 
 
