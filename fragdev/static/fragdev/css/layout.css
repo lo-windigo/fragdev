@@ -318,6 +318,14 @@ textarea {
 	text-transform: uppercase;
 }
 
+.pagination-next::after {
+	content: " »";
+}
+
+.pagination-prev::before {
+	content: "« ";
+}
+
 .site-title>a {
 	color: #fefefe;
 	font-size: 3em;
