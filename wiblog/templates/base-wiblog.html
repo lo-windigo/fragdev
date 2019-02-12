@@ -55,16 +55,16 @@
 			{% if is_paginated %}
 			<nav role="navigation" aria-label="Pagination Navigation">
 				<ul class="sub-nav">
-					{% if page_obj.has_next %}
-					<li>
-						<a href="{% url "wiblog:index" %}?page={{ page_obj.next_page_number }}"
-							class="nav-item pagination-prev">Older Posts</a>
-					</li>
-					{% endif %}
 					{% if page_obj.has_previous %}
 					<li>
 						<a href="{% url "wiblog:index" %}?page={{ page_obj.previous_page_number }}"
-							class="nav-item pagination-next">Newer Posts</a>
+							class="nav-item pagination-prev">Newer Posts</a>
+					</li>
+					{% endif %}
+					{% if page_obj.has_next %}
+					<li>
+						<a href="{% url "wiblog:index" %}?page={{ page_obj.next_page_number }}"
+							class="nav-item pagination-next">Older Posts</a>
 					</li>
 					{% endif %}
 				</ul>
