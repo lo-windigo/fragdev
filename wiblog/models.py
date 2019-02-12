@@ -107,11 +107,29 @@ class Post(models.Model):
 
         return mark_safe(commonmark(markdown))
 
+
+    def format_line(self, markdown):
+        """
+        Renders a single line of markdown as HTML without inserting it into a
+        paragraph tag
+        """
+        html = self.format(markdown)
+
+        if html.startswith('<p>'):
+            html = html[3:]
+
+        if html.endswith('</p>\n'):
+            html = html[:-5]
+
+        return mark_safe(html)
+
+
     def comments(self):
         """
         Only return moderated comments that apply to this post
         """
         return Comment.approved.filter(post=self.pk)
+
 
     @property
     def formatted(self):
@@ -119,6 +137,7 @@ class Post(models.Model):
         Return the rendered post body
         """
         return self.format(self.body)
+
 
     @property
     def formatted_summary(self):
@@ -136,6 +155,14 @@ class Post(models.Model):
             summary = post_text
 
         return self.format(summary)
+
+
+    @property
+    def formatted_title(self):
+        """
+        Return the rendered post body
+        """
+        return self.format_line(self.title)
 
 
     def save(self, show_updated=True):
