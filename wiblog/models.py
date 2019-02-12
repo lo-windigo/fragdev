@@ -15,7 +15,7 @@
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
 import re
-from CommonMark import commonmark
+from commonmark import commonmark
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
 from django.db import models
