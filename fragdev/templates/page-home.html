@@ -18,12 +18,12 @@
 			<article>
 				<h1>Latest Post</h1>
 				<h2>
-					<a href="{% url 'wiblog:post' post.slug %}">{{ post.title }}</a>
+					<a href="{% url 'wiblog:post' post.slug %}">{{ post.formatted_title }}</a>
 				</h2>
 				{{ post.formatted_summary }}
 				<p>
 					Read the full post: <a href=
-					"{% url 'wiblog:post' post.slug %}">{{ post.title }}</a>
+					"{% url 'wiblog:post' post.slug %}">{{ post.formatted_title }}</a>
 				</p>
 			</article>
 			{% endif %}

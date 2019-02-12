@@ -18,11 +18,11 @@
 		{% for post in tag.post_set.all|dictsortreversed:"date.year" %}
 
 		<article>
-			<h1>{{ post.title }}</h1>
+			<h1>{{ post.formatted_title }}</h1>
 			{{ post.formatted_summary }}
 			<p>
 				Read the full post: <a href=
-				"{% url "wiblog:post" post.slug %}">{{ post.title }}</a>
+				"{% url "wiblog:post" post.slug %}">{{ post.formatted_title }}</a>
 			</p>
 		</article>
 

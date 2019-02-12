@@ -30,7 +30,8 @@
 			<article>
 				<header class="post-header">
 					<h1 class="post-title">
-						<a href="{% url "wiblog:post" slug=post.slug %}">{{ post.title }}</a>
+						<a href="{% url "wiblog:post" slug=post.slug %}">
+							{{ post.formatted_title }}</a>
 					</h1>
 					<p class="post-date">
 						Posted on {{ post.date|date:"Y-m-d" }}

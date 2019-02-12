@@ -22,7 +22,7 @@
 			{% for post in year.list reversed %}
 			<li>
 				{{ post.date|date:"F jS" }}: <a href=
-					"{% url "wiblog:post" post.slug %}">{{ post.title }}</a>
+					"{% url "wiblog:post" post.slug %}">{{ post.formatted_title }}</a>
 			</li>
 			{% endfor %}
 		</ul>
