@@ -42,7 +42,9 @@ class Image(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     imgFile = models.FileField(upload_to='img/')
     slug = models.SlugField()
-    content_type = models.CharField(max_length=30)
+    content_type = models.CharField(max_length=30,
+            blank=True,
+            null=True)
 
     def save(self, *args, **kwargs):
 
