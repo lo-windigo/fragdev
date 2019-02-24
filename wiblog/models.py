@@ -79,7 +79,7 @@ class Post(models.Model):
         tags = []
 
         # Find all instance of the dynamic image markdown
-        for tag in re.finditer(r'\!\[I:([\w-]+)\]', markdown):
+        for tag in re.finditer(r'\[I:([\w-]+)\]', markdown):
 
             tag_slug = tag.group(1)
 
