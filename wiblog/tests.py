@@ -13,13 +13,15 @@
 # You should have received a copy of the GNU General Public License
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
+from .models import Post
 from images.models import Image
-from .util.formatting import render_markdown, summarize
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 
 
-class UtilsTestCase(TestCase):
+class MarkdownTestCase(TestCase):
+    """ Various markdown conversions and formatting
+    """
 
     image_content_type = 'image/gif'
     image_desc = "This is a quick test image"
@@ -44,8 +46,10 @@ class UtilsTestCase(TestCase):
         """
         test_image = Image.objects.get(slug=self.image_slug)
         custom_tag = '[I:{}]'.format(self.image_slug)
-        markdown = '![{}]({})'.format(self.image_desc,
-                    test_image.get_absolute_url())
+        resulting_html = '<img src="{}" alt="{}" />'.format(
+                    test_image.get_absolute_url(),
+                    self.image_desc)
+        test_post = Post()
 
-        assertEquals(render_markdown(custom_tag), markdown)
+        self.assertEquals(test_post.format_line(custom_tag), resulting_html)
 
