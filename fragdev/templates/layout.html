@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static "fragdev/css/layout.css" %}">
+{% endblock %}
+</head>
+
+<body>
+	{% block body %}
+	<a href="#content" class="a11y-link">Skip to content</a>
+	<header class="header">
+		<div class="site-title"><a href="/">Fragmented Development</a></div>
+		<nav>
+			<ul class="nav boxy">
+				{% include "partials/nav.html" %}
+			</ul>
+		</nav>
+	</header>
+
+	<main class="boxy" id="content">
+		{% block content %}
+		{% endblock %}
+	</main>
+	<nav>
+		<ul class="nav">
+			<li><a class="nav-item" href="{% url 'about' %}">About</a></li>
+			<li><a class="nav-item" href="{% url 'wiblog:index' %}">Blog</a></li>
+			<li><a class="nav-item" href="{% url 'contact' %}">Contact</a></li>
+			<li><a class="nav-item" href="{% url 'projects:projects' %}">Projects</a></li>
+			{#<li><a class="nav-item" href="{% url 'resume' %}">Résumé</a></li>#}
+		</ul>
+	</nav>
+	<footer>
+		© 2016, Jacob Hume. The CSS/HTML/JS is released under <a href=
+		"https://www.gnu.org/licenses/agpl.html">AGPLv3</a>. The typeface is <a
+		href="https://www.google.com/fonts/specimen/Roboto">Roboto</a>, by
+		Christian Robertson.
+	</footer>
+	{% endblock %}
+</body>
+
+</html>

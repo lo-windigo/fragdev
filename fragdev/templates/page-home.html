@@ -1,10 +1,11 @@
-{% extends "base.html" %}
+{% extends "layout.html" %}
 
 {% load static %}
 
 {% block title %}Fragmented Development{% endblock %}
 
 {% block head %}
+	{{ block.super }}
 	<link rel="openid2.provider" href="https://id.fragdev.com"/>
 	<link rel="openid2.local_id" href="https://fragdev.com"/>
 	<link rel="openid.server" href="https://id.fragdev.com"/>

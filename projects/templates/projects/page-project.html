@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "layout.html" %}
 {% load static %}
 
 
@@ -6,6 +6,7 @@
 
 
 {% block head %}
+	{{ block.super }}
 	<link rel="stylesheet" type="text/css" href=
 		"{% static "projects/css/projects.css" %}">
 {% endblock %}
