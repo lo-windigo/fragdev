@@ -37,14 +37,22 @@ urlpatterns = [
         TemplateView.as_view(template_name="page-contacted.html"),
         name='contacted'
     ),
+    url(r'^contacted/?$',
+        TemplateView.as_view(template_name="page-contacted.html"),
+        name='contacted'
+    ),
+    url(r'^minecraft/?$',
+        TemplateView.as_view(template_name="page-minecraft.html"),
+        name='minecraft'
+    ),
     url(r'^resume/?$',
         TemplateView.as_view(template_name="page-resume.html"),
         name='resume'
     ),
-    url(r'^hire/?$',
-        TemplateView.as_view(template_name="page-hire.html"),
-        name='hire'
-    ),
+#    url(r'^hire/?$',
+#        TemplateView.as_view(template_name="page-hire.html"),
+#        name='hire'
+#    ),
     url(r'^admin/', admin.site.urls),
 ]
 

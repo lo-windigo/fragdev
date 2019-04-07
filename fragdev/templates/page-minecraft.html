@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{% static "fragdev/css/minecraft.css" %}">
+{% endblock %}
+
+{% block body %}
+	<main id="content" class="map-overlay">
+		<h1>Minecraft</h1>
+		<p>
+			This is my Minecraft world. I spend a lot of time here, and thought
+			it might be interested to let others take a look around. Enjoy.
+		</p>
+	</main>
+	<iframe class="map" src="http://biddy.fragdev.net:7777"></iframe>
+{% endblock %}
