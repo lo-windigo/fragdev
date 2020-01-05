@@ -41,6 +41,10 @@ urlpatterns = [
         TemplateView.as_view(template_name="page-contacted.html"),
         name='contacted'
     ),
+    url(r'^mei2019/?$',
+        TemplateView.as_view(template_name="page-mei2019.html"),
+        name='mei2019'
+    ),
     url(r'^minecraft/?$',
         TemplateView.as_view(template_name="page-minecraft.html"),
         name='minecraft'
