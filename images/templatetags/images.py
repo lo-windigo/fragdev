@@ -40,3 +40,23 @@ def image(arg):
                     arg
                 )
 
+@register.simple_tag
+def image_thumbnail(arg):
+    """
+    Get a thumbnail image & anchor for an Image model (based on slug)
+    """
+    try:
+        image_model = Image.objects.get(slug=arg)
+
+        return format_html(
+		    '<a href="{url}"><img src="{url}" alt="{desc}"></a>',
+		    url=image_model.get_absolute_url(),
+		    desc=image_model.desc
+		)
+
+    except:
+        return format_html(
+                    '<!-- Cannot retrieve image: {} -->',
+                    arg
+                )
+
