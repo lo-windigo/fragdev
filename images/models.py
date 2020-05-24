@@ -49,7 +49,7 @@ class Image(models.Model):
     def save(self, *args, **kwargs):
 
         # Create a slug for this image
-        if not self.id and self.slug is '':
+        if not self.id and self.slug == '':
             self.slug = slugify(self.title)
 
         # Generate different versions
