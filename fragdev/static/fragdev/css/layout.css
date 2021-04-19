@@ -10,9 +10,23 @@
 │                |___/                                             │
 └──────────────────────────────────────────────────────────────────┘	
 
-	Layout © 2016, Jacob Hume
+	Layout © 2021, Jacob Hume
 	Licensed AGPLv3, Rock on.
 */
+
+
+
+/*= Colors (Light) =========*/
+
+:root {
+	--active-main: #000;
+	--active-shadow: #fefefe;
+	--error: #f50;
+	--highlight-text: #717f7f;
+	--main-text: #171b1b;
+	--main-bg: #bed6d6;
+	--main-shadow: #abc0c0;
+}
 
 
 
@@ -120,12 +134,12 @@
 }
 
 a {
-	color: #717f7f;
+	color: var(--highlight-text);
 	transition: color .25s;
 }
 
 article+article {
-	border: 0 solid #717f7f;
+	border: 0 solid var(--highlight-text);
 	border-width: .125em 0 0 0;
 }
 
@@ -137,14 +151,14 @@ aside {
 aside,
 input,
 textarea {
-	background-color: #bed6d6;
-	border: 1px solid #abc0c0;
-	box-shadow: inset .25em .25em 0 #abc0c0;
-	color: #000;
+	background-color: var(--bg);
+	border: 1px solid var(--main-shadow);
+	box-shadow: inset .25em .25em 0 var(--main-shadow);
+	color: var(--active-main);
 }
 
 body {
-	color: #171b1b;
+	color: var(--main-text);
 	font: 18px 'FD-Body',sans-serif;
 	line-height: 1.2;
 }
@@ -164,7 +178,7 @@ footer {
 }
 
 footer,h1,h2,h3,h4,header,nav {
-	color: #717f7f;
+	color: var(--highlight-text);
 	font-family: 'FD-Header',sans-serif;
 	font-weight: bold;
 }
@@ -186,14 +200,14 @@ header {
 }
 
 hr {
-	background: #717f7f;
+	background: var(--highlight-text);
 	border: 0;
 	height: .125em;
 	margin: 1em 2em;
 }
 
 html {
-	background: #bed6d6;
+	background: var(--main-bg);
 	box-sizing: border-box;
 	padding: 1em;
 }
@@ -241,7 +255,7 @@ textarea {
 
 .boxy {
 	background: #fefefe;
-	box-shadow: .5em .5em 0 #abc0c0;
+	box-shadow: .5em .5em 0 var(--highlight-text);
 	padding: 1em;
 	margin: 1em 0;
 }
@@ -251,7 +265,7 @@ textarea {
 }
 
 .content-header {
-	color: #717f7f;
+	color: var(--highlight-text);
 }
 
 .content-header>h1 {
@@ -267,7 +281,7 @@ textarea {
 }
 
 .error {
-	color: #f50;
+	color: var(--error);
 	font-weight: bold;
 }
 
@@ -335,7 +349,7 @@ textarea {
 	margin: 0;
 	padding: 0;
 	text-decoration: none;
-	text-shadow: .125em .125em 0 #abc0c0;
+	text-shadow: .125em .125em 0 var(--main-shadow);
 	text-transform: uppercase;
 }
 
@@ -350,7 +364,7 @@ textarea {
 }
 
 .tag {
-	border: 1px solid #abc0c0;
+	border: 1px solid var(--main-shadow);
     color: #555;
     display: inline-block;
     padding: 0.1em 0.25em;
@@ -392,7 +406,7 @@ textarea {
 a:active,
 a:focus,
 a:hover {
-	color: #000;
+	color: var(--active-main);
 }
 
 input:active,
@@ -401,8 +415,8 @@ input:hover,
 textarea:active,
 textarea:focus,
 textarea:hover {
-	background-color: #fefefe;
-	box-shadow: .25em .25em 0 #fefefe;
+	background-color: var(--active-shadow);
+	box-shadow: .25em .25em 0 var(--active-shadow);
 }
 
 .a11y-link:active,
@@ -412,6 +426,18 @@ textarea:hover {
 
 
 /*= Responsive =================*/
+
+@media (prefers-color-scheme: dark) {
+	:root,
+	html.dark {
+		--active-main: #fff;
+		--active-shadow: #020202;
+		--highlight-text: #717f7f;
+		--main-text: #171b1b;
+		--main-bg: #bed6d6;
+		--main-shadow: #abc0c0;
+	}
+}
 
 @media screen and (min-width: 48em) {
 
