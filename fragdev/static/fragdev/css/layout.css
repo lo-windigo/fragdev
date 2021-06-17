@@ -19,13 +19,15 @@
 /*= Colors (Light) =========*/
 
 :root {
+	color-scheme: light dark;
 	--active-main: #000;
 	--active-shadow: #fefefe;
 	--error: #f50;
 	--highlight-text: #717f7f;
 	--main-text: #171b1b;
-	--main-bg: #bed6d6;
+	--main-bg: #fefefe;
 	--main-shadow: #abc0c0;
+	--page-bg: #bed6d6;
 }
 
 
@@ -207,7 +209,7 @@ hr {
 }
 
 html {
-	background: var(--main-bg);
+	background: var(--page-bg);
 	box-sizing: border-box;
 	padding: 1em;
 }
@@ -248,14 +250,14 @@ textarea {
 /*= Modules ================*/
 
 .a11y-link {
-	background: #fff;
+	background-color: var(--main-bg);
 	position: fixed;
 	top: -10em;
 }
 
 .boxy {
-	background: #fefefe;
-	box-shadow: .5em .5em 0 var(--highlight-text);
+	background: var(--main-bg);
+	box-shadow: .5em .5em 0 var(--main-shadow);
 	padding: 1em;
 	margin: 1em 0;
 }
@@ -432,10 +434,11 @@ textarea:hover {
 	html.dark {
 		--active-main: #fff;
 		--active-shadow: #020202;
-		--highlight-text: #717f7f;
-		--main-text: #171b1b;
-		--main-bg: #bed6d6;
-		--main-shadow: #abc0c0;
+		--highlight-text: #fefefe;
+		--main-bg: #454f4f;
+		--main-shadow: #303737;
+		--main-text: #717f7f;
+		--page-bg: #020202;
 	}
 }
 
