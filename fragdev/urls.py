@@ -14,7 +14,7 @@
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.conf import settings
-from django.conf.urls import include, url
+from django.urls import include, path
 from django.views.generic import TemplateView
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -24,40 +24,32 @@ from fragdev import views
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^$',
+    path('',
         views.HomeView.as_view(),
         name='home'),
-    url(r'^about/?$',
+    path('about/',
         views.AboutView.as_view(),
         name='about'),
-    url(r'^contact/?$',
-        views.ContactView.as_view(),
+    path('contact/',
+        TemplateView.as_view(template_name="page-contact.html"),
         name='contact'),
-    url(r'^contacted/?$',
-        TemplateView.as_view(template_name="page-contacted.html"),
-        name='contacted'
-    ),
-    url(r'^contacted/?$',
-        TemplateView.as_view(template_name="page-contacted.html"),
-        name='contacted'
-    ),
-    url(r'^mei2019/?$',
+    path('mei2019/',
         TemplateView.as_view(template_name="page-mei2019.html"),
         name='mei2019'
     ),
-    url(r'^minecraft/?$',
+    path('minecraft/',
         TemplateView.as_view(template_name="page-minecraft.html"),
         name='minecraft'
     ),
-    url(r'^resume/?$',
+    path('resume/',
         TemplateView.as_view(template_name="page-resume.html"),
         name='resume'
     ),
-#    url(r'^hire/?$',
+#    path('hire/',
 #        TemplateView.as_view(template_name="page-hire.html"),
 #        name='hire'
 #    ),
-    url(r'^admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
 ]
 
 # Set up some custom url patterns for debugging
@@ -75,7 +67,7 @@ if 'wiblog' in settings.INSTALLED_APPS:
     import wiblog.urls
 
     urlpatterns += [
-        url(r'^blog/', include(wiblog.urls)),
+        path('blog/', include(wiblog.urls)),
     ]	
 
 
@@ -85,7 +77,7 @@ if 'images' in settings.INSTALLED_APPS:
     import images.urls
 
     urlpatterns += [
-        url(r'^img/', include(images.urls)),
+        path('img/', include(images.urls)),
     ]	
 
 
@@ -95,6 +87,6 @@ if 'projects' in settings.INSTALLED_APPS:
     import projects.urls
 
     urlpatterns += [
-        url(r'^projects/', include(projects.urls)),
+        path('projects/', include(projects.urls)),
     ]	
 

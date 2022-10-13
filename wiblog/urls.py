@@ -13,38 +13,38 @@
 # You should have received a copy of the GNU General Public License
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
-from django.conf.urls import url
+from django.urls import path 
 from django.views.generic import TemplateView
 from wiblog import feeds, views
 
 app_name = 'wiblog'
 
 urlpatterns = [
-	url(r'^archive/?$',
+	path('archive/',
             views.ArchiveView.as_view(),
             name='archive'),
-	url(r'^comment/?$',
+	path('comment/',
             views.CommentView.as_view(),
             name='comment'),
-	url(r'^comment-successful/?$',
+	path('comment-successful/',
             TemplateView.as_view(template_name="page-commented.html"),
             name='comment-successful'),
-	url(r'^feeds/atom/?$',
+	path('feeds/atom/',
             feeds.PostFeedAtom(),
             name='atom'),
-	url(r'^feeds/rss/?$',
+	path('feeds/rss/',
             feeds.PostFeedRSS(),
             name='rss'),
-	url(r'^tagged/(?P<tag>.+)/$',
+	path('tagged/<tag>/',
             views.TaggedPostView.as_view(),
             name='tagged'),
-	url(r'^tags/?$',
+	path('tags/',
             views.TagsView.as_view(),
             name='tags'),
-	url(r'^(?P<slug>.+)$',
+	path('<slug>',
             views.PostView.as_view(),
             name='post'),
-	url(r'^$',
+	path('',
             views.IndexView.as_view(),
             name='index'),
 ]

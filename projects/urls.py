@@ -13,13 +13,13 @@
 # You should have received a copy of the GNU General Public License
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
-from django.conf.urls import url
+from django.urls import path
 from projects import views
 
 app_name = 'projects'
 
 urlpatterns = [
-    url(r'^$', views.index, name='projects'),
-    url(r'^(?P<slug>.+)', views.project, name='project'),
+    path('', views.index, name='projects'),
+    path('<slug>', views.project, name='project'),
 ]
 
