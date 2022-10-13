@@ -7,53 +7,35 @@
 				I accept questions, comments, or ASCII art postcards.
 			</p>
 		</header>
-		<form method="post" action="/contact">
-			{% csrf_token %}
-			{% if form.non_field_errors|length %}
-			<ul class="error">
-				{% for error in form.non_field_errors %}
-				<li>{{ error }}</li>
-				{% endfor %}
-			</ul>
-			{% endif %}
+		<main>
+			<h1>Email</h1>
 			<p>
-				{{ form.name.errors }}
-				<label for="id_name">
-					{{ form.name.label }}:<br>
-					{{ form.name }}
-				</label>
-			</p>
-			<p>
-				{{ form.email.errors }}
-				<label for="id_email">
-					{{ form.email.label }}:<br>
-					{{ form.email }}
-				</label>
-			</p>
-			<p>
-				{{ form.message.errors }}
-				<label for="id_message">
-					{{ form.message.label }}:<br>
-					{{ form.message }}
-				</label>
-			</p>
-			<p>
-				{{ form.verify.errors }}
-				<label for="id_verify">
-					{{ form.verify.label }}:<br>
-					{{ form.verify }}
-				</label>
-			</p>
-			<p class="c">
-				<input type="submit" value="Send Message">
-			</p>
-		</form>
-		<aside>
-			<h2>Other communication methods</h2>
-			<p>
-				I am also reachable via XMPP (windigo@xmpp.fragdev.com)	and accept
-				encrypted emails using <a href="/static/misc/windigo-public.asc"
+				You can email me at <span id="contact-email" data-user="jacob"
+					data-domain="fragdev.com">jacob, the at symbol, then
+					fragdev dot com</span>. I accept
+				encrypted emails: you can use <a href="/static/misc/windigo-public.asc"
 				>my public key</a> (<strong><code>0xDAECFD4CBCC76ED6</code></strong>).
+
 			</p>
-		</aside>
+			<h1>Other</h1>
+			<p>
+				I prefer email. If you have my phone number, I accept phone
+				calls, but not texts. If you happen to find me in California,
+				feel free to say hello.
+			</p>
+			<p>
+				I very occasionally log onto <a href="https://libera.chat">libera.chat</a>.
+			</p>
+			<p>
+				I don't use any social media, and nobody else should either.
+			</p>
+		</main>
+		<script language="javascript">
+            const emailSpan = document.getElementById('contact-email');
+            const address = emailSpan.dataset.user + '@' +
+                emailSpan.dataset.domain;
+
+            emailSpan.innerHTML = '<a href="mailto:' + address + '">' + address
+                + '</a>';
+        </script>
 {% endblock %}
