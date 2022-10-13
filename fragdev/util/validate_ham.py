@@ -13,19 +13,14 @@
 # You should have received a copy of the GNU General Public License
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
-from django import forms
-from .util.validate_ham import ANTI_SPAM, validate_ham
+from django.core.exceptions import ValidationError
 
+ANTI_SPAM = 'toothbrush'
 
-class ContactForm(forms.Form):
+def validate_ham(value):
     """
-    Compose and send an email
+    Validate that the anti-spam value entered in matches the required one
     """
-    name = forms.CharField(max_length=100)
-    email = forms.EmailField()
-    message = forms.CharField(widget=forms.Textarea)
-    verify = forms.CharField(label='Anti-spam: Type in the word "{}"' \
-            .format(ANTI_SPAM),
-            validators=[validate_ham],
-            max_length=len(ANTI_SPAM))
+    if value != ANTI_SPAM:
+        raise ValidationError('Anti-spam value incorrect: you may be a robot')
 
