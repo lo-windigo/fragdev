@@ -18,7 +18,9 @@
 
 /*= Colors (Light) =========*/
 
-:root {
+:root,
+html.light {
+	/* Respect the user's preference */
 	color-scheme: light dark;
 	--active-main: #000;
 	--active-shadow: #fefefe;
@@ -343,7 +345,7 @@ textarea {
 }
 
 .site-title>a {
-	color: #fefefe;
+	color: var(--main-bg);
 	font-size: 3em;
 	font-weight: bold;
 	letter-spacing: .025em;
@@ -367,7 +369,7 @@ textarea {
 
 .tag {
 	border: 1px solid var(--main-shadow);
-    color: #555;
+    color: var(--main-text);
     display: inline-block;
     padding: 0.1em 0.25em;
     text-decoration: none;
@@ -434,10 +436,10 @@ textarea:hover {
 	html.dark {
 		--active-main: #fff;
 		--active-shadow: #020202;
-		--highlight-text: #fefefe;
-		--main-bg: #454f4f;
-		--main-shadow: #303737;
-		--main-text: #717f7f;
+		--highlight-text: #7b8b8b;
+		--main-bg: #384040;
+		--main-shadow: #1b1f1f;
+		--main-text: #b7cece;
 		--page-bg: #020202;
 	}
 }
