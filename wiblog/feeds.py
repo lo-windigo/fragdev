@@ -21,10 +21,10 @@ from wiblog import models
 # RSS Feed Class
 class PostFeedRSS(Feed):
     feed_type = Rss201rev2Feed
-    title = "Jacob Hume - Fragmented Development"
+    title = "Jacob Honeyhume - Fragmented Development"
     link = "/blog/feeds/rss"
     description = '''
-Jacob Hume's thoughts about web development, technology, Free software and
+Jacob Honeyhume's thoughts about web development, technology, Free software and
 other miscellaneous topics.
 '''
     
