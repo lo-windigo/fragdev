@@ -13,20 +13,84 @@
 # You should have received a copy of the GNU General Public License
 # along with the FragDev Website.  If not, see <http://www.gnu.org/licenses/>.
 
-import os, stat
+from os import path
+import os
+import stat
+import yaml
 
 
-# Default DEBUG value to false - overridden in local_settings.py
-DEBUG = False
+##################
+# Local settings #
+##################
 
-# Hosts/domain names that are valid for this site; required if DEBUG is False
-ALLOWED_HOSTS = ['127.0.0.1']
+PROJECT_APP_PATH = path.dirname(os.path.abspath(__file__))
+local_config_path = path.join(PROJECT_APP_PATH, "local.yaml")
+
+if not path.exists(local_config_path):
+    raise Exception("Missing local.yaml")
+
+local_settings_file = open(local_config_path, 'r')
+local_settings = yaml.full_load(local_settings_file)
+required_configs = (
+        'domain', 'secret_key', 'database', 'media_path',
+        'static_path', 'webroot'
+        )
+
+# Check for all the required configuration values
+for required_config in required_configs:
+    if not required_config in local_settings:
+        msg = 'Missing required configuration: {}'.format(required_config)
+        raise Exception(msg)
+
+# Pull out all of the local configurations
+DEBUG = local_settings.get('debug', False) == 'True'
+DOMAIN = local_settings.get('domain')
+SECRET_KEY = local_settings.get('secret_key')
+WEBROOT = local_settings.get('webroot')
+
+# Parse the DB configurations
+db_settings = local_settings.get('database')
+db_type = db_settings.get('type', 'Unspecified')
+
+# Build the database configurations for supported types
+if db_type == 'sqlite':
+    db_path = db_settings.get('path')
+    database = {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": path.join(WEBROOT, db_path),
+        }
+elif db_type == 'mysql':
+    # TODO: we would need to add local config parsing to use this
+    database = {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "database_name",
+        "USER": "database_user",
+        "PASSWORD": "password",
+        "HOST": "", # Set to empty string for localhost.
+        "PORT": "", # Set to empty string for default.
+    }
+else:
+    raise Exception('Unsupported DB type: {}'.format(db_type))
+
+
+##########################
+# Contact script details #
+##########################
+
+CONTACT_EMAIL = 'admin@{}'.format(DOMAIN)
+CONTACT_SENDER= 'website@{}'.format(DOMAIN)
+CONTACT_SUBJECT = 'Message from {}'.format(DOMAIN)
+
+
+########################
+# Time / Date settings #
+########################
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'UTC'
+TIME_ZONE = local_settings.get('timezone', 'UTC')
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -43,34 +107,47 @@ USE_L10N = True
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
-# Specify what field type is used for automatic primary keys
-DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
-##################
-# Local settings #
-##################
+#######################
+# File configurations #
+#######################
 
-# Import the local settings file (borrowed from Mezzanine)
-PROJECT_APP_PATH = os.path.dirname(os.path.abspath(__file__))
-f = os.path.join(PROJECT_APP_PATH, "local_settings.py")
-if os.path.exists(f):
-    import sys
-    import imp
-    module_name = "local_settings"
-    module = imp.new_module(module_name)
-    module.__file__ = f
-    sys.modules[module_name] = module
-    exec(open(f, "rb").read())
+# Default filesystem permissions for uploaded files
+FILE_UPLOAD_PERMISSIONS = stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP
 
-# URL prefix for static files.
-STATIC_URL = '/static/'
+# File paths for static/media files
+MEDIA_ROOT = path.join(WEBROOT, 'srv/media')
+STATIC_ROOT = path.join(WEBROOT, 'srv/static')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 MEDIA_URL = '/media/'
 
-# Default filesystem permissions for uploaded files
-FILE_UPLOAD_PERMISSIONS = stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP
+# URL prefix for static files.
+STATIC_URL = '/static/'
+
+
+#########################
+# Django configurations #
+#########################
+
+# Site administrators
+ADMINS = (
+     ('Administrator', 'admin@{}'.format(DOMAIN)),
+)
+
+# Hosts/domain names that are valid for this site; required if DEBUG is False
+ALLOWED_HOSTS = [
+        '127.0.0.1',
+        DOMAIN,
+        '.{}'.format(DOMAIN)
+        ]
+
+# Specify what field type is used for automatic primary keys
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+
+# Use database configuration passed in from the local settings
+DATABASES = { "default": database }
 
 # List of callables that know how to import templates from various sources.
 MIDDLEWARE = (
@@ -92,7 +169,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            WEBROOT + '/fragdev/fragdev/templates'
+            '{}/fragdev/fragdev/templates'.format(WEBROOT)
         ],
         'OPTIONS': {
             'context_processors': [
@@ -109,7 +186,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -155,3 +231,4 @@ LOGGING = {
         },
     }
 }
+

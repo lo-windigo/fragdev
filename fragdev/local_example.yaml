@@ -1,0 +1,12 @@
+---
+debug: True
+domain: ''
+database:
+  type: sqlite
+  path: 'relative/path/to/db.sqlite'
+# TODO: paths could be stored hierarchially?
+media_path: 'path/to/media'
+static_path: 'path/to/static'
+secret_key: 'abc'
+webroot: '/path/to/webroot'
+
