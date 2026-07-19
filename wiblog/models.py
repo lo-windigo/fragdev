@@ -38,6 +38,9 @@ class Tag(models.Model):
     def get_absolute_url(self):
         return reverse("wiblog:tags", args=[self.desc])
 
+    class Meta:
+        ordering = ('desc'),
+
 
 class Post(models.Model):
     """
@@ -165,7 +168,7 @@ class Post(models.Model):
         return self.format_line(self.title)
 
 
-    def save(self, show_updated=True):
+    def save(self, show_updated=False):
         """
         Override the save method to do a bunch of sensible stuff, like setting
         default field values and setting up the slug field

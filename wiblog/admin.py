@@ -45,7 +45,7 @@ class PostForm(forms.ModelForm):
     """
     class Meta:
         model = models.Post
-        fields = ('title', 'slug', 'body', 'tags', 'status')
+        fields = ('title', 'slug', 'body', 'tags', 'status', 'updated')
         widgets = {
                 'status': forms.RadioSelect(
                     choices=models.Post.PUBLISH_STATUS),
