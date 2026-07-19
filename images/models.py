@@ -30,7 +30,7 @@
 
 from django.db import models
 from django.utils.text import slugify
-from imghdr import what
+from filetype import guess
 
 
 class Image(models.Model):
@@ -56,7 +56,10 @@ class Image(models.Model):
         # TODO
 
         # Save the content type (required for headers later)
-        self.content_type = what(self.imgFile)
+        img_type = guess(self.imgFile)
+
+        if img_type:
+            self.content_type = img_type.mime
 
         super(Image, self).save(*args, **kwargs)
 
